@@ -1,0 +1,209 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 後期4: 情報通信ネットワーク（デジタル通信の仕組み）
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{4}
+\newcommand{\LectureTitle}{情報通信ネットワーク（デジタル通信の仕組み）}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{pp.104-107}
+\newcommand{\NextTopic}{インターネットの仕組みと安全な利用}
+\newcommand{\NextPages}{pp.108-111}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item 情報通信ネットワークとインターネット
+      \item インターネットへの接続方法
+      \item 通信方式（回線交換・パケット交換）
+      \item プロトコルとTCP/IP
+      \item IPアドレスとMACアドレス
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: terms ---
+
+\begin{frame}{基本用語}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{情報通信ネットワーク}]
+      コンピュータやスマートフォンなど，複数の機器を有線や無線の通信回線で接続し，互いに情報通信ができるようにしたもの
+    \item[\kw{LAN（Local Area Network）}]
+      学校や会社などの組織内にある情報通信ネットワーク。ハブやアクセスポイント，ルータなどのネットワーク接続機器を通して構成される
+    \item[\kw{WAN（Wide Area Network）}]
+      組織どうしを接続するネットワーク。通常はISP（インターネットサービスプロバイダ）が接続サービスを行っている
+    \item[\kw{インターネット}]
+      WANどうしが世界規模で相互に接続された情報通信ネットワーク
+    \item[\kw{ISP（Internet Service Provider）}]
+      インターネットへの接続サービスを提供する事業者。プロバイダともいう
+  \end{description}
+\end{frame}
+
+% --- Slide 3: points ---
+
+\begin{frame}{インターネットへの接続方法}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item ■学校内などのLANに接続：ケーブルやアクセスポイントを経由して接続する。組織や学校で指定されたIPアドレスなどが設定される
+      \item ■街中でWi-Fi接続：無線LANの環境の下で情報通信ができる技術・方式。組織や公衆のアクセスポイントを経由して接続する
+      \item ■スマートフォンから接続：携帯電話用の通信回線を経由して接続。携帯電話会社が所有する基地局などを介して接続される
+      \item ■家庭から接続：ISPと契約して光ファイバなどの接続回線を引き込み，ルータを経由して接続する
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item フリーWi-Fiにつなげるときはセキュリティに注意しよう
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 4: twocol ---
+
+\begin{frame}{2つの通信方式}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{回線交換方式}
+        \small
+        \begin{itemize}
+          \item 通信を始める前に相手との間で通信経路を確立する
+          \item いったん経路を確立すれば安定した通信ができる
+          \item 回線の障害などで経路が確立できないと通信できない
+          \item 例：従来の固定電話
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{パケット交換方式}
+        \small
+        \begin{itemize}
+          \item 情報をパケットとよばれる通信単位に小分けして送信する
+          \item あらかじめ経路を確立することなく通信を始められる
+          \item パケットが途中で失われたり，混雑の影響を受けたりすることがある
+          \item 例：インターネット・電子メール・SNS
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 5: terms ---
+
+\begin{frame}{プロトコルとTCP/IP}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{プロトコル}]
+      コンピュータどうしが相互に情報のやりとりをするために，何を使ってどのように送受信するかを決めた約束事
+    \item[\kw{TCP/IP（Transmission Control Protocol / Internet Protocol）}]
+      インターネットでよく利用されるプロトコル。基本ソフトウェアやアプリケーションに依存せず共通の役割を果たす
+    \item[\kw{TCP（トランスポート層）}]
+      送受信のデータの順序を整え，欠落や重複がないか確認し，データ通信の信頼性を高めるプロトコル。パケットが喪失した場合，再送を要求する
+    \item[\kw{IP（インターネット層）}]
+      異なる組織の間でデータをやりとりできるようにするプロトコル。データの行き先と経路を決める
+  \end{description}
+\end{frame}
+
+% --- Slide 6: table ---
+
+\begin{frame}{ネットワークの階層構造}
+  \centering
+  \small
+  \begin{tabular}{llll}
+    \toprule
+    層 & 名称 & 機能 & プロトコルの例 \\
+    \midrule
+    4層 & アプリケーション層 & アプリケーションに応じた通信の形式や手順を定める & SMTP・HTTP・DNS \\
+    3層 & トランスポート層 & パケットが喪失しないで届くことを保証する & TCP・UDP \\
+    2層 & インターネット層 & データの行き先と経路を決める & IP \\
+    1層 & ネットワークインタフェース層 & 接続されたコンピュータどうしが誤りなくデータ転送する手順を提供する & イーサネット \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 7: points ---
+
+\begin{frame}{IPアドレスとMACアドレス}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item IPアドレス：インターネットに接続されたコンピュータが持つ固有の番号。32ビットで表され，8ビットずつに区切って10進法で表記する
+      \item 例：11001010 11010110 11011000 00001010 → 202.214.216.10
+      \item MACアドレス：ネットワークインタフェース層でハードウェアを特定する番号
+      \item インターネット層ではIPアドレス，ネットワークインタフェース層ではMACアドレスが使われる
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 現在主に使用されているIPv4は32ビット。接続機器の急増によりIPアドレスが不足し，128ビットのIPv6への移行が進んでいる
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 8: points ---
+
+\begin{frame}{通信速度と5G}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 通信速度は1秒あたりに送信するデータ量を用いてbps（bits per second）で表される
+      \item 移動通信サービスの第5世代移動通信システム（5G）はおよそ10Gbpsの通信速度
+      \item 5Gはエンターテインメントだけでなく，遠隔医療や自動運転のサポートなど，さまざまなサービスを実現している
+      \item 1Gbps = 10⁹bps
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 9: exercise ---
+
+\begin{frame}{演習}
+  {\small 各自で取り組んでください。}
+
+  \vfill
+
+  \begin{block}{基本問題}
+    \begin{itemize}
+      \item LANとWANとインターネットの関係を説明せよ
+      \item 回線交換方式とパケット交換方式の違いを説明せよ。また，災害時にSNSが使いやすい理由をこの違いと関連付けて述べよ
+      \item IPアドレス「11000000 10101000 00000001 00000001」を10進法で表せ
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{応用問題（余裕がある人）}
+    \begin{itemize}
+      \item TCP/IPの4層構造のそれぞれの役割を説明し，WebページをURLで開くときに各層がどのように働くか述べよ
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 10: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    教科書 pp.104-107 を復習すること。次週はインターネットの利用と安全な仕組みを学ぶ（pp.108-111）
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

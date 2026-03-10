@@ -1,0 +1,188 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 後期9: データサイエンス・AI（2）：活用事例と倫理的課題
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{9}
+\newcommand{\LectureTitle}{データサイエンス・AI（2）：活用事例と倫理的課題}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{pp.122-125}
+\newcommand{\NextTopic}{データサイエンス・AI（3）：データ分析と仮説検証サイクル}
+\newcommand{\NextPages}{pp.126-129}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item データの種類（質的・量的）と尺度水準
+      \item データの可視化・テキストマイニング
+      \item 事例1：採用AIとバイアス
+      \item 事例2：顔認識とプライバシー
+      \item 事例3：ブラックボックス問題
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: twocol ---
+
+\begin{frame}{データの2つの種類}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{質的データ}
+        \small
+        \begin{itemize}
+          \item テストの順位や血液型など，種類を区別するデータ
+          \item 数量で表すことができない
+          \item 例：性別，血液型，出身地，通学手段
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{量的データ}
+        \small
+        \begin{itemize}
+          \item 気温や体重など，数値で表すことができるデータ
+          \item 大小比較や計算が意味を持つ
+          \item 例：身長，体重，気温，テストの点数，通学時間
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 3: table ---
+
+\begin{frame}{尺度水準（データの種類）}
+  \centering
+  \small
+  \begin{tabular}{llll}
+    \toprule
+    尺度 & 特徴 & 例 & できる演算 \\
+    \midrule
+    名義尺度 & 数値の順序や大小に意味はない & 通学手段・血液型 & 度数・最頻値 \\
+    順序尺度 & 大小には意味があるが，間隔が一定でない & 好きな行事の順位・満足度 & 中央値・最頻値 \\
+    間隔尺度 & 等間隔だが，比には意味がない（ゼロ点が定まらない） & 西暦・気温（℃）・偏差値 & 平均値・標準偏差 \\
+    比例尺度 & 等間隔かつ絶対的なゼロ点がある & 身長・体重・通学時間・金額 & すべて可能 \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 4: points ---
+
+\begin{frame}{データの可視化とテキストマイニング}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item データは，集めただけでは数値や文字情報でしかない。分析・関連付けで初めて情報としての価値が現れる
+      \item 可視化：表形式で整理→適切なグラフで表すことで全体像が把握できる
+      \item テキストマイニング：文章を構成する単語などに着目し，出現回数・傾向・相関などを解析する
+      \item ワードクラウド：テキストデータ中の単語の出現頻度を視覚化（頻出単語が大きく表示される）
+      \item 活用例：SNSの商品イメージ分析，自由記述アンケートの傾向分析，AIの自然言語処理の基盤技術
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 5: points ---
+
+\begin{frame}{事例1：採用AIとバイアス}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item ある大手IT企業が採用AIを開発 → 女性を低評価してしまう問題が発覚 → AIの使用を中止
+      \item なぜ起きたか：過去10年のデータが男性中心 → AIが「男性＝良い候補者」と誤学習
+      \item メリット：効率化（数千件を短時間で処理）・客観的評価・コスト削減
+      \item 重要：データの偏り ＝ AIの偏り。AIは過去の偏見を未来に持ち込む
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 今日のColab実習：年齢層別の採用率を分析し，バイアスを体験する
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 6: twocol ---
+
+\begin{frame}{事例2：顔認識とプライバシー}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{活用例}
+        \small
+        \begin{itemize}
+          \item 空港の入国審査
+          \item スマホのロック解除（Face ID）
+          \item 行方不明者の捜索
+          \item 商業施設の防犯
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{リスクとプライバシー問題}
+        \small
+        \begin{itemize}
+          \item 常に追跡される不安・行動の自由が制限される
+          \item 個人情報保護法（同意が必要）
+          \item 誤認識のリスク（冤罪の可能性）
+          \item データ漏洩のリスク
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 7: points ---
+
+\begin{frame}{事例3：ブラックボックス問題}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 説明可能性：AIがなぜその判断をしたかが分からない。複雑なモデルほど説明が難しい
+      \item なぜ問題か：判断の理由が説明できないと信頼されない／間違いに気づけない／責任の所在が不明確
+      \item 問題となる場面：医療診断AI（なぜその診断？）／融資審査AI（なぜ却下？）／採用判定AI（なぜ不採用？）
+      \item 対策：説明可能なAI（XAI: Explainable AI）の研究が進んでいる
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 8: practice ---
+
+\begin{frame}{Colab実習：採用データの年齢層別分析}
+  \begin{block}{手順}
+    \begin{enumerate}
+      \item TeamsフォルダリンクをクリックしてColabを開く
+      \item 「採用データ.csv」を自分のマイドライブにコピー
+      \item セル1を実行（Googleドライブへのアクセス許可）
+      \item Part 2のセル3とセル4を完成させる
+      \item グラフが表示されたらスクリーンショット（Win + Shift + S）
+      \item Teamsの課題に提出
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 9: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    年齢層別の採用率グラフのスクリーンショットをTeamsの課題に提出すること
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

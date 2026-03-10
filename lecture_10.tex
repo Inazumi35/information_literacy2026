@@ -1,0 +1,165 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 10: 情報セキュリティと情報モラル
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{10}
+\newcommand{\LectureTitle}{情報セキュリティと情報モラル}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{pp.16-19}
+\newcommand{\NextTopic}{情報社会：技術の進歩と私たちの役割}
+\newcommand{\NextPages}{pp.20-23}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item 情報セキュリティの3要素（CIA）
+      \item 主な脅威と攻撃手法
+      \item 情報モラルと個人の責任
+      \item ネット上の行動と法的責任
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: terms ---
+
+\begin{frame}{情報セキュリティの3要素（CIA）}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{機密性（Confidentiality）}]
+      許可された人だけが情報にアクセスできる状態を保つ
+    \item[\kw{完全性（Integrity）}]
+      情報が正確で改ざんされていない状態を保つ
+    \item[\kw{可用性（Availability）}]
+      必要なときに情報やシステムを使える状態を保つ
+  \end{description}
+\end{frame}
+
+% --- Slide 3: table ---
+
+\begin{frame}{主な脅威の種類}
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    脅威 & 内容 & 身近な例 \\
+    \midrule
+    マルウェア & 不正なソフトウェアの総称 & ウイルス・ランサムウェア・スパイウェア \\
+    フィッシング & 偽サイト・偽メールで情報を騙し取る & 銀行・宅配業者を装ったメール \\
+    不正アクセス & 他人のアカウントに無断でログイン & パスワード流出による乗っ取り \\
+    ソーシャルエンジニアリング & 人の心理を利用して情報を入手 & 電話・なりすましで聞き出す \\
+    DoS攻撃 & 大量データを送りサービスを停止させる & ゲームサーバー・ECサイトへの攻撃 \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 4: twocol ---
+
+\begin{frame}{パスワードの安全な管理}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{やってはいけないこと}
+        \small
+        \begin{itemize}
+          \item 短い・単純なパスワードを使う（例：123456）
+          \item 複数のサービスで同じパスワードを使う
+          \item パスワードをメモに書いて貼る
+          \item 他人に教える・LINE等で送る
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{推奨される対策}
+        \small
+        \begin{itemize}
+          \item 12文字以上・英数字・記号を混在させる
+          \item サービスごとに異なるパスワードを使う
+          \item パスワードマネージャーを活用する
+          \item 二段階認証（2FA）を設定する
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 5: terms ---
+
+\begin{frame}{情報モラルの基本用語}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{情報モラル}]
+      情報社会で適切に行動するための倫理観・判断力・行動力
+    \item[\kw{デジタルタトゥー}]
+      一度インターネットに公開した情報は完全に消去できないこと
+    \item[\kw{フェイクニュース}]
+      意図的に作られた虚偽の情報。SNSで急速に拡散されやすい
+    \item[\kw{VDT症候群}]
+      長時間のPC・スマホ使用による目・肩・腰などの身体的不調
+    \item[\kw{ネット依存}]
+      インターネットの過剰使用により日常生活に支障をきたす状態
+  \end{description}
+\end{frame}
+
+% --- Slide 6: notice ---
+
+\begin{frame}{ネット上での行動と法的責任}
+  \begin{noticebox}[ネット上での行動と法的責任]
+    \begin{itemize}
+      \item 匿名であっても発信者の特定は技術的に可能（IPアドレス・ログの追跡）
+      \item 誹謗中傷・脅迫は名誉毀損罪・侮辱罪・脅迫罪に該当しうる
+      \item 他人の著作物の無断転載は著作権法違反
+      \item 不正アクセスは不正アクセス禁止法違反（未成年でも適用される）
+    \end{itemize}
+  \end{noticebox}
+\end{frame}
+
+% --- Slide 7: exercise ---
+
+\begin{frame}{演習}
+  {\small 各自で取り組んでください。}
+
+  \vfill
+
+  \begin{block}{基本問題}
+    \begin{itemize}
+      \item 情報セキュリティの3要素（CIA）をそれぞれ説明せよ
+      \item フィッシング詐欺とはどのような攻撃か説明せよ
+      \item デジタルタトゥーとは何か，具体例を挙げて説明せよ
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{応用問題（余裕がある人）}
+    \begin{itemize}
+      \item 自分のSNSアカウントのセキュリティ設定を確認し，改善すべき点と理由を述べよ
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 8: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    教科書pp.16-19を復習すること。自分が使っているWebサービスで二段階認証が設定できるか確認すること
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

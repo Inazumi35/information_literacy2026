@@ -1,0 +1,176 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 後期12: データサイエンス・AI（5）：深層学習
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{12}
+\newcommand{\LectureTitle}{データサイエンス・AI（5）：深層学習}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{対応なし}
+\newcommand{\NextTopic}{データサイエンス・AI（6）：生成AI}
+\newcommand{\NextPages}{対応なし}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item 深層学習とは
+      \item ニューラルネットワークの基本構造
+      \item 活性化関数・損失関数・最適化
+      \item バックプロパゲーション
+      \item 深層学習の応用例
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: twocol ---
+
+\begin{frame}{機械学習と深層学習の違い}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{従来の機械学習}
+        \small
+        \begin{itemize}
+          \item 特徴量を人間が設計する
+          \item 例：顔認識 → 目の位置，鼻の形を手動で定義
+          \item 専門知識が必要
+          \item 少ないデータでも動くことがある
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{深層学習（ディープラーニング）}
+        \small
+        \begin{itemize}
+          \item 特徴量を自動で学習する
+          \item 例：顔認識 → 画像から自動で重要な特徴を発見
+          \item 大量のデータで高精度を実現
+          \item 人間の脳の神経細胞（ニューロン）を模倣した構造
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 3: terms ---
+
+\begin{frame}{ニューラルネットワークの基本}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{ノード}]
+      計算を行う単位（ニューロンに相当）
+    \item[\kw{重み（weight）}]
+      ノード間の結合の強さを表す数値。学習によって調整される
+    \item[\kw{層（layer）}]
+      ノードの集まり。入力層・隠れ層・出力層から構成される
+    \item[\kw{今日のモデル構造}]
+      入力784 → 隠れ層128 → 隠れ層64 → 出力10（総パラメータ数：109,386個）
+  \end{description}
+\end{frame}
+
+% --- Slide 4: twocol ---
+
+\begin{frame}{活性化関数}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{ReLU（レルー）}
+        \small
+        \begin{itemize}
+          \item マイナスの値を0にする
+          \item 隠れ層でよく使われる
+          \item 計算が速い
+          \item f(x) = max(0, x)
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Softmax（ソフトマックス）}
+        \small
+        \begin{itemize}
+          \item 出力を確率に変換する（合計が1になる）
+          \item 出力層でよく使われる
+          \item 各クラスの確率を出力
+          \item 例：数字「7」である確率 95\%
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 5: points ---
+
+\begin{frame}{学習の仕組み：バックプロパゲーション}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 損失関数：予測と正解のズレを数値化。学習の目標は損失を小さくすること
+      \item 最適化：損失を小さくするように重みを少しずつ自動調整する
+      \item バックプロパゲーション（誤差逆伝播）：間違いを後ろから前に伝えて修正
+      \item 流れ：予測する（前向き）→ 間違いを見つける → 原因を探る（後ろから前に）→ 重みを修正 → 繰り返す
+      \item 結果：繰り返すほど精度が上がる
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 6: points ---
+
+\begin{frame}{深層学習の応用例}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 画像認識：顔認識（スマホロック解除）・医療画像診断（レントゲンから病変検出）・自動運転（歩行者検出）
+      \item 自然言語処理：ChatGPT・Claude（会話AI）・機械翻訳・文章生成
+      \item 音声認識：Siri・音声入力・リアルタイム翻訳
+      \item 画像生成：Stable Diffusion・テキストから画像を生成
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 7: points ---
+
+\begin{frame}{Colab実習：MNIST手書き数字認識}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item MNIST：手書き数字（0-9）の画像データセット。訓練60,000枚，テスト10,000枚
+      \item セル1：データ読み込みと可視化
+      \item セル2：モデル構築（総パラメータ数109,386個）
+      \item セル3：学習と学習曲線（5エポックで約98\%の精度）
+      \item セル4：予測と評価・混同行列（ヒートマップで可視化）
+      \item セル5：正解/不正解の例（どの数字が間違えやすいか）
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item エポック（epoch）：訓練データ全体を1回学習すること
+      \item 学習の様子：Epoch1→92\%→Epoch2→96\%→Epoch3→97\%→Epoch4→98\%→Epoch5→98\%
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 8: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    次週はこのMNISTモデルの評価（正解率・適合率・再現率・混同行列）を詳しく学ぶ。モデルを保存しておくこと
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

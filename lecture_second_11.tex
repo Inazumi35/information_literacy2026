@@ -1,0 +1,186 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 後期11: データサイエンス・AI（4）：機械学習の基礎
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{11}
+\newcommand{\LectureTitle}{データサイエンス・AI（4）：機械学習の基礎}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{対応なし}
+\newcommand{\NextTopic}{データサイエンス・AI（5）：深層学習}
+\newcommand{\NextPages}{対応なし}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item 機械学習とは
+      \item 教師あり学習
+      \item 教師なし学習
+      \item 強化学習
+      \item 変数選択の重要性
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: twocol ---
+
+\begin{frame}{機械学習とは}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{定義と特徴}
+        \small
+        \begin{itemize}
+          \item データから学習し，予測や判断を行う技術
+          \item 従来：ルールを人間が書く
+          \item 機械学習：データからルールを学習
+          \item AIの中核技術の一つ
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{3つの分類}
+        \small
+        \begin{itemize}
+          \item 教師あり学習：正解ラベル付きデータで学習 → 予測
+          \item 教師なし学習：正解ラベルなしでパターン発見 → グループ化
+          \item 強化学習：試行錯誤で最適な行動を学習 → 報酬で改善
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 3: points ---
+
+\begin{frame}{教師あり学習}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item データ：説明変数＋正解ラベル
+      \item 目的：新しいデータの予測
+      \item タイプ：回帰（数値予測）／分類（カテゴリ予測）
+      \item 例：スパム判定・画像認識・株価予測・本塁打30本以上予測
+      \item デシジョンツリー：質問を繰り返して分類。視覚的で判断理由が明確
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 今日の実習Part 1：打率+打点 → 本塁打30本以上予測（デシジョンツリー）
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 4: points ---
+
+\begin{frame}{教師なし学習}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item データ：説明変数のみ（正解ラベルなし）
+      \item 目的：パターン発見・グループ化（クラスタリング）
+      \item 例：顧客セグメント・異常検知・レコメンド
+      \item K-means法：K個のグループを作り，最も近いグループに割り当て，中心を再計算
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 今日の実習Part 2・3：打率+打点 vs 打率+出塁率のクラスタリング比較
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 5: points ---
+
+\begin{frame}{強化学習}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 定義：試行錯誤で最適な行動を学習する
+      \item 仕組み：行動 → 観察 → 報酬 → 学習 → 繰り返し
+      \item 例：AlphaGo（囲碁AI）／ロボット制御／自動運転
+      \item 人間が正解を教えるのではなく，環境とのやりとりから自律的に学習する
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 6: table ---
+
+\begin{frame}{3つの学習方法の比較}
+  \centering
+  \small
+  \begin{tabular}{llll}
+    \toprule
+    種類 & データ & 目的 & 例 \\
+    \midrule
+    教師あり学習 & 正解あり & 予測 & スパム判定・画像認識 \\
+    教師なし学習 & 正解なし & パターン発見 & 顧客分類・異常検知 \\
+    強化学習 & 報酬あり & 最適行動 & ゲームAI・自動運転 \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 7: points ---
+
+\begin{frame}{変数選択の重要性}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 成功例：打率+打点 → グループ1が100\%完璧に本塁打30本以上を発見
+      \item 失敗例：打率+出塁率 → グループ1が90\%程度にとどまる
+      \item 理由：打率と出塁率は似た変数（相関係数0.875）→ 新しい情報が少ない
+      \item 教訓：相関が強く，かつ異なる情報を持つ変数を組み合わせることが重要
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item どの変数を使うかで結果が大きく変わる → 機械学習の設計には専門知識が必要
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 8: practice ---
+
+\begin{frame}{Colab実習：機械学習の3つの学習方法を体験}
+  \begin{block}{手順}
+    \begin{enumerate}
+      \item Part 1：デシジョンツリー（打率+打点 → 本塁打30本以上予測）
+      \item Part 2：クラスタリング成功例（打率+打点 → 3グループ）
+      \item Part 3：クラスタリング失敗例（打率+出塁率 → 3グループ）
+      \item Part 4：比較（なぜ結果が違うか考察する）
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 9: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    教科書 pp.122-129 を復習すること。次週は深層学習（ニューラルネットワーク）を学ぶ
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

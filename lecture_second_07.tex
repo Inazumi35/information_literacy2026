@@ -1,0 +1,205 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 後期7: データベースとデータ管理の基礎
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{7}
+\newcommand{\LectureTitle}{データベースとデータ管理の基礎}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{pp.118-121}
+\newcommand{\NextTopic}{データサイエンス・AI（1）：導入}
+\newcommand{\NextPages}{対応なし}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item ビッグデータとデータが活用される社会
+      \item データベースとDBMS
+      \item 関係データベース（テーブル・行・列・主キー）
+      \item 関係論理演算（射影・選択・結合）
+      \item SQLの基礎
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: terms ---
+
+\begin{frame}{基本用語}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{ビッグデータ（big data）}]
+      コンピュータやネットワークの発達により収集・蓄積されるようになった大量のデータ。閲覧・投稿履歴，位置情報，購入履歴，POSデータ，個人情報，生体データ，監視映像，環境データ，運行状況など
+    \item[\kw{データベース（DB）}]
+      特定の目的のために整理・管理されたデータの集合体。必要なデータを素早く取り出したり，追加・削除・更新したりすることができる
+    \item[\kw{DBMS（Database Management System）}]
+      データベース管理システム。データベースを管理・操作するためのソフトウェア
+    \item[\kw{関係データベース（relational database）}]
+      データを表（テーブル）の形式で管理するデータベース。現在最も広く使われている
+  \end{description}
+\end{frame}
+
+% --- Slide 3: twocol ---
+
+\begin{frame}{関係データベースの構造}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{テーブルの要素}
+        \small
+        \begin{itemize}
+          \item テーブル（表）：データをまとめる入れ物
+          \item 行（レコード）：1件分のデータ
+          \item 列（フィールド）：データの属性（項目）
+          \item 主キー：各行を一意に識別する列（重複なし・空欄なし）
+          \item 外部キー：他のテーブルの主キーを参照する列
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{書籍テーブルの例}
+        \small
+        \begin{itemize}
+          \item 図書番号 | 名前 | 著者名 | 出版社 | 分類記号
+          \item 100070408 | パスワード盗りの鑑 | 松原秀行 | A社 | 913
+          \item 100020411 | 確信の少年 | あさのあつこ | B社 | 913
+          \item 100108216 | そのときは彼によろしく | 市川拓司 | C社 | 913
+          \item （主キー：図書番号）
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 4: points ---
+
+\begin{frame}{関係論理演算の3種類}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item ■射影演算：表からいくつかの項目を取り出して新たな表を生成する（列の抽出）
+      \item 　例：SELECT 書名, 著者名, 出版社 FROM 書籍表
+      \item ■選択演算：条件を満たすデータだけを抽出して新たな表を生成する（行の抽出）
+      \item 　例：SELECT * FROM 書籍表 WHERE 出版社 = 'C社'
+      \item ■結合演算：複数の表をある項目どうしの関係に基づいて結合し，新たな表を生成する
+      \item 　例：SELECT * FROM 書籍表, NDC分類表 WHERE 書籍表.分類記号 = NDC分類表.分類記号
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item これらの関係論理演算を記述するのに問い合わせ言語が用いられる。代表的な問い合わせ言語にSQLがある
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 5: points ---
+
+\begin{frame}{SQLの基本文法}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 検索（SELECT）：SELECT 列名 FROM テーブル名 WHERE 条件
+      \item 追加（INSERT）：INSERT INTO テーブル名 VALUES (値1, 値2, …)
+      \item 更新（UPDATE）：UPDATE テーブル名 SET 列名 = 値 WHERE 条件
+      \item 削除（DELETE）：DELETE FROM テーブル名 WHERE 条件
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item SQLはStructured Query Languageの略。関係データベースを操作するための標準的な問い合わせ言語
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 6: points ---
+
+\begin{frame}{データベースの設計（正規化）}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item データベースは，データの重複や矛盾が起きないよう設計する必要がある
+      \item 正規化：データの重複を排除し，整合性を保ちやすい形にテーブルを分割・整理する作業
+      \item 例：書籍テーブルと分類テーブルを分けることで，分類名の変更が1か所で済む
+      \item テーブルを分けすぎると結合演算（JOIN）が増えるため，バランスが重要
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 予約システム（鉄道の座席予約など）は，データベースとネットワークが連携し，利用者の要望に瞬時に対応できるようになっている
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 7: table ---
+
+\begin{frame}{ファイル管理 vs データベース管理}
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    項目 & ファイル管理（Excel等） & データベース管理 \\
+    \midrule
+    同時利用 & 困難（上書き衝突） & 可能（排他制御） \\
+    データの重複 & 起こりやすい & 正規化で抑制できる \\
+    検索速度 & データ量が増えると遅くなる & 大量データでも高速 \\
+    セキュリティ & 制限が難しい & アクセス権限を細かく設定できる \\
+    整合性 & 手動管理 & 自動的に保たれる \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 8: exercise ---
+
+\begin{frame}{演習}
+  {\small 各自で取り組んでください。}
+
+  \vfill
+
+  \begin{block}{基本問題}
+    \begin{itemize}
+      \item 関係データベースのテーブル・行・列・主キーをそれぞれ説明せよ
+      \item 射影・選択・結合の違いを，「書籍テーブルからC社の本の書名と著者名だけを取り出す」操作を例に説明せよ
+      \item 次のSQLが取り出すデータを説明せよ：SELECT 書名, 著者名 FROM 書籍表 WHERE 出版社 = 'A社'
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{応用問題（余裕がある人）}
+    \begin{itemize}
+      \item 学校の図書管理システムを設計し，必要なテーブルとその列・主キーを書け。また，「2024年以降に出版された機械工学の本の書名と著者名」を検索するSQLを書け
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 9: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    教科書 pp.118-121 を復習すること。次週からデータサイエンスとAIの基礎を学ぶ。身近なAI活用の事例（画像認識・音声認識・推薦システム等）を1つ調べてくること
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,175 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 13: デジタル表現1：2進数 / 文字コード / 音
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{13}
+\newcommand{\LectureTitle}{デジタル表現1：2進数 / 文字コード / 音}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{pp.36-43}
+\newcommand{\NextTopic}{デジタル表現2：画像 / 圧縮と品質}
+\newcommand{\NextPages}{pp.44-47}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item 2進法と10進法の変換
+      \item 16進法と2進法の関係
+      \item 文字コードの仕組み
+      \item 音のデジタル化（標本化・量子化・符号化）
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: table ---
+
+\begin{frame}{2進法の基本と変換例}
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    10進法 & 2進法 & 計算（各桁の重み：2³=8, 2²=4, 2¹=2, 2⁰=1） \\
+    \midrule
+    5 & 0101 & 4×1 + 2×0 + 1×1 = 5 \\
+    10 & 1010 & 8×1 + 4×0 + 2×1 + 1×0 = 10 \\
+    13 & 1101 & 8×1 + 4×1 + 2×0 + 1×1 = 13 \\
+    23 & 10111 & 16+4+2+1 = 23 \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 3: points ---
+
+\begin{frame}{16進法}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 0〜9とA〜F（A=10, B=11, … F=15）の16文字で表す記数法
+      \item 2進数4桁が16進数1桁に対応するため，変換が容易
+      \item 例：1101 1110(2) → D E(16)（4ビットずつ区切って変換）
+      \item 逆に16進→2進：各桁を4ビットの2進数に置き換える
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item プログラミングやネットワーク（MACアドレス・色コード）でよく使われる
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 4: terms ---
+
+\begin{frame}{文字コード}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{文字コード}]
+      文字と数値（ビット列）の対応規則。コンピュータは文字もすべて数値で管理する
+    \item[\kw{ASCII}]
+      7ビットで英数字・記号を表すコード体系。ほぼすべての文字コードの基礎
+    \item[\kw{JIS8ビットコード}]
+      ASCIIを拡張し，片仮名を追加した8ビット（256種）のコード体系
+    \item[\kw{シフトJISコード}]
+      日本語（仮名・漢字）を16ビット（2バイト）で表すコード体系
+    \item[\kw{ユニコード（Unicode）}]
+      世界中の文字を統一して扱う国際標準コード。UTF-8，UTF-16などの方式がある
+    \item[\kw{文字化け}]
+      異なる文字コード体系で読み込んだときに文字が正しく表示されない現象
+  \end{description}
+\end{frame}
+
+% --- Slide 5: points ---
+
+\begin{frame}{音のデジタル化}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 音はアナログ（空気の連続的な振動）→ A/D変換でデジタル化
+      \item ①標本化（サンプリング）：一定時間間隔で波の高さを取り出す
+      \item ②量子化：取り出した値を一定の段階値に丸める
+      \item ③符号化：量子化した数値を2進法で表す
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 音を特徴づける要素：振幅（音の大小）・周波数（音の高低）・波形（音色）
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 6: points ---
+
+\begin{frame}{音のデータ量計算}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 1秒間のデータ量 = 標本化周波数（Hz）× 量子化ビット数（bit）× チャンネル数
+      \item 例：CD音質 = 44,100 Hz × 16 bit × 2ch = 1,411,200 bit/s
+      \item 品質↑（標本化周波数・量子化ビット数を増やす）→ データ量↑
+      \item 品質↓（値を減らす）→ データ量↓ ← トレードオフの関係
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 標本化定理：元の信号の最大周波数の2倍以上の周波数でサンプリングする必要がある
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 7: exercise ---
+
+\begin{frame}{演習}
+  {\small 各自で取り組んでください。}
+
+  \vfill
+
+  \begin{block}{基本問題}
+    \begin{itemize}
+      \item 1101(2) を10進法で表せ
+      \item 23(10) を2進法で表せ
+      \item 11011110(2) を16進法に変換せよ
+      \item ASCIIとユニコードの違いを説明せよ
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{応用問題（余裕がある人）}
+    \begin{itemize}
+      \item 標本化周波数22,050Hz，量子化16ビット，モノラル（1ch）で1分間録音したときのデータ量（バイト）を求めよ
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 8: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    教科書 pp.36-43 を復習し，10進数→2進数→16進数の変換を練習すること（5問以上）。次週は画像のデジタル表現を扱う
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

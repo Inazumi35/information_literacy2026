@@ -1,0 +1,10 @@
+*.log
+*.aux
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+texput.*
+__pycache__/
+*.pyc

@@ -1,0 +1,212 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 後期2: 処理の仕組み（CPU・命令・論理回路）
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{2}
+\newcommand{\LectureTitle}{処理の仕組み（CPU・命令・論理回路）}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{pp.74-77}
+\newcommand{\NextTopic}{アルゴリズムと効率（表現方法と計算量の基礎）}
+\newcommand{\NextPages}{pp.78-81}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item ノイマン型コンピュータと五大装置
+      \item 計算の手順（フェッチ・デコード・実行）
+      \item CPUの処理能力（クロック周波数）
+      \item 論理回路（AND・OR・NOT）
+      \item 半加算器
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: terms ---
+
+\begin{frame}{基本用語}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{ノイマン型コンピュータ}]
+      記憶装置にプログラムの命令をデータとして格納し，順次読み込んで実行する逐次処理方式のコンピュータ。ジョン・フォン・ノイマンが提唱
+    \item[\kw{CPU（Central Processing Unit）}]
+      中央演算処理装置。演算装置と制御装置から構成され，コンピュータの中心的な処理を担う
+    \item[\kw{主記憶装置}]
+      CPUから直接アクセスできる記憶装置。メモリともいう
+    \item[\kw{補助記憶装置}]
+      主記憶装置以外の記憶装置。ストレージともいう（HDD・SSD等）
+    \item[\kw{バス（bus）}]
+      コンピュータ内の各装置・周辺装置間をつなぐデータの通路
+    \item[\kw{クロック周波数}]
+      CPUが1秒間に動作する回数。CPUの処理速度を表す尺度の1つ（単位：Hz）
+  \end{description}
+\end{frame}
+
+% --- Slide 3: points ---
+
+\begin{frame}{コンピュータの五大装置}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 演算装置：データの計算を行う
+      \item 制御装置：プログラムの実行や各装置の制御を行う
+      \item 記憶装置：プログラムやデータを記憶する（主記憶・補助記憶）
+      \item 入力装置：外部からデータを取り込む
+      \item 出力装置：外部へデータを出力する
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item CPUは演算装置と制御装置をまとめたもの。これら五大装置をバスで接続する
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 4: points ---
+
+\begin{frame}{計算の手順（ノイマン型の動作）}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item ① プログラムの実行が指示されると，命令やデータが主記憶装置に転送される
+      \item ② 制御装置がプログラムカウンタの指すアドレスから命令を読み込み，カウンタを1つ進める
+      \item ③ 読み込んだ命令を制御装置で解釈し，演算・転送・格納・終了などの動作を行う
+      \item ④ 終了命令がない限り，手順②へ戻る
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item この繰り返しにより主記憶装置の状態が逐次変化し，コンピュータの計算が行われる
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 5: table ---
+
+\begin{frame}{CPUのクロック周波数}
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    クロック周波数 & 1クロックの時間 & 1秒間の動作回数 \\
+    \midrule
+    1 Hz & 1秒 & 1回 \\
+    1 MHz & 1マイクロ秒（10⁻⁶秒） & 100万回 \\
+    1 GHz & 1ナノ秒（10⁻⁹秒） & 10億回 \\
+    3 GHz & 約0.33ナノ秒 & 30億回 \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 6: terms ---
+
+\begin{frame}{論理回路の基礎}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{論理回路}]
+      0と1（電気信号のON/OFF）を入力として，論理演算の結果を出力する電子回路
+    \item[\kw{集積回路（IC）}]
+      複数の論理回路を組み合わせてまとめたもの。コンピュータの中枢を構成する
+    \item[\kw{真理値表}]
+      論理回路の入力と出力の全組み合わせを表にしたもの
+  \end{description}
+\end{frame}
+
+% --- Slide 7: table ---
+
+\begin{frame}{基本論理回路の真理値表}
+  \centering
+  \small
+  \begin{tabular}{lllll}
+    \toprule
+    回路 & 入力① & 入力② & 出力 & 説明 \\
+    \midrule
+    AND & 0 & 0 & 0 & 入力が全て1のときだけ出力が1 \\
+    AND & 0 & 1 & 0 &  \\
+    AND & 1 & 0 & 0 &  \\
+    AND & 1 & 1 & 1 &  \\
+    OR & 0 & 0 & 0 & 入力のどれか1つでも1なら出力が1 \\
+    OR & 0 & 1 & 1 &  \\
+    OR & 1 & 0 & 1 &  \\
+    OR & 1 & 1 & 1 &  \\
+    NOT & 0 & - & 1 & 入力と反対の結果を出力する \\
+    NOT & 1 & - & 0 &  \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 8: points ---
+
+\begin{frame}{半加算器}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 2進法1桁の2つの数AとBを加算し，1桁目をS（Sum），桁上がりをC（Carry）として出力する論理回路
+      \item S = A XOR B（AとBが異なるとき1）
+      \item C = A AND B（両方1のときだけ1）
+      \item 半加算器を2つ組み合わせると「全加算器」（下位からの桁上がりを考慮）が作れる
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item AND・OR・NOT の3つの基本論理回路を「基本論理回路」という。これらの組み合わせであらゆる処理が実現される
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 9: exercise ---
+
+\begin{frame}{演習}
+  {\small 各自で取り組んでください。}
+
+  \vfill
+
+  \begin{block}{基本問題}
+    \begin{itemize}
+      \item ノイマン型コンピュータの五大装置をそれぞれ説明せよ
+      \item AND・OR・NOT回路の真理値表を完成させよ（入力2つ，全パターン）
+      \item クロック周波数2GHzのCPUが1秒間に動作する回数を求めよ
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{応用問題（余裕がある人）}
+    \begin{itemize}
+      \item 半加算器の真理値表を書き，AND・OR・NOT回路の組み合わせで実現できることを説明せよ
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 10: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    教科書 pp.74-77 を復習すること。次週はアルゴリズムと効率を学ぶ（pp.78-81）
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

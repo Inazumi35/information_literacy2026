@@ -1,0 +1,220 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 後期1: コンピュータの構成とソフトウェアの種類
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{1}
+\newcommand{\LectureTitle}{コンピュータの構成とソフトウェアの種類}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{pp.70-73}
+\newcommand{\NextTopic}{処理の仕組み（CPU・命令・論理回路）}
+\newcommand{\NextPages}{pp.74-77}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item コンピュータの基本構成
+      \item ハードウェアの種類と役割
+      \item 計測・制御システム
+      \item ソフトウェアの種類（基本・応用）
+      \item 処理の流れ
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: terms ---
+
+\begin{frame}{基本用語}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{コンピュータ（computer）}]
+      数値の記憶，演算，外部との入出力を行う機能を備えた電子機器
+    \item[\kw{ハードウェア（hardware）}]
+      コンピュータの筐体や部品のように，物理的に触ることができるもの
+    \item[\kw{ソフトウェア（software）}]
+      コンピュータを構成する物理的要素を除いた全ての無形要素の総称。一般にコンピュータプログラムを指す
+    \item[\kw{基本ソフトウェア}]
+      ハードウェアと応用ソフトウェアの仲介を行い，コンピュータの中核となるソフトウェア。OS（オペレーティングシステム）ともいう
+    \item[\kw{応用ソフトウェア}]
+      文書処理・表計算・画像処理など，特定の目的の作業に用いるソフトウェア。アプリケーションソフトウェアともいう
+  \end{description}
+\end{frame}
+
+% --- Slide 3: twocol ---
+
+\begin{frame}{ハードウェアの構成}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{入力装置}
+        \small
+        \begin{itemize}
+          \item キーボード・マウス・マイクロホン
+          \item タッチパネル・スキャナ
+          \item 外部からコンピュータへデータを取り込む
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{出力装置}
+        \small
+        \begin{itemize}
+          \item ディスプレイ・プリンタ・スピーカー
+          \item コンピュータから外部へ結果を出力する
+          \item 補助記憶装置（外付けHDD等）も周辺装置
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 4: points ---
+
+\begin{frame}{人間とコンピュータの対応}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 入力：目・耳 → 入力装置（キーボード・マイク等）
+      \item 処理：脳 → コンピュータ本体（CPU・メモリ）
+      \item 出力：口・手 → 出力装置（ディスプレイ・プリンタ等）
+      \item 補助記憶：手帳・ノート → 外付けHDD・USBメモリ等
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item コンピュータは人間の行動に置き換えて考えることができる
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 5: points ---
+
+\begin{frame}{計測・制御システム}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 洗濯機・炊飯器などの家電機器にはセンサとコンピュータが組み込まれている
+      \item センサ：周囲の情報を計測して電気信号に変える
+      \item コンピュータ：センサからの情報を処理し，仕事を行う部分に命令する
+      \item 仕事を行う部分：コンピュータからの命令に従って動作する
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 家電・自動車に内蔵されるこれらの制御ソフトウェアを「組み込み系ソフトウェア」という
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 6: table ---
+
+\begin{frame}{スマートフォンの主なセンサ}
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    センサ名 & 計測対象 & 活用例 \\
+    \midrule
+    タッチセンサ & 接触 & 指やペンによる入力 \\
+    ジャイロセンサ & 回転・傾き & 画面の縦横切り替え \\
+    加速度センサ & 機器の動き・重力 & 振る動作による入力・歩数計 \\
+    明るさセンサ & 明るさ & 周囲に応じた画面輝度調整 \\
+    近接センサ & 近接する物体 & 通話中タッチパネルを停止 \\
+    温度センサ & 温度 & 高温時に機器を停止し故障を回避 \\
+    磁気センサ & 地磁気 & 方位の表示 \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 7: points ---
+
+\begin{frame}{基本ソフトウェア（OS）の主な機能}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item ファイル管理：ファイルの記録などを管理する
+      \item メモリ管理：各種ソフトウェアが使うメモリの割り当てを管理する
+      \item タスク管理：ソフトウェアの実行順序やCPUへの割り当てを管理する
+      \item 入出力管理：キーボード・マウス・ディスプレイなどのハードウェアを管理する
+      \item ネットワーク管理：他のコンピュータとの通信の状態を管理する
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item OSはハードウェアの違いを吸収する働きがある。異なるPCでも同じOSなら同じように動作する
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 8: points ---
+
+\begin{frame}{処理の流れ（ユーザ→OS→アプリ→OS→ユーザ）}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item ① 利用者がキーボードなどを使って情報を入力する
+      \item ② 情報がハードウェアから基本ソフトウェアに渡される
+      \item ③ 情報が基本ソフトウェアから応用ソフトウェアに渡される
+      \item ④ 応用ソフトウェアが処理を行う
+      \item ⑤ 応用ソフトウェアが出力する情報を基本ソフトウェアに渡す
+      \item ⑥ 基本ソフトウェアが出力先に応じたハードウェアに情報を渡す
+      \item ⑦ ディスプレイなどハードウェアからの出力が利用者に渡される
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 9: exercise ---
+
+\begin{frame}{演習}
+  {\small 各自で取り組んでください。}
+
+  \vfill
+
+  \begin{block}{基本問題}
+    \begin{itemize}
+      \item 入力装置・出力装置・補助記憶装置をそれぞれ2つずつ挙げよ
+      \item 基本ソフトウェアと応用ソフトウェアの違いを説明せよ
+      \item 洗濯機の計測・制御の流れをセンサ→コンピュータ→仕事を行う部分の順に説明せよ
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{応用問題（余裕がある人）}
+    \begin{itemize}
+      \item スマートフォンのセンサを3つ選び，それぞれARやナビゲーションへの応用例を述べよ
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 10: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    教科書 pp.70-73 を復習すること。次週はCPUの動作原理と論理回路を学ぶ（pp.74-77）
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

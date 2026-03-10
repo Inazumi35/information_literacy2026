@@ -1,0 +1,195 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 後期10: データサイエンス・AI（3）：データ分析と仮説検証サイクル
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{10}
+\newcommand{\LectureTitle}{データサイエンス・AI（3）：データ分析と仮説検証サイクル}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{pp.126-129}
+\newcommand{\NextTopic}{データサイエンス・AI（4）：機械学習の基礎}
+\newcommand{\NextPages}{対応なし}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item 仮説検証サイクルとPDCA
+      \item 散布図と相関係数
+      \item 線形回帰と予測
+      \item 訓練データとテストデータ
+      \item 相関関係と因果関係・擬似相関
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: twocol ---
+
+\begin{frame}{仮説検証サイクルとPDCA}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{仮説検証サイクル（科学）}
+        \small
+        \begin{itemize}
+          \item ① 仮説：「○○なら△△になるはず」と予想
+          \item ② 検証：データで確かめる
+          \item ③ 分析：結果を詳しく調べる
+          \item ④ 結論：仮説は正しい？修正が必要？
+          \item → 新仮説へ（繰り返し改善）
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{PDCA（ビジネス）}
+        \small
+        \begin{itemize}
+          \item Plan（計画）
+          \item Do（実行）
+          \item Check（確認）
+          \item Act（改善）
+          \item 共通点：一度で完璧を目指さず，繰り返し改善する
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 3: points ---
+
+\begin{frame}{今日の仮説と検証方法}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 仮説：「打率が高い選手ほど，本塁打も多い」
+      \item データ：野球選手40人分の成績データ（架空）。セ・リーグ20人，パ・リーグ20人
+      \item 項目：選手名・リーグ・打率・本塁打・打点・安打・出塁率
+      \item 検証方法1：散布図で視覚的に確認
+      \item 検証方法2：相関係数で数値的に確認
+      \item 検証方法3：線形回帰で予測モデルを作成
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 4: terms ---
+
+\begin{frame}{散布図と相関係数}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{散布図}]
+      2つのデータの関係を見るグラフ。横軸と縦軸にそれぞれのデータを取り，点をプロットする
+    \item[\kw{相関係数}]
+      相関の強さを数値化（-1〜+1）。今日のデータでは約0.7前後 → 比較的高い正の相関
+    \item[\kw{注意}]
+      相関 ≠ 因果。相関が高くても「打率が本塁打を増やしている」とは断定できない。体格・スイング・戦術など他の要因が関係する可能性がある
+  \end{description}
+\end{frame}
+
+% --- Slide 5: points ---
+
+\begin{frame}{線形回帰と予測}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 線形回帰：散布図に「最も当てはまる直線（回帰直線）」を引く方法
+      \item 数式：y = ax + b（x：説明変数（打率），y：目的変数（本塁打），a：傾き，b：切片）
+      \item 決定係数（R²）：今回のデータでは約0.5〜0.6 → モデルが説明できるのは約半分程度
+      \item 予測例：打率.300の選手 → 約15〜20本程度／打率.250の選手 → 約10〜15本程度
+      \item 外れ値：打率低いのに本塁打多い選手，打率高いのに本塁打少ない選手 → 例外の発見につながる
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 6: twocol ---
+
+\begin{frame}{訓練データとテストデータ}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{なぜ分けるのか}
+        \small
+        \begin{itemize}
+          \item モデルが未知のデータでも予測できるか確認するため
+          \item 訓練データだけで評価すると，暗記しているだけの可能性がある
+          \item 汎化性能（未知データへの対応力）を確認することが重要
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{分け方}
+        \small
+        \begin{itemize}
+          \item 訓練データ（60\%）：モデルの学習に使う。このデータでパラメータを決める
+          \item テストデータ（40\%）：モデルの評価に使う。未知のデータとして扱う
+          \item 流れ：訓練データで学習 → テストデータで評価 → 汎化性能を確認
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 7: twocol ---
+
+\begin{frame}{相関関係と因果関係・擬似相関}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{相関関係と因果関係}
+        \small
+        \begin{itemize}
+          \item 相関関係：一方が増加すると他方が増加または減少する関係
+          \item 因果関係：一方が原因となり他方が結果となる関係
+          \item 因果関係の3規準：①共変性（相関あり）②時間的順序③交絡因子の排除
+          \item 相関があっても因果関係があるとは限らない
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{擬似相関（見かけの相関）}
+        \small
+        \begin{itemize}
+          \item 例：アイスの売上↑の月は水難事故↑ → 散布図で相関がある
+          \item しかしアイスが水難事故を引き起こすわけではない
+          \item 交絡因子（気温）が両方に作用しているため
+          \item → これを擬似相関という
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 8: practice ---
+
+\begin{frame}{Colab実習：野球データの分析}
+  \begin{block}{手順}
+    \begin{enumerate}
+      \item Teamsの課題からリンクをクリック
+      \item 「baseball\_data.csv」を自分のマイドライブにコピー
+      \item セル1を実行（Googleドライブへのアクセス許可）
+      \item セル2〜6を順番に実行
+      \item 実行順序：①データ読み込み→②散布図→③相関係数→④train/test分割→⑤線形回帰→⑥予測と可視化
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 9: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    WordファイルにスクリーンショットとコメントをまとめてTeamsに提出すること
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

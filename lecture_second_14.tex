@@ -1,0 +1,177 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 後期14: データサイエンス・AI（7）：AIモデルの評価
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{14}
+\newcommand{\LectureTitle}{データサイエンス・AI（7）：AIモデルの評価}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{対応なし}
+\newcommand{\NextTopic}{後期復習}
+\newcommand{\NextPages}{後期全範囲}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item 推論とは
+      \item 評価指標①：正解率（Accuracy）
+      \item 評価指標②：適合率（Precision）
+      \item 評価指標③：再現率（Recall）
+      \item 評価指標④：混同行列（Confusion Matrix）
+      \item 過学習と未学習
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: terms ---
+
+\begin{frame}{推論とは}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{推論（Inference）}]
+      学習したモデルで新しいデータを予測すること
+    \item[\kw{第12回（MNIST）での推論}]
+      ①学習：60,000枚の手書き数字で学習 → ②推論：新しい手書き数字を見せる → ③予測：「これは7だ」と予測
+    \item[\kw{評価の必要性}]
+      モデルがどれくらい正確に推論できるかを数値で評価する。正解率だけでは不十分な場合がある
+  \end{description}
+\end{frame}
+
+% --- Slide 3: table ---
+
+\begin{frame}{4つの評価指標}
+  \centering
+  \small
+  \begin{tabular}{llll}
+    \toprule
+    指標 & 定義 & 計算式 & 何を見るか \\
+    \midrule
+    正解率（Accuracy） & 全体で何\%正解したか & 正解数 ÷ 全体の数 & 全体の性能 \\
+    適合率（Precision） & 「この数字だ」と予測したとき，実際に正しい割合 & 正しく予測した数 ÷ その数字だと予測した全体 & 予測の信頼性（間違った予測の少なさ） \\
+    再現率（Recall） & 実際のその数字を，どれだけ正しく見つけられたか & 正しく予測した数 ÷ 実際のその数字の数 & 見逃しの少なさ \\
+    混同行列（Confusion Matrix） & どの数字をどの数字と間違えたか & 行：実際の数字，列：予測した数字 & 間違いのパターン \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 4: twocol ---
+
+\begin{frame}{適合率と再現率のトレードオフ}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{適合率（Precision）重視}
+        \small
+        \begin{itemize}
+          \item 予測した側から見る
+          \item 「病気だ」と診断したら確実に病気
+          \item 誤診を減らしたい場面
+          \item 適合率を上げると再現率が下がる
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{再現率（Recall）重視}
+        \small
+        \begin{itemize}
+          \item 実際の側から見る
+          \item 病気の人を見逃さない
+          \item 見落としが致命的な場面（がん検診など）
+          \item 再現率を上げると適合率が下がる
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 5: twocol ---
+
+\begin{frame}{過学習と未学習}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{過学習（Overfitting）}
+        \small
+        \begin{itemize}
+          \item 訓練データに合わせすぎた状態
+          \item 訓練データ99\%正解，テストデータ70\%正解
+          \item 新しいデータで性能が落ちる
+          \item 原因：モデルが複雑すぎる・データが少ない
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{未学習（Underfitting）}
+        \small
+        \begin{itemize}
+          \item 学習が不足した状態
+          \item 訓練データ70\%正解，テストデータ68\%正解
+          \item そもそも性能が低い
+          \item 原因：モデルが単純すぎる・学習が不足
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 6: practice ---
+
+\begin{frame}{Colab実習：MNISTモデルの評価}
+  \begin{block}{手順}
+    \begin{enumerate}
+      \item Part 1：第12回の復習 → MNISTモデルの学習を実行
+      \item Part 2：評価指標の計算 → 正解率・適合率・再現率・混同行列を確認
+      \item 「7」を「1」と間違えやすい，「7」を「8」と間違えやすい，などのパターンを発見する
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 7: exercise ---
+
+\begin{frame}{演習（後期後半まとめ）}
+  {\small 各自で取り組んでください。}
+
+  \vfill
+
+  \begin{block}{基本問題}
+    \begin{itemize}
+      \item 正解率・適合率・再現率の違いを説明せよ
+      \item 「がん検診AI」を開発するとき，適合率と再現率のどちらを重視すべきか。理由も述べよ
+      \item 過学習とはどのような状態か。なぜ問題なのか説明せよ
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{応用問題（余裕がある人）}
+    \begin{itemize}
+      \item 第8〜14回を振り返り，データサイエンスとAIの技術が機械工学にどのように応用できるか，具体的な場面を1つ考えて述べよ
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 8: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    次週は後期全範囲の復習。第8〜14回のハンドアウトと教科書pp.104-129を見直しておくこと
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

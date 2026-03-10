@@ -1,0 +1,203 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 後期5: インターネットの仕組みと安全な利用
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{5}
+\newcommand{\LectureTitle}{インターネットの仕組みと安全な利用}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{pp.108-111}
+\newcommand{\NextTopic}{情報システムの役割と信頼性}
+\newcommand{\NextPages}{pp.112-117}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item クライアントサーバシステムとWWW
+      \item URLの構造とドメイン名・DNS
+      \item 電子メールの仕組み
+      \item ファイアウォール
+      \item 暗号化通信（共通鍵・公開鍵）
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: terms ---
+
+\begin{frame}{基本用語}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{サーバ（server）}]
+      インターネットでWebページの閲覧などの際に，それぞれの役割に応じたサービスを提供するコンピュータ
+    \item[\kw{クライアント（client）}]
+      サーバに対してサービスを要求し，サービスを受ける利用者のコンピュータ
+    \item[\kw{クライアントサーバシステム}]
+      サーバとクライアントが連携して機能するシステム
+    \item[\kw{WWW（World Wide Web）}]
+      インターネットで現在最も利用されている分散情報システム。「世界中に張り巡らされたクモの巣」が語源
+    \item[\kw{HTML（HyperText Markup Language）}]
+      Webページを記述するための言語
+    \item[\kw{URL（Uniform Resource Locator）}]
+      Webページなどの情報が格納されている場所と通信方式を示した文字列
+  \end{description}
+\end{frame}
+
+% --- Slide 3: points ---
+
+\begin{frame}{URLの構造}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 例：http://www.example.ed.jp/index.html
+      \item 通信方式（スキーム）：http（通常のWeb）／https（暗号通信のWeb）／ftp（ファイル転送）など
+      \item サーバ名：www など
+      \item 組織名・組織種別・国名：example.ed.jp（教育機関・日本）など
+      \item パス名：情報が収められているフォルダ名やファイル名
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 組織種別の例：ac（大学・学校法人）/ co（企業）/ go（日本政府機関）/ ed（教育機関・小中高）
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 4: terms ---
+
+\begin{frame}{DNSと電子メール}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{DNS（Domain Name System）}]
+      ドメイン名という文字列からIPアドレスへの変換を行う仕組み。国や組織ごとに階層的に設置されたDNSサーバが担っている
+    \item[\kw{ドメイン名}]
+      数字の列で表されるIPアドレスは人間には記憶しにくいため，対応させた文字列。例：www.kantei.go.jp → 202.214.216.10
+    \item[\kw{SMTP（Simple Mail Transfer Protocol）}]
+      電子メールを送信するときに使われるプロトコル
+    \item[\kw{POP（Post Office Protocol）}]
+      メールボックスのあるメールサーバから電子メールを受け取るプロトコル
+    \item[\kw{IMAP（Internet Message Access Protocol）}]
+      メールサーバ上のメールを管理・参照するプロトコル。サーバにメールを残したまま複数の端末で利用できる
+  \end{description}
+\end{frame}
+
+% --- Slide 5: points ---
+
+\begin{frame}{DNSの働き（Webアクセスの流れ）}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item ① ブラウザにURL（ドメイン名）を入力する
+      \item ② DNSサーバにIPアドレスを問い合わせる
+      \item ③ DNSサーバがIPアドレスを返答する
+      \item ④ 取得したIPアドレスのWebサーバにアクセスする
+      \item ⑤ WebサーバがHTMLデータを返送し，ブラウザが画面に表示する
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 6: terms ---
+
+\begin{frame}{ファイアウォール}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{ファイアウォール}]
+      ネットワークの出入り口で許されたデータのみを通過させ，それ以外のアクセスを拒絶する仕組み。情報の機密性を守ると同時に，コンピュータウイルスによる障害を防ぎ，可用性を守る
+    \item[\kw{パケットフィルタリング方式}]
+      インターネットとLANをつなぐ接続点で，プロトコルの種類や送信元のIPアドレスなどから，パケットごとに通過か遮断かを判断する方式
+    \item[\kw{プロキシサーバ}]
+      クライアントの代わりにWebページにアクセスし，データを中継する代理サーバ。セキュリティ機能やキャッシュ機能がある
+  \end{description}
+\end{frame}
+
+% --- Slide 7: twocol ---
+
+\begin{frame}{暗号化の2つの方式}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{共通鍵暗号方式}
+        \small
+        \begin{itemize}
+          \item 暗号化と復号で同じ鍵を使う（秘密鍵暗号方式ともいう）
+          \item 鍵が1つなので仕組みが単純で，処理速度が速い
+          \item 事前に安全な方法で送信先に鍵を渡さなければならない
+          \item 送り手と受け手以外に鍵が知られると，暗号化の効果がなくなる
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{公開鍵暗号方式}
+        \small
+        \begin{itemize}
+          \item 対となる2つの鍵（公開鍵・秘密鍵）を使い，暗号化と復号をそれぞれ行う
+          \item 公開鍵で暗号化したデータは，秘密鍵でしか復号できない
+          \item 公開鍵は誰でも入手できるが，秘密鍵は本人のみが持つ
+          \item 通信相手への鍵の受け渡しを秘密にする必要がなく，インターネット上でも安全に利用できる
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 8: notice ---
+
+\begin{frame}{安全なインターネット利用のポイント}
+  \begin{noticebox}[安全なインターネット利用のポイント]
+    \begin{itemize}
+      \item URLを確認する：アドレスバーに「https://」と鍵マークがあるか確認する
+      \item フリーWi-Fiでは個人情報の入力を避ける（パケットは盗み見られる可能性がある）
+      \item ファイアウォールとパーソナルファイアウォールの二重のセキュリティが求められる
+      \item 不審なメール・リンクは開かない（フィッシング詐欺に注意）
+    \end{itemize}
+  \end{noticebox}
+\end{frame}
+
+% --- Slide 9: exercise ---
+
+\begin{frame}{演習}
+  {\small 各自で取り組んでください。}
+
+  \vfill
+
+  \begin{block}{基本問題}
+    \begin{itemize}
+      \item URLの「https://www.example.ed.jp/index.html」を構成要素（スキーム・サーバ名・組織名・組織種別・国名・パス名）に分解して説明せよ
+      \item DNSの役割を電話帳に例えて説明せよ
+      \item 共通鍵暗号方式と公開鍵暗号方式の違いを，鍵の受け渡し方法に着目して説明せよ
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{応用問題（余裕がある人）}
+    \begin{itemize}
+      \item 電子メールを送信してから受信するまでの流れを，SMTP・POP・メールサーバの語句を使って説明せよ
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 10: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    教科書 pp.108-111 を復習すること。次週は情報システムの役割と信頼性を学ぶ（pp.112-117）
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}

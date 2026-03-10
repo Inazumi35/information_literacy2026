@@ -1,0 +1,182 @@
+% !TEX program = lualatex
+% Auto-generated from YAML (v3) — 9: 情報の加工2：表計算とデータ整理
+
+\documentclass[aspectratio=43,professionalfonts,handout]{beamer}
+\usepackage{beamer_template}
+
+\newcommand{\LectureNum}{09}
+\newcommand{\LectureTitle}{情報の加工2：表計算とデータ整理}
+\newcommand{\CourseName}{情報リテラシー}
+\newcommand{\TextPages}{対応なし}
+\newcommand{\NextTopic}{情報セキュリティと情報モラル}
+\newcommand{\NextPages}{pp.16-19}
+
+\begin{document}
+% --- Slide 1: title ---
+
+\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+  {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
+
+  \vfill
+
+  \begin{block}{今日の流れ}
+    \begin{enumerate}
+      \item データの取得と操作
+      \item データの可視化（グラフ）
+      \item 尺度水準とデータの種類
+      \item 記述統計と相関分析
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% --- Slide 2: points ---
+
+\begin{frame}{データの取得と操作}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 手動入力：直接セルに入力する基本的な方法
+      \item CSVファイル読み込み：「データ」→「テキストまたはCSVから」
+      \item オープンデータ：e-Stat（政府統計）・気象庁・国土地理院等を活用
+      \item データ整形：不要な行・列の削除，データ型の変換，欠損値の処理
+      \item 並べ替え：「データ」タブ→「昇順」または「降順」
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item オープンデータとは：政府・公的機関が無償で公開しているデータ。誰でも自由に利用できる
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 3: table ---
+
+\begin{frame}{グラフの種類と用途}
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    グラフの種類 & 用途 & 例 \\
+    \midrule
+    棒グラフ & カテゴリ別の比較 & 都市別の人口比較 \\
+    折れ線グラフ & 時系列の変化 & 月別の気温変化 \\
+    円グラフ & 全体に占める割合 & 予算の内訳 \\
+    散布図 & 2つの変数の関係 & 身長と体重の関係 \\
+    ヒストグラム & データの分布 & テストの点数分布 \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 4: table ---
+
+\begin{frame}{尺度水準（データの種類）}
+  \centering
+  \small
+  \begin{tabular}{llll}
+    \toprule
+    尺度 & 特徴 & 例 & 使える統計 \\
+    \midrule
+    名義尺度 & 分類・区別のラベル & 性別・血液型 & 度数・最頻値 \\
+    順序尺度 & 順序に意味・間隔は不等 & 成績（優・良・可） & 中央値 \\
+    間隔尺度 & 間隔が等しい・ゼロ点なし & 気温（℃） & 平均値・標準偏差 \\
+    比例尺度 & 間隔が等しい・ゼロ点あり & 身長・体重・金額 & すべて可能 \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 5: points ---
+
+\begin{frame}{記述統計：Excelの統計関数}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 平均値（mean）：=AVERAGE(A2:A10)　データの合計÷個数
+      \item 中央値（median）：=MEDIAN(A2:A10)　データを並べたときの中央の値
+      \item 最頻値（mode）：=MODE.SNGL(A2:A10)　最も頻繁に現れる値
+      \item 標準偏差（SD）：=STDEV.S(A2:A10)　データの散らばりの程度
+      \item 最大値・最小値：=MAX(A2:A10) / =MIN(A2:A10)
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 範囲（range）= 最大値－最小値　　分散（variance）= 標準偏差の2乗
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 6: twocol ---
+
+\begin{frame}{相関分析}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{相関係数の見方}
+        \small
+        \begin{itemize}
+          \item 範囲：-1から+1
+          \item +1に近い：強い正の相関（両方増える）
+          \item -1に近い：強い負の相関（片方増えると片方減る）
+          \item 0に近い：相関なし
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Excelでの操作}
+        \small
+        \begin{itemize}
+          \item CORREL関数：=CORREL(範囲1, 範囲2)
+          \item 散布図：「挿入」→「散布図」
+          \item 近似曲線を追加して傾向を確認
+          \item 注意：相関関係≠因果関係
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- Slide 7: exercise ---
+
+\begin{frame}{演習}
+  {\small 各自で取り組んでください。}
+
+  \vfill
+
+  \begin{block}{基本問題}
+    \begin{itemize}
+      \item テストの成績データ（85,72,90,68,88,95,78,82,70,92）の平均値・中央値・最大値・最小値・標準偏差をExcelで求めよ
+      \item 棒グラフ・折れ線グラフ・散布図の用途の違いを説明せよ
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{応用問題（余裕がある人）}
+    \begin{itemize}
+      \item 確率統計と線形代数の成績データをExcelに入力し，散布図を作成して相関係数を求め，Teamsに提出せよ
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 8: assignment ---
+
+\begin{frame}{課題・次回予告}
+  \begin{importantbox}[課題]
+    演習3の散布図（確率統計と線形代数の成績）をTeamsの課題から提出すること
+  \end{importantbox}
+
+  \vfill
+
+  \begin{block}{次回}
+    「\NextTopic 」（教科書 \NextPages ）
+  \end{block}
+
+  \vfill
+
+  {\small
+  質問があれば授業後またはTeamsで受け付けます。}
+\end{frame}
+
+\end{document}
