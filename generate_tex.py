@@ -279,11 +279,24 @@ def gen_free(slide):
 """
 
 
-def gen_summary(items):
+def gen_goals(items):
     lines = "\n".join(f"      \\item {escape_latex(s)}" for s in items)
     return rf"""
-\begin{{frame}}{{まとめ}}
-  \begin{{block}}{{今日のまとめ}}
+\begin{{frame}}{{今日の目標}}
+  \begin{{block}}{{この授業が終わったらできること}}
+    \begin{{itemize}}
+{lines}
+    \end{{itemize}}
+  \end{{block}}
+\end{{frame}}
+"""
+
+
+def gen_checklist(items):
+    lines = "\n".join(f"      \\item[$\\square$] {escape_latex(s)}" for s in items)
+    return rf"""
+\begin{{frame}}{{まとめ・チェックリスト}}
+  \begin{{block}}{{自己チェック（できたら $\checkmark$ をつけよう）}}
     \begin{{itemize}}
 {lines}
     \end{{itemize}}
@@ -354,18 +367,26 @@ def generate_tex(data: dict) -> str:
 \begin{{document}}
 """
 
+    goals = data.get("goals")
+    summary = data.get("summary")
+
     body_parts = []
+    goals_inserted = False
     for i, slide in enumerate(data.get("slides", []), 1):
         stype = slide.get("type", "free")
         gen = GENERATORS.get(stype)
         if gen:
             body_parts.append(f"% --- Slide {i}: {stype} ---")
             body_parts.append(gen(data, slide))
+            # タイトルスライドの直後に目標フレームを挿入
+            if stype == "title" and goals and not goals_inserted:
+                body_parts.append("% --- 目標 ---")
+                body_parts.append(gen_goals(goals))
+                goals_inserted = True
 
-    summary = data.get("summary")
     if summary:
-        body_parts.append("% --- まとめ ---")
-        body_parts.append(gen_summary(summary))
+        body_parts.append("% --- チェックリスト ---")
+        body_parts.append(gen_checklist(summary))
 
     footer = r"\end{document}" + "\n"
     return header + "\n".join(body_parts) + "\n" + footer
