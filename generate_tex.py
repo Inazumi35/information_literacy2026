@@ -3,10 +3,14 @@
 YAML -> Beamer .tex generator for Information Literacy lectures.
 
 Usage:
-  python generate_tex.py lecture_01.yaml              # Generate .tex only
-  python generate_tex.py lecture_01.yaml --compile    # Generate + compile PDF
-  python generate_tex.py lecture_01.yaml --compile --slide  # + slide version
-  python generate_tex.py *.yaml --compile             # Batch process all
+  # 個別YAMLから生成
+  python generate_tex.py lecture_01.yaml --compile --slide
+
+  # 全週YAMLから一括生成（前期・後期 全28週）
+  python generate_tex.py "info_literacy_all_weeks_v3 (1).yaml" --all --compile --slide
+
+  # 特定の週だけ生成（前期3週目）
+  python generate_tex.py "info_literacy_all_weeks_v3 (1).yaml" --all --week 3 --compile --slide
 """
 
 import argparse
@@ -275,6 +279,23 @@ def gen_free(slide):
 """
 
 
+def gen_summary(items):
+    lines = "\n".join(f"      \\item {escape_latex(s)}" for s in items)
+    return rf"""
+\begin{{frame}}{{まとめ}}
+  \begin{{block}}{{今日のまとめ}}
+    \begin{{itemize}}
+{lines}
+    \end{{itemize}}
+  \end{{block}}
+
+  \vfill
+
+  {{\small 質問があれば授業後またはTeamsで受け付けます。}}
+\end{{frame}}
+"""
+
+
 GENERATORS = {
     "title": lambda d, s: gen_title(d, s),
     "terms": lambda d, s: gen_terms(s),
@@ -293,20 +314,37 @@ GENERATORS = {
 # ---------------------------------------------------------------------------
 # Generate .tex content
 # ---------------------------------------------------------------------------
+def _parse_num(num):
+    """numを (is_second, n) に分解。後期なら is_second=True。"""
+    s = str(num)
+    if s.startswith("後期"):
+        return True, int(s[2:])
+    if s.startswith("後"):
+        return True, int(s[1:])
+    return False, int(s)
+
+
+def format_num(num) -> str:
+    """numをゼロ埋め表示用文字列に変換。例: 1 -> '01', '後期3' -> '03'"""
+    _, n = _parse_num(num)
+    return f"{n:02d}"
+
+
 def generate_tex(data: dict) -> str:
     num = data["num"]
+    num_display = format_num(num)
     title = data["title"]
     textbook = data.get("textbook", "-")
     next_topic = data.get("next_topic", "")
     next_pages = data.get("next_pages", "-")
 
     header = rf"""% !TEX program = lualatex
-% Auto-generated from lecture_{num}.yaml
+% Auto-generated from YAML (v3) — {num_display}: {title}
 
 \documentclass[aspectratio=43,professionalfonts,handout]{{beamer}}
 \usepackage{{beamer_template}}
 
-\newcommand{{\LectureNum}}{{{num}}}
+\newcommand{{\LectureNum}}{{{num_display}}}
 \newcommand{{\LectureTitle}}{{{title}}}
 \newcommand{{\CourseName}}{{情報リテラシー}}
 \newcommand{{\TextPages}}{{{textbook}}}
@@ -324,8 +362,38 @@ def generate_tex(data: dict) -> str:
             body_parts.append(f"% --- Slide {i}: {stype} ---")
             body_parts.append(gen(data, slide))
 
+    summary = data.get("summary")
+    if summary:
+        body_parts.append("% --- まとめ ---")
+        body_parts.append(gen_summary(summary))
+
     footer = r"\end{document}" + "\n"
     return header + "\n".join(body_parts) + "\n" + footer
+
+
+# ---------------------------------------------------------------------------
+# All-weeks YAML helpers
+# ---------------------------------------------------------------------------
+def load_all_weeks(yaml_path: Path) -> list:
+    """全週YAMLから全週データのリストを返す。前期・後期を統合。"""
+    weeks = []
+    with open(yaml_path, encoding="utf-8") as f:
+        for doc in yaml.safe_load_all(f):
+            if isinstance(doc, list):
+                weeks.extend(w for w in doc if w)
+            elif isinstance(doc, dict):
+                weeks.append(doc)
+    return weeks
+
+
+def num_to_stem(num) -> str:
+    """YAML の num フィールドからファイル名幹を生成。
+    例: 1 -> lecture_01, "後期3" -> lecture_second_03
+    """
+    is_second, n = _parse_num(num)
+    if is_second:
+        return f"lecture_second_{n:02d}"
+    return f"lecture_{n:02d}"
 
 
 # ---------------------------------------------------------------------------
@@ -397,6 +465,8 @@ def main():
     parser.add_argument("--compile", action="store_true", help="Compile to PDF")
     parser.add_argument("--slide", action="store_true", help="Also generate slide version")
     parser.add_argument("--outdir", type=str, default=None, help="Output directory")
+    parser.add_argument("--all", action="store_true", help="全週YAMLから全週を一括生成")
+    parser.add_argument("--week", type=str, default=None, help="特定週のみ生成（例: 3 または 後3）")
     args = parser.parse_args()
 
     script_dir = Path(__file__).parent
@@ -414,22 +484,42 @@ def main():
             print(f"SKIP: {yaml_path} not found")
             continue
 
-        with open(yaml_path, "r", encoding="utf-8") as f:
-            data = yaml.safe_load(f)
+        if args.all:
+            # 全週YAMLから個別 lecture_XX.tex を生成
+            weeks = load_all_weeks(yaml_path)
+            for data in weeks:
+                num = str(data.get("num", ""))
+                if args.week and num_to_stem(num) != num_to_stem(args.week):
+                    continue
+                stem = num_to_stem(num)
+                tex_content = generate_tex(data)
+                tex_path = out_dir / f"{stem}.tex"
+                with open(tex_path, "w", encoding="utf-8") as f:
+                    f.write(tex_content)
+                print(f"Generated: {tex_path.name}")
+                if args.compile:
+                    print(f"  Compiling handout...")
+                    compile_tex(tex_path, out_dir)
+                    if args.slide:
+                        print(f"  Compiling slide...")
+                        compile_tex(tex_path, out_dir, slide_mode=True)
+        else:
+            with open(yaml_path, "r", encoding="utf-8") as f:
+                data = yaml.safe_load(f)
 
-        tex_content = generate_tex(data)
-        tex_path = out_dir / yaml_path.with_suffix(".tex").name
+            tex_content = generate_tex(data)
+            tex_path = out_dir / yaml_path.with_suffix(".tex").name
 
-        with open(tex_path, "w", encoding="utf-8") as f:
-            f.write(tex_content)
-        print(f"Generated: {tex_path.name}")
+            with open(tex_path, "w", encoding="utf-8") as f:
+                f.write(tex_content)
+            print(f"Generated: {tex_path.name}")
 
-        if args.compile:
-            print(f"Compiling handout...")
-            compile_tex(tex_path, out_dir)
-            if args.slide:
-                print(f"Compiling slide...")
-                compile_tex(tex_path, out_dir, slide_mode=True)
+            if args.compile:
+                print(f"Compiling handout...")
+                compile_tex(tex_path, out_dir)
+                if args.slide:
+                    print(f"Compiling slide...")
+                    compile_tex(tex_path, out_dir, slide_mode=True)
 
     # Also copy .tex to OneDrive
     if ONEDRIVE_DIR.exists():
