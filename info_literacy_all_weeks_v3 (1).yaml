@@ -79,6 +79,10 @@
   textbook: "-"
   next_topic: "情報とメディアの特性"
   next_pages: "pp.2-5"
+  summary:
+    - "outlook.jpの個人Microsoftアカウントを作成した"
+    - "TeamsとFormsの基本操作を習得した"
+    - "デジタルコミュニケーションのマナーを理解した"
 
   slides:
     - type: title
@@ -163,6 +167,10 @@
   textbook: "pp.2-5"
   next_topic: "課題の見つけ方と解決プロセス"
   next_pages: "pp.6-11"
+  summary:
+    - "データと情報の違いを理解した"
+    - "情報の4つの特性（複製性・伝播性・残存性・形式性）を学んだ"
+    - "情報の評価5視点で情報を批判的に読む方法を習得した"
 
   slides:
     - type: title
@@ -244,6 +252,10 @@
   textbook: "pp.6-11"
   next_topic: "知的財産と個人情報の基礎"
   next_pages: "pp.12-15"
+  summary:
+    - "問題と課題の違いを理解した"
+    - "問題解決の5ステップとPDCAサイクルを学んだ"
+    - "ブレーンストーミングとKJ法の情報分析手法を習得した"
 
   slides:
     - type: title
@@ -325,6 +337,10 @@
   textbook: "pp.12-15"
   next_topic: "PCの設定1：基本設定とネットワーク設定"
   next_pages: "-"
+  summary:
+    - "著作権・特許権・商標権など知的財産権の種類を理解した"
+    - "引用のルールと著作権上の許可・禁止事項を理解した"
+    - "個人情報の定義と適切な取り扱いを学んだ"
 
   slides:
     - type: title
@@ -407,6 +423,10 @@
   textbook: "-"
   next_topic: "PCの設定2：OfficeとTeamsのインストール"
   next_pages: "-"
+  summary:
+    - "PCの初期セットアップとWindowsの基本設定を完了した"
+    - "学内Wi-Fiに接続しWebClassにログインできた"
+    - "トラブル発生時の基本的な対処方法を理解した"
 
   slides:
     - type: title
@@ -480,6 +500,10 @@
   textbook: "-"
   next_topic: "情報の加工1：文書・スライド（Word / PowerPoint）"
   next_pages: "-"
+  summary:
+    - "Microsoft 365（Office）をインストールし起動できた"
+    - "TeamsにサインインしてPCから授業チームに参加できた"
+    - "Word・Excel・PowerPointを自分のPCで使える状態にした"
 
   slides:
     - type: title
@@ -553,6 +577,10 @@
   textbook: "-"
   next_topic: "情報の加工2：表計算とデータ整理"
   next_pages: "-"
+  summary:
+    - "ローカル保存とクラウド保存の違いと使い分けを理解した"
+    - "Wordで自己紹介文を作成・保存・Teamsから提出できた"
+    - "PowerPointの基本操作と保存設定を習得した"
 
   slides:
     - type: title
@@ -623,6 +651,10 @@
   textbook: "-"
   next_topic: "情報セキュリティと情報モラル"
   next_pages: "pp.16-19"
+  summary:
+    - "Excelでデータ入力・グラフ作成・統計関数を使えるようになった"
+    - "尺度水準（名義・順序・間隔・比例）によるデータの種類を理解した"
+    - "相関分析の意味とExcelでの実施方法を習得した"
 
   slides:
     - type: title
@@ -707,6 +739,10 @@
   textbook: "pp.16-19"
   next_topic: "情報社会：技術の進歩と私たちの役割"
   next_pages: "pp.20-23"
+  summary:
+    - "情報セキュリティの3要素（CIA）と主な脅威の種類を理解した"
+    - "安全なパスワード管理と二段階認証の重要性を学んだ"
+    - "ネット上の行動と法的責任の関係を理解した"
 
   slides:
     - type: title
@@ -793,6 +829,10 @@
   textbook: "pp.20-23"
   next_topic: "デジタル化の基礎：メディア / 数値表現"
   next_pages: "-"
+  summary:
+    - "EC・IoT・AI・VR/ARなど技術の進歩と社会への影響を理解した"
+    - "技術の進歩に伴うリスク（デジタルデバイド・個人情報・雇用変化）を学んだ"
+    - "情報社会における自分の役割と情報リテラシーの重要性を考えた"
 
   slides:
     - type: title
@@ -893,6 +933,10 @@
   textbook: "pp.34-35"
   next_topic: "デジタル表現1：2進数 / 文字コード / 音"
   next_pages: "pp.36-43"
+  summary:
+    - "アナログとデジタルの違いを理解した"
+    - "ビット・バイトの単位とコンピュータの情報表現の仕組みを学んだ"
+    - "文字・音・画像がデジタル化される仕組みの概要を把握した"
 
   slides:
     - type: title
@@ -989,6 +1033,10 @@
   textbook: "pp.36-43"
   next_topic: "デジタル表現2：画像 / 圧縮と品質"
   next_pages: "pp.44-47"
+  summary:
+    - "2進数・16進数の仕組みと変換方法を習得した"
+    - "文字コード（ASCII・Unicode）の概念を理解した"
+    - "音のデジタル化（サンプリング・量子化・符号化）の仕組みを学んだ"
 
   slides:
     - type: title
@@ -1072,6 +1120,10 @@
   textbook: "pp.44-47"
   next_topic: "前期復習"
   next_pages: "-"
+  summary:
+    - "画素・解像度・階調が画質に与える影響を理解した"
+    - "可逆圧縮と非可逆圧縮の違いと用途を理解した"
+    - "JPEG・PNG・GIF等の画像形式の特徴と使い分けを学んだ"
 
   slides:
     - type: title
