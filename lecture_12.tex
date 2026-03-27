@@ -1,15 +1,15 @@
 % !TEX program = lualatex
-% Auto-generated from YAML (v3) — 12: デジタル化の基礎：メディアと数値表現
+% Auto-generated from YAML (v3) — 12: コミュニケーション・デジタルデータの基礎・数値表現
 
 \documentclass[aspectratio=43,professionalfonts,handout]{beamer}
 \usepackage{beamer_template}
 
 \newcommand{\LectureNum}{12}
-\newcommand{\LectureTitle}{デジタル化の基礎：メディアと数値表現}
+\newcommand{\LectureTitle}{コミュニケーション・デジタルデータの基礎・数値表現}
 \newcommand{\CourseName}{情報リテラシー}
-\newcommand{\TextPages}{pp.34-35}
-\newcommand{\NextTopic}{デジタル表現1：2進数 / 文字コード / 音}
-\newcommand{\NextPages}{pp.36-43}
+\newcommand{\TextPages}{pp.34-39}
+\newcommand{\NextTopic}{デジタル表現1：補数・文字コード・音のデジタル化}
+\newcommand{\NextPages}{pp.40-45}
 
 \begin{document}
 % --- Slide 1: title ---
@@ -21,10 +21,10 @@
 
   \begin{block}{今日の流れ}
     \begin{enumerate}
-      \item アナログとデジタルの違い
-      \item デジタルデータの特徴
-      \item コンピュータ内の情報表現（ビットとバイト）
-      \item 情報の単位と大きさ
+      \item コミュニケーションと技術（Theory 12）
+      \item メディアリテラシー
+      \item アナログとデジタル（Theory 13）
+      \item 2進法・16進法（Theory 14）
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -34,81 +34,70 @@
 \begin{frame}{今日の目標}
   \begin{block}{この授業が終わったらできること}
     \begin{itemize}
-      \item アナログとデジタルの違い，および数値・メディアのデジタル表現の基礎を説明できる。
+      \item コミュニケーションの仕組みとメディアリテラシーを理解し，アナログ/デジタルの違いと2進法の基本を説明できる。
     \end{itemize}
   \end{block}
 \end{frame}
 
 % --- Slide 2: terms ---
 
-\begin{frame}{基本用語}
+\begin{frame}{コミュニケーションの基本用語}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{コミュニケーション}]
+      人と人との間で情報を伝え合うこと。伝え手・受け手・メディアの三要素からなる
+    \item[\kw{符号化}]
+      伝えたい内容を記号や言葉などの信号に変換すること
+    \item[\kw{解号化}]
+      受け取った記号を経験や知識をもとに意味に戻すこと
+    \item[\kw{メディアリテラシー}]
+      メディアを通じて伝わる情報を主体的に読み解き，活用できる能力
+  \end{description}
+\end{frame}
+
+% --- Slide 3: points ---
+
+\begin{frame}{コミュニケーションの仕組み}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item コミュニケーションでは，伝え手が情報を符号化してメディアを通じて送り出す
+      \item 受け手は受け取った記号を経験・知識をもとに解号化して意味を理解する
+      \item 符号化と解号化がうまくかみ合わないと，円滑なコミュニケーションが成立しない
+      \item 人は言語・声・表情・身ぶりなど，多様なコミュニケーション手段を使う
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 4: points ---
+
+\begin{frame}{情報メディアの起源と発展・メディアリテラシー}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 古代のメディア：のろし・トーキングドラム・ロゼッタストーン・洞窟壁画
+      \item 印刷術の発明→新聞・書籍の普及→電話→ラジオ→テレビ→インターネット
+      \item メディアが伝える情報は必ずしも正確・公平ではない
+      \item 情報の送り手の意図・立場・目的を意識して読み解き，複数の情報源を比較することが重要
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+% --- Slide 5: terms ---
+
+\begin{frame}{アナログとデジタル}
   \begin{description}[labelwidth=6em]
     \item[\kw{アナログデータ}]
-      連続的な量で表されるデータ。温度計の目盛りや音の波形など，自然界の多くがアナログ
+      連続的な量で表されるデータ。温度・音の波形など，自然界の多くがアナログ
     \item[\kw{デジタルデータ}]
       離散的（とびとびの）数値で表されるデータ。コンピュータはすべてデジタルで扱う
     \item[\kw{ビット（bit）}]
       情報量の最小単位。0か1の2値で表す。Binary digitの略
     \item[\kw{バイト（B）}]
-      8ビットをまとめた単位。1B = 8bit。文字や数値の記憶に使う基本単位
-    \item[\kw{符号化}]
-      情報を0と1の列に変換する操作。文字・音・画像など，あらゆるデータに適用される
+      8ビットをまとめた単位。1B = 8bit
   \end{description}
 \end{frame}
 
-% --- Slide 3: twocol ---
+% --- Slide 6: table ---
 
-\begin{frame}{アナログとデジタルの比較}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{アナログ}
-        \small
-        \begin{itemize}
-          \item 連続した量（無限の値が存在）
-          \item 例：水銀温度計，アナログ時計，LP レコード
-          \item 複製・伝送のたびに劣化しやすい
-          \item 自然現象はほぼアナログ
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{デジタル}
-        \small
-        \begin{itemize}
-          \item とびとびの値（有限の数値）
-          \item 例：デジタル温度計，液晶時計，CD
-          \item 複製・伝送しても品質が劣化しない
-          \item コンピュータ内部はすべてデジタル
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% --- Slide 4: points ---
-
-\begin{frame}{コンピュータ内の情報表現}
-  \begin{block}{ポイント}
-    \begin{itemize}
-      \item コンピュータ内部は電圧の高低（0と1）でデータを表す
-      \item すべての情報（文字・音・画像・動画）が0と1の列に変換される
-      \item 0と1への変換を「符号化（エンコード）」という
-      \item nビットで表現できる組み合わせ数は 2ⁿ 通り
-    \end{itemize}
-  \end{block}
-
-  \vfill
-
-  \begin{exampleblock}{補足}
-    \begin{itemize}
-      \item 1ビット→2通り，2ビット→4通り，3ビット→8通り，8ビット（1バイト）→256通り
-    \end{itemize}
-  \end{exampleblock}
-\end{frame}
-
-% --- Slide 5: table ---
-
-\begin{frame}{情報の単位と大きさ}
+\begin{frame}{情報の単位}
   \centering
   \begin{tabular}{lll}
     \toprule
@@ -116,44 +105,52 @@
     \midrule
     bit & ビット & 情報量の最小単位（0または1） \\
     B & バイト & 1B = 8bit \\
-    KB & キロバイト & 1KB = 1,024B（≒ 10³ B） \\
-    MB & メガバイト & 1MB = 1,024KB（≒ 10⁶ B） \\
-    GB & ギガバイト & 1GB = 1,024MB（≒ 10⁹ B） \\
-    TB & テラバイト & 1TB = 1,024GB（≒ 10¹² B） \\
+    KB & キロバイト & 1KB = 1,024B \\
+    MB & メガバイト & 1MB = 1,024KB \\
+    GB & ギガバイト & 1GB = 1,024MB \\
+    TB & テラバイト & 1TB = 1,024GB \\
     \bottomrule
   \end{tabular}
 \end{frame}
 
-% --- Slide 6: twocol ---
+% --- Slide 7: table ---
 
-\begin{frame}{デジタルデータの特徴}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{プラス面}
-        \small
-        \begin{itemize}
-          \item 劣化しない：コピー・伝送しても品質が変わらない
-          \item 統合できる：文字・音・画像を同じ形式で扱える（マルチメディア）
-          \item 加工が容易：編集・圧縮・暗号化を高速・正確に行える
-          \item 管理しやすい：検索・整理・クラウド保存が容易
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{マイナス面}
-        \small
-        \begin{itemize}
-          \item 微妙な情報が失われる：A/D変換時に量子化誤差が生じる
-          \item 著作権侵害：劣化なくコピーできるため無断複製・拡散しやすい
-          \item 情報漏洩リスク：小さなメディアに大量データを保存できるため流出しやすい
-          \item データ量の膨大化：高品質化に伴いデータ量が増大し続ける
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
+\begin{frame}{2進法の基本と変換例}
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    10進法 & 2進法 & 計算（各桁の重み：2³=8, 2²=4, 2¹=2, 2⁰=1） \\
+    \midrule
+    5 & 0101 & 4×1 + 2×0 + 1×1 = 5 \\
+    10 & 1010 & 8×1 + 4×0 + 2×1 + 1×0 = 10 \\
+    13 & 1101 & 8×1 + 4×1 + 2×0 + 1×1 = 13 \\
+    23 & 10111 & 16+4+2+1 = 23 \\
+    \bottomrule
+  \end{tabular}
 \end{frame}
 
-% --- Slide 7: exercise ---
+% --- Slide 8: points ---
+
+\begin{frame}{16進法}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 0〜9とA〜F（A=10, B=11, … F=15）の16文字で表す記数法
+      \item 2進数4桁が16進数1桁に対応するため，変換が容易
+      \item 例：1101 1110(2) → D E(16)（4ビットずつ区切って変換）
+      \item 逆に16進→2進：各桁を4ビットの2進数に置き換える
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item プログラミングやネットワーク（MACアドレス・色コード）でよく使われる
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 9: exercise ---
 
 \begin{frame}{演習}
   {\small 各自で取り組んでください。}
@@ -162,9 +159,10 @@
 
   \begin{block}{基本問題}
     \begin{itemize}
-      \item アナログとデジタルの違いを自分の言葉で説明せよ
-      \item 1バイトは何ビットか。また，何通りの値を表せるか
-      \item 3ビットで表現できる組み合わせは何通りか。全パターンを書け
+      \item コミュニケーションにおける「符号化」と「解号化」を，具体例を挙げて説明せよ
+      \item 1101(2) を10進法で表せ
+      \item 23(10) を2進法で表せ
+      \item 11011110(2) を16進法に変換せよ
     \end{itemize}
   \end{block}
 
@@ -172,16 +170,16 @@
 
   \begin{exampleblock}{応用問題（余裕がある人）}
     \begin{itemize}
-      \item デジタルデータのプラス面を活かした身近な例を1つ挙げ，マイナス面と合わせて考察せよ
+      \item SNSの普及がコミュニケーションや社会に与えた影響を，メディアリテラシーの観点から考察せよ
     \end{itemize}
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 8: assignment ---
+% --- Slide 10: assignment ---
 
 \begin{frame}{課題・次回予告}
   \begin{importantbox}[課題（次回までに提出）]
-    教科書 pp.34-35 を予習し，アナログとデジタルの例をそれぞれ2つずつノートにまとめること
+    教科書 pp.34-39 を読み，10進数→2進数→16進数の変換を練習すること（5問以上）
   \end{importantbox}
 
   \vfill
@@ -201,9 +199,9 @@
 \begin{frame}{まとめ・チェックリスト}
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
-      \item[$\square$] アナログとデジタルの違いを理解した
-      \item[$\square$] ビット・バイトの単位とコンピュータの情報表現の仕組みを学んだ
-      \item[$\square$] 文字・音・画像がデジタル化される仕組みの概要を把握した
+      \item[$\square$] コミュニケーションにおける符号化・解号化とメディアリテラシーの重要性を理解した
+      \item[$\square$] アナログとデジタルの違い，ビット・バイトの単位を学んだ
+      \item[$\square$] 2進法・16進法の仕組みと10進法との変換方法を習得した
     \end{itemize}
   \end{block}
 

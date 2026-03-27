@@ -21,10 +21,10 @@
 
   \begin{block}{今日の流れ}
     \begin{enumerate}
-      \item 情報セキュリティの3要素（CIA）
-      \item 主な脅威と攻撃手法
-      \item 情報モラルと個人の責任
-      \item ネット上の行動と法的責任
+      \item 不正アクセスとパスワードの不正取得
+      \item マルウェアとソーシャルエンジニアリング
+      \item 情報セキュリティ対策の3種類
+      \item 情報モラルと法律・社会の変化
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -41,35 +41,20 @@
 
 % --- Slide 2: terms ---
 
-\begin{frame}{情報セキュリティの3要素（CIA）}
+\begin{frame}{情報セキュリティの基本用語（Theory 08）}
   \begin{description}[labelwidth=6em]
-    \item[\kw{機密性（Confidentiality）}]
-      許可された人だけが情報にアクセスできる状態を保つ
-    \item[\kw{完全性（Integrity）}]
-      情報が正確で改ざんされていない状態を保つ
-    \item[\kw{可用性（Availability）}]
-      必要なときに情報やシステムを使える状態を保つ
+    \item[\kw{不正アクセス}]
+      正当な権限のないコンピュータにネットワーク経由でアクセスする行為。不正アクセス禁止法で規制
+    \item[\kw{マルウェア}]
+      コンピュータに悪影響を与える不正なソフトウェアの総称。ウイルス・ランサムウェア・スパイウェア等
+    \item[\kw{ソーシャルエンジニアリング}]
+      技術的手段ではなく，人の心理的な弱点を利用してパスワード等を入手する手法
+    \item[\kw{フィッシング}]
+      銀行や宅配業者などを装った偽メール・偽サイトで，個人情報や認証情報を騙し取る手法
   \end{description}
 \end{frame}
 
-% --- Slide 3: table ---
-
-\begin{frame}{主な脅威の種類}
-  \centering
-  \begin{tabular}{lll}
-    \toprule
-    脅威 & 内容 & 身近な例 \\
-    \midrule
-    マルウェア & 不正なソフトウェアの総称 & ウイルス・ランサムウェア・スパイウェア \\
-    フィッシング & 偽サイト・偽メールで情報を騙し取る & 銀行・宅配業者を装ったメール \\
-    不正アクセス & 他人のアカウントに無断でログイン & パスワード流出による乗っ取り \\
-    ソーシャルエンジニアリング & 人の心理を利用して情報を入手 & 電話・なりすましで聞き出す \\
-    DoS攻撃 & 大量データを送りサービスを停止させる & ゲームサーバー・ECサイトへの攻撃 \\
-    \bottomrule
-  \end{tabular}
-\end{frame}
-
-% --- Slide 4: twocol ---
+% --- Slide 3: twocol ---
 
 \begin{frame}{パスワードの安全な管理}
   \begin{columns}[T]
@@ -88,9 +73,8 @@
       \begin{exampleblock}{推奨される対策}
         \small
         \begin{itemize}
-          \item 12文字以上・英数字・記号を混在させる
+          \item 英数字・記号を組み合わせた長いパスワードを使う
           \item サービスごとに異なるパスワードを使う
-          \item パスワードマネージャーを活用する
           \item 二段階認証（2FA）を設定する
         \end{itemize}
       \end{exampleblock}
@@ -98,20 +82,31 @@
   \end{columns}
 \end{frame}
 
+% --- Slide 4: table ---
+
+\begin{frame}{情報セキュリティ対策の3種類（教科書 p.19）}
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    対策の種類 & 内容 & 具体例 \\
+    \midrule
+    技術的対策 & システムや技術による防御 & ファイアウォール・暗号化・ウイルス対策ソフト \\
+    物理的対策 & 物理的な環境の管理 & 入退室の管理・施錠管理 \\
+    人的対策 & 人による適切な運用 & セキュリティ教育・パスワード管理 \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
 % --- Slide 5: terms ---
 
-\begin{frame}{情報モラルの基本用語}
+\begin{frame}{情報モラルの基本用語（Theory 09）}
   \begin{description}[labelwidth=6em]
     \item[\kw{情報モラル}]
       情報社会で適切に行動するための倫理観・判断力・行動力
+    \item[\kw{情報リテラシー}]
+      必要な情報を適切に収集・分析・判断・表現できる能力
     \item[\kw{デジタルタトゥー}]
-      一度インターネットに公開した情報は完全に消去できないこと
-    \item[\kw{フェイクニュース}]
-      意図的に作られた虚偽の情報。SNSで急速に拡散されやすい
-    \item[\kw{VDT症候群}]
-      長時間のPC・スマホ使用による目・肩・腰などの身体的不調
-    \item[\kw{ネット依存}]
-      インターネットの過剰使用により日常生活に支障をきたす状態
+      一度インターネットに公開した情報は完全に消去できないこと（非消去性）
   \end{description}
 \end{frame}
 
@@ -143,9 +138,8 @@
 
   \begin{block}{基本問題}
     \begin{itemize}
-      \item 情報セキュリティの3要素（CIA）をそれぞれ説明せよ
-      \item フィッシング詐欺とはどのような攻撃か説明せよ
-      \item デジタルタトゥーとは何か，具体例を挙げて説明せよ
+      \item 不正アクセス・マルウェア・ソーシャルエンジニアリングをそれぞれ説明せよ
+      \item 情報セキュリティ対策の3種類（技術的・物理的・人的）を具体例とともに説明せよ
     \end{itemize}
   \end{block}
 
@@ -153,7 +147,7 @@
 
   \begin{exampleblock}{応用問題（余裕がある人）}
     \begin{itemize}
-      \item 自分のSNSアカウントのセキュリティ設定を確認し，改善すべき点と理由を述べよ
+      \item 自分が使っているWebサービスのセキュリティ設定を確認し，改善すべき点と理由を述べよ
     \end{itemize}
   \end{exampleblock}
 \end{frame}
@@ -182,9 +176,9 @@
 \begin{frame}{まとめ・チェックリスト}
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
-      \item[$\square$] 情報セキュリティの3要素（CIA）と主な脅威の種類を理解した
-      \item[$\square$] 安全なパスワード管理と二段階認証の重要性を学んだ
-      \item[$\square$] ネット上の行動と法的責任の関係を理解した
+      \item[$\square$] 不正アクセス・マルウェア・ソーシャルエンジニアリングの脅威を理解した
+      \item[$\square$] 技術的・物理的・人的の3種類のセキュリティ対策を学んだ
+      \item[$\square$] 情報モラルの重要性と，情報社会に関わる法律の変化を理解した
     \end{itemize}
   \end{block}
 

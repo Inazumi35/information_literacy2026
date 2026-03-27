@@ -1,15 +1,15 @@
 % !TEX program = lualatex
-% Auto-generated from YAML (v3) — 13: デジタル表現1：2進数 / 文字コード / 音
+% Auto-generated from YAML (v3) — 13: デジタル表現1：補数・文字コード・音のデジタル化
 
 \documentclass[aspectratio=43,professionalfonts,handout]{beamer}
 \usepackage{beamer_template}
 
 \newcommand{\LectureNum}{13}
-\newcommand{\LectureTitle}{デジタル表現1：2進数 / 文字コード / 音}
+\newcommand{\LectureTitle}{デジタル表現1：補数・文字コード・音のデジタル化}
 \newcommand{\CourseName}{情報リテラシー}
-\newcommand{\TextPages}{pp.36-43}
-\newcommand{\NextTopic}{デジタル表現2：画像 / 圧縮と品質}
-\newcommand{\NextPages}{pp.44-47}
+\newcommand{\TextPages}{pp.40-45}
+\newcommand{\NextTopic}{デジタル表現2：画像のデジタル化・データの圧縮}
+\newcommand{\NextPages}{pp.46-51}
 
 \begin{document}
 % --- Slide 1: title ---
@@ -21,10 +21,9 @@
 
   \begin{block}{今日の流れ}
     \begin{enumerate}
-      \item 2進法と10進法の変換
-      \item 16進法と2進法の関係
-      \item 文字コードの仕組み
-      \item 音のデジタル化（標本化・量子化・符号化）
+      \item 2進法の計算・補数（Theory 15）
+      \item 文字コードの仕組み（Theory 16）
+      \item 音のデジタル化（Theory 17）
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -34,36 +33,20 @@
 \begin{frame}{今日の目標}
   \begin{block}{この授業が終わったらできること}
     \begin{itemize}
-      \item 2進数による数値表現，文字コードの仕組み，音声のデジタル化について説明できる。
+      \item 補数の仕組み，文字コード，音声のデジタル化について説明できる。
     \end{itemize}
   \end{block}
 \end{frame}
 
-% --- Slide 2: table ---
+% --- Slide 2: points ---
 
-\begin{frame}{2進法の基本と変換例}
-  \centering
-  \begin{tabular}{lll}
-    \toprule
-    10進法 & 2進法 & 計算（各桁の重み：2³=8, 2²=4, 2¹=2, 2⁰=1） \\
-    \midrule
-    5 & 0101 & 4×1 + 2×0 + 1×1 = 5 \\
-    10 & 1010 & 8×1 + 4×0 + 2×1 + 1×0 = 10 \\
-    13 & 1101 & 8×1 + 4×1 + 2×0 + 1×1 = 13 \\
-    23 & 10111 & 16+4+2+1 = 23 \\
-    \bottomrule
-  \end{tabular}
-\end{frame}
-
-% --- Slide 3: points ---
-
-\begin{frame}{16進法}
+\begin{frame}{補数}
   \begin{block}{ポイント}
     \begin{itemize}
-      \item 0〜9とA〜F（A=10, B=11, … F=15）の16文字で表す記数法
-      \item 2進数4桁が16進数1桁に対応するため，変換が容易
-      \item 例：1101 1110(2) → D E(16)（4ビットずつ区切って変換）
-      \item 逆に16進→2進：各桁を4ビットの2進数に置き換える
+      \item 補数とは，ある数に足すと基数（2進法なら2）のべき乗になる数のこと
+      \item コンピュータでは負の数を表すために補数を利用する
+      \item 2進nビットの補数：元の数のビットを反転して1を加える
+      \item 例：4ビットの1011の補数 → 0100 + 1 = 0101（10−11=−1の計算に利用）
     \end{itemize}
   \end{block}
 
@@ -71,12 +54,12 @@
 
   \begin{exampleblock}{補足}
     \begin{itemize}
-      \item プログラミングやネットワーク（MACアドレス・色コード）でよく使われる
+      \item 補数を使うと，引き算を足し算として計算できる（コンピュータの演算の基本）
     \end{itemize}
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 4: terms ---
+% --- Slide 3: terms ---
 
 \begin{frame}{文字コード}
   \begin{description}[labelwidth=6em]
@@ -95,25 +78,35 @@
   \end{description}
 \end{frame}
 
+% --- Slide 4: terms ---
+
+\begin{frame}{音のデジタル化の用語}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{振幅}]
+      音の波形の高さ。音の大きさ（音量）を表す
+    \item[\kw{周波数（Hz）}]
+      1秒間に振れる波の数。音の高低を表す。単位はヘルツ（Hz）
+    \item[\kw{標本化（サンプリング）}]
+      一定の時間間隔で波の高さを取り出すこと
+    \item[\kw{量子化}]
+      取り出した値を一定の段階数（量子化ビット数）に丸める操作
+    \item[\kw{符号化}]
+      量子化した数値を2進法で表すこと
+  \end{description}
+\end{frame}
+
 % --- Slide 5: points ---
 
 \begin{frame}{音のデジタル化}
   \begin{block}{ポイント}
     \begin{itemize}
       \item 音はアナログ（空気の連続的な振動）→ A/D変換でデジタル化
+      \item 音を特徴づける要素：振幅（音の大きさ）・周波数（音の高低）・波形（音色）
       \item ①標本化（サンプリング）：一定時間間隔で波の高さを取り出す
       \item ②量子化：取り出した値を一定の段階値に丸める
       \item ③符号化：量子化した数値を2進法で表す
     \end{itemize}
   \end{block}
-
-  \vfill
-
-  \begin{exampleblock}{補足}
-    \begin{itemize}
-      \item 音を特徴づける要素：振幅（音の大小）・周波数（音の高低）・波形（音色）
-    \end{itemize}
-  \end{exampleblock}
 \end{frame}
 
 % --- Slide 6: points ---
@@ -122,19 +115,11 @@
   \begin{block}{ポイント}
     \begin{itemize}
       \item 1秒間のデータ量 = 標本化周波数（Hz）× 量子化ビット数（bit）× チャンネル数
-      \item 例：CD音質 = 44,100 Hz × 16 bit × 2ch = 1,411,200 bit/s
-      \item 品質↑（標本化周波数・量子化ビット数を増やす）→ データ量↑
-      \item 品質↓（値を減らす）→ データ量↓ ← トレードオフの関係
+      \item 例：標本化周波数24,000Hz，量子化16bit，ステレオ（2ch）の場合
+      \item 24,000 × 16 × 2 = 768,000 bit/秒（= 768 kbit/秒）
+      \item 品質↑（標本化周波数・量子化ビット数を増やす）→ データ量↑（トレードオフ）
     \end{itemize}
   \end{block}
-
-  \vfill
-
-  \begin{exampleblock}{補足}
-    \begin{itemize}
-      \item 標本化定理：元の信号の最大周波数の2倍以上の周波数でサンプリングする必要がある
-    \end{itemize}
-  \end{exampleblock}
 \end{frame}
 
 % --- Slide 7: exercise ---
@@ -146,10 +131,9 @@
 
   \begin{block}{基本問題}
     \begin{itemize}
-      \item 1101(2) を10進法で表せ
-      \item 23(10) を2進法で表せ
-      \item 11011110(2) を16進法に変換せよ
+      \item 4ビットの2進数 0110 の補数を求めよ
       \item ASCIIとユニコードの違いを説明せよ
+      \item 「標本化」「量子化」「符号化」を，音のデジタル化を例にして説明せよ
     \end{itemize}
   \end{block}
 
@@ -157,7 +141,7 @@
 
   \begin{exampleblock}{応用問題（余裕がある人）}
     \begin{itemize}
-      \item 標本化周波数22,050Hz，量子化16ビット，モノラル（1ch）で1分間録音したときのデータ量（バイト）を求めよ
+      \item 標本化周波数24,000Hz，量子化16bit，ステレオ（2ch）で1分間録音したデータ量（kB）を求めよ
     \end{itemize}
   \end{exampleblock}
 \end{frame}
@@ -166,7 +150,7 @@
 
 \begin{frame}{課題・次回予告}
   \begin{importantbox}[課題（次回までに提出）]
-    教科書 pp.36-43 を復習し，10進数→2進数→16進数の変換を練習すること（5問以上）。次週は画像のデジタル表現を扱う
+    教科書 pp.40-45 を復習すること。次週は画像のデジタル化とデータの圧縮を扱う
   \end{importantbox}
 
   \vfill
@@ -186,9 +170,9 @@
 \begin{frame}{まとめ・チェックリスト}
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
-      \item[$\square$] 2進数・16進数の仕組みと変換方法を習得した
-      \item[$\square$] 文字コード（ASCII・Unicode）の概念を理解した
-      \item[$\square$] 音のデジタル化（サンプリング・量子化・符号化）の仕組みを学んだ
+      \item[$\square$] 2進法の加算と補数（負の数の表現）を習得した
+      \item[$\square$] 文字コード（ASCII・Unicode）の概念と文字化けの原因を理解した
+      \item[$\square$] 音のデジタル化（標本化・量子化・符号化）とデータ量計算を学んだ
     \end{itemize}
   \end{block}
 
