@@ -46,7 +46,7 @@ def escape_latex(text: str) -> str:
 # ---------------------------------------------------------------------------
 # Slide generators
 # ---------------------------------------------------------------------------
-def gen_title(data, slide, goals=None):
+def gen_title(data, slide, goals=None, keywords=None):
     items = "\n".join(f"      \\item {escape_latex(s)}" for s in slide.get("flow", []))
     goals_block = ""
     if goals:
@@ -59,6 +59,15 @@ def gen_title(data, slide, goals=None):
 {goal_items}
     \end{{itemize}}
   \end{{block}}"""
+    kw_block = ""
+    if keywords:
+        kw_line = " ／ ".join(rf"\textbf{{{escape_latex(k)}}}" for k in keywords)
+        kw_block = rf"""
+  \vfill
+
+  \begin{{exampleblock}}{{キーワード}}
+    \small {kw_line}
+  \end{{exampleblock}}"""
     return rf"""
 \begin{{frame}}{{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}}
   {{\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}}
@@ -69,7 +78,7 @@ def gen_title(data, slide, goals=None):
     \begin{{enumerate}}
 {items}
     \end{{enumerate}}
-  \end{{block}}{goals_block}
+  \end{{block}}{goals_block}{kw_block}
 \end{{frame}}
 """
 
@@ -321,8 +330,8 @@ def gen_checklist(items):
 
 
 GENERATORS = {
-    "title": lambda d, s: gen_title(d, s, d.get("goals")),
-    "terms": lambda d, s: gen_terms(s),
+    "title": lambda d, s: gen_title(d, s, d.get("goals"), d.get("_keywords")),
+    # terms は独立スライドとして出力しない：用語は文脈の中で説明し、タイトルスライドにキーワード一覧を表示
     "points": lambda d, s: gen_points(s),
     "code": lambda d, s: gen_code(s),
     "practice": lambda d, s: gen_practice(s),
@@ -379,6 +388,13 @@ def generate_tex(data: dict) -> str:
 """
 
     summary = data.get("summary")
+
+    # terms スライドからキーワード一覧を収集してタイトルスライドに渡す
+    keywords = []
+    for slide in data.get("slides", []):
+        if slide.get("type") == "terms":
+            keywords.extend(item["term"] for item in slide.get("items", []))
+    data["_keywords"] = keywords if keywords else None
 
     body_parts = []
     for i, slide in enumerate(data.get("slides", []), 1):

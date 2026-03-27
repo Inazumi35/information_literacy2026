@@ -35,6 +35,11 @@
       \item インターネットの基本的な仕組みを理解し，安全に利用するための注意点を説明できる。
     \end{itemize}
   \end{block}
+  \vfill
+
+  \begin{exampleblock}{キーワード}
+    \small \textbf{プロトコル} ／ \textbf{TCP/IP（Transmission Control Protocol / Internet Protocol）} ／ \textbf{bps（bits per second）} ／ \textbf{ファイアウォール} ／ \textbf{パケットフィルタリング方式} ／ \textbf{暗号化} ／ \textbf{SSL/TLS} ／ \textbf{デジタル署名} ／ \textbf{認証局（CA：Certificate Authority）}
+  \end{exampleblock}
 \end{frame}
 
 % --- Slide 2: twocol ---
@@ -66,19 +71,6 @@
   \end{columns}
 \end{frame}
 
-% --- Slide 3: terms ---
-
-\begin{frame}{プロトコルとTCP/IP}
-  \begin{description}[labelwidth=6em]
-    \item[\kw{プロトコル}]
-      コンピュータどうしが相互に情報のやりとりをするために，何を使ってどのように送受信するかを決めた約束事
-    \item[\kw{TCP/IP（Transmission Control Protocol / Internet Protocol）}]
-      インターネットでよく利用されるプロトコル。基本ソフトウェアやアプリケーションに依存せず共通の役割を果たす
-    \item[\kw{bps（bits per second）}]
-      1秒間に転送できるデータ量の単位。通信速度を表す
-  \end{description}
-\end{frame}
-
 % --- Slide 4: table ---
 
 \begin{frame}{TCP/IP 4階層モデル}
@@ -95,21 +87,6 @@
   \end{tabular}
 \end{frame}
 
-% --- Slide 5: terms ---
-
-\begin{frame}{ファイアウォール}
-  \begin{description}[labelwidth=6em]
-    \item[\kw{ファイアウォール}]
-      ネットワークの出入り口で許されたデータのみを通過させ，それ以外のアクセスを拒絶する仕組み。情報の機密性を守ると同時に，コンピュータウイルスによる障害を防ぎ，可用性を守る
-    \item[\kw{パケットフィルタリング方式}]
-      パケットのIPアドレスやポート番号などを確認し，通過させるかどうかを判断する方式
-    \item[\kw{暗号化}]
-      元のデータを第三者に読み取られないよう変換すること。変換前を平文，変換後を暗号文という
-    \item[\kw{SSL/TLS}]
-      Webサイトとの通信を暗号化する規格。「https://」で始まるサイトで使われる。情報の盗聴・改ざん防止
-  \end{description}
-\end{frame}
-
 % --- Slide 6: table ---
 
 \begin{frame}{共通鍵暗号方式と公開鍵暗号方式}
@@ -123,17 +100,6 @@
     鍵の受け渡し & 難しい（安全に共有が必要） & 容易（公開鍵は公開可能） \\
     \bottomrule
   \end{tabular}
-\end{frame}
-
-% --- Slide 7: terms ---
-
-\begin{frame}{デジタル署名と認証局}
-  \begin{description}[labelwidth=6em]
-    \item[\kw{デジタル署名}]
-      送信者が秘密鍵で署名し，受信者が公開鍵で検証することで，送信者の正当性とデータの改ざんがないことを確認する仕組み
-    \item[\kw{認証局（CA：Certificate Authority）}]
-      デジタル証明書を発行し，通信相手の正当性を保証する機関
-  \end{description}
 \end{frame}
 
 % --- Slide 8: exercise ---
