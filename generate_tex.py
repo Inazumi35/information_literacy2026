@@ -488,6 +488,7 @@ def main():
     parser.add_argument("--outdir", type=str, default=None, help="Output directory")
     parser.add_argument("--all", action="store_true", help="全週YAMLから全週を一括生成")
     parser.add_argument("--week", type=str, default=None, help="特定週のみ生成（例: 3 または 後3）")
+    parser.add_argument("--skip-week", type=str, default=None, help="指定週をスキップ（例: 1 または 後1）。--allと併用")
     args = parser.parse_args()
 
     script_dir = Path(__file__).parent
@@ -511,6 +512,9 @@ def main():
             for data in weeks:
                 num = str(data.get("num", ""))
                 if args.week and num_to_stem(num) != num_to_stem(args.week):
+                    continue
+                if args.skip_week and num_to_stem(num) == num_to_stem(args.skip_week):
+                    print(f"SKIP (--skip-week): {num_to_stem(num)}.tex")
                     continue
                 stem = num_to_stem(num)
                 tex_content = generate_tex(data)
