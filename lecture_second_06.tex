@@ -7,9 +7,9 @@
 \newcommand{\LectureNum}{06}
 \newcommand{\LectureTitle}{情報システムの役割と信頼性}
 \newcommand{\CourseName}{情報リテラシー}
-\newcommand{\TextPages}{pp.112-117}
+\newcommand{\TextPages}{pp.114-119}
 \newcommand{\NextTopic}{データベースとデータ管理の基礎}
-\newcommand{\NextPages}{pp.118-121}
+\newcommand{\NextPages}{pp.120-123}
 
 \begin{document}
 % --- Slide 1: title ---
@@ -50,22 +50,23 @@
       商品を販売した時点でそのデータを収集・管理するシステム。販売管理・在庫管理・生産管理・配送管理などが連携している
     \item[\kw{GPS（Global Positioning System）}]
       複数の衛星の位置情報から現在位置を算出し，バスなどの運行状況通知などに利用できるシステム
-    \item[\kw{トレーサビリティシステム}]
-      商品の製造番号や電子タグを取り付けることで，生産者から消費者までの商品を追跡可能にする仕組み
   \end{description}
 \end{frame}
 
 % --- Slide 3: table ---
 
-\begin{frame}{情報システムの種類}
+\begin{frame}{情報システムの種類と活用例}
   \centering
-  \begin{tabular}{lll}
+  \begin{tabular}{ll}
     \toprule
-    種類 & 説明 & 例 \\
+    情報システムの種類 & 活用例 \\
     \midrule
-    計算システム & 金銭の出納の集計や気象データの解析など，計算処理を中心とした業務に使われる & 気象予測・統計処理 \\
-    通信システム & 気象データの収集や遠隔地とのテレビ会議など，高速で安定したデータ通信を行う業務に使われる & 気象衛星・遠隔医療 \\
-    制御システム & 工場の生産設備を自動運転する業務などに使われる & FA（ファクトリーオートメーション） \\
+    気象情報システム & 天気予報・気象観測データの収集分析 \\
+    交通情報システム & バス・鉄道の位置情報管理・経路案内 \\
+    医療情報システム & 電子カルテ・病院の予約・会計管理 \\
+    金融情報システム & ATM・インターネットバンキング \\
+    防犯・防災システム & 防犯カメラ・地震速報・避難誘導 \\
+    行政情報システム & マイナンバー・住民票管理・確定申告 \\
     \bottomrule
   \end{tabular}
 \end{frame}
@@ -99,22 +100,7 @@
   \end{columns}
 \end{frame}
 
-% --- Slide 5: table ---
-
-\begin{frame}{情報システムの処理形態（3種類）}
-  \centering
-  \begin{tabular}{lll}
-    \toprule
-    種別 & 説明 & 特徴 \\
-    \midrule
-    集中情報システム & 中央に大型・中型の汎用コンピュータを設置し，全てのデータを集中管理する & 機密性・完全性が保たれやすい。データ量増加による負荷集中・故障時のリスクがある \\
-    分散情報システム & 複数の小型コンピュータを相互に接続し，データを共有しながら業務を分担して処理する。クライアントサーバシステムが代表例 & 負荷が分散されて高速化が望める。セキュリティが低下したりデータの一貫性を保つのが難しかったりする \\
-    移動体情報システム & 携帯情報端末を用い，無線技術によって移動中も相互利用を可能にする & 屋内と屋外で別々の回線を切り替えて運用できる柔軟性がある \\
-    \bottomrule
-  \end{tabular}
-\end{frame}
-
-% --- Slide 6: points ---
+% --- Slide 5: points ---
 
 \begin{frame}{オープンデータ}
   \begin{block}{ポイント}
@@ -136,7 +122,39 @@
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 7: points ---
+% --- Slide 6: table ---
+
+\begin{frame}{クリエイティブコモンズ（CC）ライセンス}
+  \centering
+  \begin{tabular}{ll}
+    \toprule
+    ライセンス & 意味 \\
+    \midrule
+    CC BY & 表示（クレジット必要） \\
+    CC BY-SA & 表示-継承 \\
+    CC BY-ND & 表示-改変禁止 \\
+    CC BY-NC & 表示-非営利 \\
+    CC BY-NC-SA & 表示-非営利-継承 \\
+    CC BY-NC-ND & 表示-非営利-改変禁止 \\
+    CC0 & パブリックドメイン（権利放棄） \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 7: terms ---
+
+\begin{frame}{XR（クロスリアリティ）}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{VR（Virtual Reality：仮想現実）}]
+      完全に仮想の空間を体験する技術
+    \item[\kw{AR（Augmented Reality：拡張現実）}]
+      現実の映像に仮想の情報を重ねて表示する技術
+    \item[\kw{MR（Mixed Reality：複合現実）}]
+      現実と仮想が相互作用する技術
+  \end{description}
+\end{frame}
+
+% --- Slide 8: points ---
 
 \begin{frame}{情報システムの信頼性（1）：バックアップとRAID}
   \begin{block}{ポイント}
@@ -147,26 +165,29 @@
       \item 差分バックアップ：前回のフルバックアップからの変更分を複製する
       \item 増分バックアップ：前回のバックアップからの変更分のみを複製する（容量が少なく済む）
       \item RAID：複数のドライブを組み合わせて仮想的に1台の装置に見立てて運用する技術。耐故障性を高められる
+      \item パリティチェック：データに検査用ビットを追加し，1ビットのエラーを検出する方式
+      \item チェックディジット：入力ミス防止のためにデータの末尾に検査用数字を追加する方式（例：JANコード・マイナンバー）
     \end{itemize}
   \end{block}
 \end{frame}
 
-% --- Slide 8: points ---
+% --- Slide 9: points ---
 
-\begin{frame}{情報システムの信頼性（2）：稼働率とフェールセーフ}
+\begin{frame}{情報システムの信頼性（2）：稼働率・フェールセーフ・フォールトトレランス}
   \begin{block}{ポイント}
     \begin{itemize}
-      \item 稼働率：情報システムが正常に動作している時間の割合を表す平均的な指標
+      \item 稼働率：情報システムが正常に動作している時間の割合。稼働率 = MTBF ÷ （MTBF + MTTR）
       \item 平均故障間隔（MTBF）：システムが稼働を開始してから故障するまでの平均時間
       \item 平均修理時間（MTTR）：故障が発生してから修理が完了するまでの平均時間
-      \item 稼働率 = MTBF ÷ （MTBF + MTTR）
       \item フェールセーフ：機器が故障したとき，安全側に動作するように設計すること（例：信号が消えたら赤になる）
-      \item フールプルーフ：誤操作しても危険が起きないようにする設計（例：電池を逆に入れられない形状）
+      \item フールプルーフ：誤操作しても危険が起きないようにする設計（例：USB端子の向き・電池の形状）
+      \item フォールトトレランス：故障が起きてもシステムが動作を続けられる設計（例：システム二重化）
+      \item フォールバック：障害発生時に機能を縮退させて運用を継続する方式
     \end{itemize}
   \end{block}
 \end{frame}
 
-% --- Slide 9: exercise ---
+% --- Slide 10: exercise ---
 
 \begin{frame}{演習}
   {\small 各自で取り組んでください。}
@@ -190,11 +211,11 @@
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 10: assignment ---
+% --- Slide 11: assignment ---
 
 \begin{frame}{課題・次回予告}
   \begin{importantbox}[課題（次回までに提出）]
-    教科書 pp.112-117 を復習すること。次週はデータベースの基礎を学ぶ（pp.118-121）
+    教科書 pp.114-119 を復習すること。次週はデータベースの基礎を学ぶ（pp.120-123）
   \end{importantbox}
 
   \vfill
@@ -214,9 +235,9 @@
 \begin{frame}{まとめ・チェックリスト}
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
-      \item[$\square$] 情報システムの種類（集中・分散・移動体）と役割を理解した
-      \item[$\square$] 電子マネー・オープンデータなど身近な情報システムを学んだ
-      \item[$\square$] 稼働率・RAID・バックアップなど信頼性確保の手法を把握した
+      \item[$\square$] 情報システムの種類（気象・交通・医療・金融・防犯・行政）と活用例を理解した
+      \item[$\square$] 冗長化・バックアップ（フル/差分/増分）・RAIDと稼働率（MTBF/MTTR）を学んだ
+      \item[$\square$] 電子マネー・オープンデータ・CCライセンス・VR/AR/MRを把握した
     \end{itemize}
   \end{block}
 

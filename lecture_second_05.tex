@@ -1,15 +1,15 @@
 % !TEX program = lualatex
-% Auto-generated from YAML (v3) — 05: インターネットの仕組みと安全な利用
+% Auto-generated from YAML (v3) — 05: デジタル通信の仕組みとセキュリティ
 
 \documentclass[aspectratio=43,professionalfonts,handout]{beamer}
 \usepackage{beamer_template}
 
 \newcommand{\LectureNum}{05}
-\newcommand{\LectureTitle}{インターネットの仕組みと安全な利用}
+\newcommand{\LectureTitle}{デジタル通信の仕組みとセキュリティ}
 \newcommand{\CourseName}{情報リテラシー}
-\newcommand{\TextPages}{pp.108-111}
+\newcommand{\TextPages}{pp.110-113}
 \newcommand{\NextTopic}{情報システムの役割と信頼性}
-\newcommand{\NextPages}{pp.112-117}
+\newcommand{\NextPages}{pp.114-119}
 
 \begin{document}
 % --- Slide 1: title ---
@@ -21,11 +21,11 @@
 
   \begin{block}{今日の流れ}
     \begin{enumerate}
-      \item クライアントサーバシステムとWWW
-      \item URLの構造とドメイン名・DNS
-      \item 電子メールの仕組み
-      \item ファイアウォール
-      \item 暗号化通信（共通鍵・公開鍵）
+      \item 通信方式（回線交換・パケット交換）
+      \item プロトコルとTCP/IP
+      \item TCP/IP 4階層モデル
+      \item ファイアウォールと暗号化通信
+      \item 共通鍵・公開鍵暗号方式
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -40,134 +40,106 @@
   \end{block}
 \end{frame}
 
-% --- Slide 2: terms ---
+% --- Slide 2: twocol ---
 
-\begin{frame}{基本用語}
-  \begin{description}[labelwidth=6em]
-    \item[\kw{サーバ（server）}]
-      インターネットでWebページの閲覧などの際に，それぞれの役割に応じたサービスを提供するコンピュータ
-    \item[\kw{クライアント（client）}]
-      サーバに対してサービスを要求し，サービスを受ける利用者のコンピュータ
-    \item[\kw{クライアントサーバシステム}]
-      サーバとクライアントが連携して機能するシステム
-    \item[\kw{WWW（World Wide Web）}]
-      インターネットで現在最も利用されている分散情報システム。「世界中に張り巡らされたクモの巣」が語源
-    \item[\kw{HTML（HyperText Markup Language）}]
-      Webページを記述するための言語
-    \item[\kw{URL（Uniform Resource Locator）}]
-      Webページなどの情報が格納されている場所と通信方式を示した文字列
-  \end{description}
-\end{frame}
-
-% --- Slide 3: points ---
-
-\begin{frame}{URLの構造}
-  \begin{block}{ポイント}
-    \begin{itemize}
-      \item 例：http://www.example.ed.jp/index.html
-      \item 通信方式（スキーム）：http（通常のWeb）／https（暗号通信のWeb）／ftp（ファイル転送）など
-      \item サーバ名：www など
-      \item 組織名・組織種別・国名：example.ed.jp（教育機関・日本）など
-      \item パス名：情報が収められているフォルダ名やファイル名
-    \end{itemize}
-  \end{block}
-
-  \vfill
-
-  \begin{exampleblock}{補足}
-    \begin{itemize}
-      \item 組織種別の例：ac（大学・学校法人）/ co（企業）/ go（日本政府機関）/ ed（教育機関・小中高）
-    \end{itemize}
-  \end{exampleblock}
-\end{frame}
-
-% --- Slide 4: terms ---
-
-\begin{frame}{DNSと電子メール}
-  \begin{description}[labelwidth=6em]
-    \item[\kw{DNS（Domain Name System）}]
-      ドメイン名という文字列からIPアドレスへの変換を行う仕組み。国や組織ごとに階層的に設置されたDNSサーバが担っている
-    \item[\kw{ドメイン名}]
-      数字の列で表されるIPアドレスは人間には記憶しにくいため，対応させた文字列。例：www.kantei.go.jp → 202.214.216.10
-    \item[\kw{SMTP（Simple Mail Transfer Protocol）}]
-      電子メールを送信するときに使われるプロトコル
-    \item[\kw{POP（Post Office Protocol）}]
-      メールボックスのあるメールサーバから電子メールを受け取るプロトコル
-    \item[\kw{IMAP（Internet Message Access Protocol）}]
-      メールサーバ上のメールを管理・参照するプロトコル。サーバにメールを残したまま複数の端末で利用できる
-  \end{description}
-\end{frame}
-
-% --- Slide 5: points ---
-
-\begin{frame}{DNSの働き（Webアクセスの流れ）}
-  \begin{block}{ポイント}
-    \begin{itemize}
-      \item ① ブラウザにURL（ドメイン名）を入力する
-      \item ② DNSサーバにIPアドレスを問い合わせる
-      \item ③ DNSサーバがIPアドレスを返答する
-      \item ④ 取得したIPアドレスのWebサーバにアクセスする
-      \item ⑤ WebサーバがHTMLデータを返送し，ブラウザが画面に表示する
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-% --- Slide 6: terms ---
-
-\begin{frame}{ファイアウォール}
-  \begin{description}[labelwidth=6em]
-    \item[\kw{ファイアウォール}]
-      ネットワークの出入り口で許されたデータのみを通過させ，それ以外のアクセスを拒絶する仕組み。情報の機密性を守ると同時に，コンピュータウイルスによる障害を防ぎ，可用性を守る
-    \item[\kw{パケットフィルタリング方式}]
-      インターネットとLANをつなぐ接続点で，プロトコルの種類や送信元のIPアドレスなどから，パケットごとに通過か遮断かを判断する方式
-    \item[\kw{プロキシサーバ}]
-      クライアントの代わりにWebページにアクセスし，データを中継する代理サーバ。セキュリティ機能やキャッシュ機能がある
-  \end{description}
-\end{frame}
-
-% --- Slide 7: twocol ---
-
-\begin{frame}{暗号化の2つの方式}
+\begin{frame}{2つの通信方式}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
-      \begin{block}{共通鍵暗号方式}
+      \begin{block}{回線交換方式}
         \small
         \begin{itemize}
-          \item 暗号化と復号で同じ鍵を使う（秘密鍵暗号方式ともいう）
-          \item 鍵が1つなので仕組みが単純で，処理速度が速い
-          \item 事前に安全な方法で送信先に鍵を渡さなければならない
-          \item 送り手と受け手以外に鍵が知られると，暗号化の効果がなくなる
+          \item 通信を始める前に相手との間で通信経路を確立する
+          \item いったん経路を確立すれば安定した通信ができる
+          \item 回線の障害などで経路が確立できないと通信できない
+          \item 例：従来の固定電話
         \end{itemize}
       \end{block}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{公開鍵暗号方式}
+      \begin{exampleblock}{パケット交換方式}
         \small
         \begin{itemize}
-          \item 対となる2つの鍵（公開鍵・秘密鍵）を使い，暗号化と復号をそれぞれ行う
-          \item 公開鍵で暗号化したデータは，秘密鍵でしか復号できない
-          \item 公開鍵は誰でも入手できるが，秘密鍵は本人のみが持つ
-          \item 通信相手への鍵の受け渡しを秘密にする必要がなく，インターネット上でも安全に利用できる
+          \item 情報をパケットとよばれる通信単位に小分けして送信する
+          \item あらかじめ経路を確立することなく通信を始められる
+          \item パケットが途中で失われたり，混雑の影響を受けたりすることがある
+          \item 例：インターネット・電子メール・SNS
         \end{itemize}
       \end{exampleblock}
     \end{column}
   \end{columns}
 \end{frame}
 
-% --- Slide 8: notice ---
+% --- Slide 3: terms ---
 
-\begin{frame}{安全なインターネット利用のポイント}
-  \begin{noticebox}[注意]
-    \begin{itemize}
-      \item URLを確認する：アドレスバーに「https://」と鍵マークがあるか確認する
-      \item フリーWi-Fiでは個人情報の入力を避ける（パケットは盗み見られる可能性がある）
-      \item ファイアウォールとパーソナルファイアウォールの二重のセキュリティが求められる
-      \item 不審なメール・リンクは開かない（フィッシング詐欺に注意）
-    \end{itemize}
-  \end{noticebox}
+\begin{frame}{プロトコルとTCP/IP}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{プロトコル}]
+      コンピュータどうしが相互に情報のやりとりをするために，何を使ってどのように送受信するかを決めた約束事
+    \item[\kw{TCP/IP（Transmission Control Protocol / Internet Protocol）}]
+      インターネットでよく利用されるプロトコル。基本ソフトウェアやアプリケーションに依存せず共通の役割を果たす
+    \item[\kw{bps（bits per second）}]
+      1秒間に転送できるデータ量の単位。通信速度を表す
+  \end{description}
 \end{frame}
 
-% --- Slide 9: exercise ---
+% --- Slide 4: table ---
+
+\begin{frame}{TCP/IP 4階層モデル}
+  \centering
+  \begin{tabular}{llll}
+    \toprule
+    層 & 名称 & 機能 & プロトコルの例 \\
+    \midrule
+    4層 & アプリケーション層 & アプリケーションに応じた通信の形式や手順を定める & HTTP・SMTP・DNS \\
+    3層 & トランスポート層 & パケットが喪失しないで届くことを保証する & TCP・UDP \\
+    2層 & インターネット層 & データの行き先と経路を決める & IP \\
+    1層 & ネットワークインタフェース層 & 接続されたコンピュータどうしが誤りなくデータ転送する手順を提供する & イーサネット \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 5: terms ---
+
+\begin{frame}{ファイアウォール}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{ファイアウォール}]
+      ネットワークの出入り口で許されたデータのみを通過させ，それ以外のアクセスを拒絶する仕組み。情報の機密性を守ると同時に，コンピュータウイルスによる障害を防ぎ，可用性を守る
+    \item[\kw{パケットフィルタリング方式}]
+      パケットのIPアドレスやポート番号などを確認し，通過させるかどうかを判断する方式
+    \item[\kw{暗号化}]
+      元のデータを第三者に読み取られないよう変換すること。変換前を平文，変換後を暗号文という
+    \item[\kw{SSL/TLS}]
+      Webサイトとの通信を暗号化する規格。「https://」で始まるサイトで使われる。情報の盗聴・改ざん防止
+  \end{description}
+\end{frame}
+
+% --- Slide 6: table ---
+
+\begin{frame}{共通鍵暗号方式と公開鍵暗号方式}
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    項目 & 共通鍵暗号方式 & 公開鍵暗号方式 \\
+    \midrule
+    鍵の種類 & 暗号化・復号に同じ鍵を使う & 暗号化・復号に異なる鍵を使う \\
+    処理速度 & 速い & 遅い \\
+    鍵の受け渡し & 難しい（安全に共有が必要） & 容易（公開鍵は公開可能） \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% --- Slide 7: terms ---
+
+\begin{frame}{デジタル署名と認証局}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{デジタル署名}]
+      送信者が秘密鍵で署名し，受信者が公開鍵で検証することで，送信者の正当性とデータの改ざんがないことを確認する仕組み
+    \item[\kw{認証局（CA：Certificate Authority）}]
+      デジタル証明書を発行し，通信相手の正当性を保証する機関
+  \end{description}
+\end{frame}
+
+% --- Slide 8: exercise ---
 
 \begin{frame}{演習}
   {\small 各自で取り組んでください。}
@@ -176,9 +148,9 @@
 
   \begin{block}{基本問題}
     \begin{itemize}
-      \item URLの「https://www.example.ed.jp/index.html」を構成要素（スキーム・サーバ名・組織名・組織種別・国名・パス名）に分解して説明せよ
-      \item DNSの役割を電話帳に例えて説明せよ
-      \item 共通鍵暗号方式と公開鍵暗号方式の違いを，鍵の受け渡し方法に着目して説明せよ
+      \item 回線交換方式とパケット交換方式の違いを説明せよ。また，災害時にSNSが使いやすい理由をこの違いと関連付けて述べよ
+      \item TCP/IPの4階層それぞれの役割を説明せよ
+      \item ファイアウォールの役割を説明せよ
     \end{itemize}
   \end{block}
 
@@ -186,16 +158,16 @@
 
   \begin{exampleblock}{応用問題（余裕がある人）}
     \begin{itemize}
-      \item 電子メールを送信してから受信するまでの流れを，SMTP・POP・メールサーバの語句を使って説明せよ
+      \item 共通鍵暗号方式と公開鍵暗号方式の違いを説明し，インターネットでの安全な通信（HTTPS）にどちらが使われているか述べよ
     \end{itemize}
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 10: assignment ---
+% --- Slide 9: assignment ---
 
 \begin{frame}{課題・次回予告}
   \begin{importantbox}[課題（次回までに提出）]
-    教科書 pp.108-111 を復習すること。次週は情報システムの役割と信頼性を学ぶ（pp.112-117）
+    教科書 pp.110-113 を復習すること。次週は情報システムの役割と信頼性を学ぶ（pp.114-119）
   \end{importantbox}
 
   \vfill
@@ -215,9 +187,9 @@
 \begin{frame}{まとめ・チェックリスト}
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
-      \item[$\square$] URLの構造・DNS・クライアントサーバの仕組みを理解した
-      \item[$\square$] 電子メールの送受信プロトコル（SMTP・POP3・IMAP）を学んだ
-      \item[$\square$] 共通鍵・公開鍵暗号とファイアウォールによる安全な通信を把握した
+      \item[$\square$] 回線交換方式とパケット交換方式の違い・TCP/IP 4階層を理解した
+      \item[$\square$] ファイアウォールと暗号化通信（SSL/TLS）の仕組みを学んだ
+      \item[$\square$] 共通鍵暗号方式と公開鍵暗号方式の違い・デジタル署名・認証局を把握した
     \end{itemize}
   \end{block}
 

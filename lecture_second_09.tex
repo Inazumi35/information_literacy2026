@@ -7,7 +7,7 @@
 \newcommand{\LectureNum}{09}
 \newcommand{\LectureTitle}{データサイエンス・AI（2）：活用事例と倫理的課題}
 \newcommand{\CourseName}{情報リテラシー}
-\newcommand{\TextPages}{pp.122-125}
+\newcommand{\TextPages}{pp.124-127}
 \newcommand{\NextTopic}{データサイエンス・AI（3）：データ分析と仮説検証サイクル}
 \newcommand{\NextPages}{pp.126-129}
 
@@ -83,7 +83,20 @@
   \end{tabular}
 \end{frame}
 
-% --- Slide 4: points ---
+% --- Slide 4: terms ---
+
+\begin{frame}{データの品質管理}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{欠損値}]
+      データが存在しない箇所。除外・補完などの処理が必要
+    \item[\kw{外れ値・異常値}]
+      他のデータと著しく異なる値。原因を調査して対処する
+    \item[\kw{データクレンジング}]
+      不正確・不完全なデータを修正・整理する作業
+  \end{description}
+\end{frame}
+
+% --- Slide 5: points ---
 
 \begin{frame}{データの可視化とテキストマイニング}
   \begin{block}{ポイント}
@@ -93,11 +106,12 @@
       \item テキストマイニング：文章を構成する単語などに着目し，出現回数・傾向・相関などを解析する
       \item ワードクラウド：テキストデータ中の単語の出現頻度を視覚化（頻出単語が大きく表示される）
       \item 活用例：SNSの商品イメージ分析，自由記述アンケートの傾向分析，AIの自然言語処理の基盤技術
+      \item 形態素解析：文章を最小意味単位（形態素）に分割して品詞を判定する処理。テキストマイニングの基盤技術
     \end{itemize}
   \end{block}
 \end{frame}
 
-% --- Slide 5: points ---
+% --- Slide 6: points ---
 
 \begin{frame}{事例1：採用AIとバイアス}
   \begin{block}{ポイント}
@@ -118,7 +132,7 @@
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 6: twocol ---
+% --- Slide 7: twocol ---
 
 \begin{frame}{事例2：顔認識とプライバシー}
   \begin{columns}[T]
@@ -147,7 +161,7 @@
   \end{columns}
 \end{frame}
 
-% --- Slide 7: points ---
+% --- Slide 8: points ---
 
 \begin{frame}{事例3：ブラックボックス問題}
   \begin{block}{ポイント}
@@ -160,7 +174,7 @@
   \end{block}
 \end{frame}
 
-% --- Slide 8: practice ---
+% --- Slide 9: practice ---
 
 \begin{frame}{Colab実習：採用データの年齢層別分析}
   {\small 実際にコンピュータで操作してください。}
@@ -179,7 +193,7 @@
   \end{block}
 \end{frame}
 
-% --- Slide 9: assignment ---
+% --- Slide 10: assignment ---
 
 \begin{frame}{課題・次回予告}
   \begin{importantbox}[課題（次回までに提出）]

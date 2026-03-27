@@ -7,7 +7,7 @@
 \newcommand{\LectureNum}{03}
 \newcommand{\LectureTitle}{アルゴリズムと効率}
 \newcommand{\CourseName}{情報リテラシー}
-\newcommand{\TextPages}{pp.78-81}
+\newcommand{\TextPages}{pp.80-83}
 \newcommand{\NextTopic}{情報通信ネットワーク（デジタル通信の仕組み）}
 \newcommand{\NextPages}{-}
 
@@ -48,12 +48,6 @@
       ある問題を解決するために，一定の手順に従って解いていけるように表現されたもの
     \item[\kw{フローチャート（flow chart）}]
       処理手順を図記号を用いて図解したもの。流れ図ともいう
-    \item[\kw{線形探索法}]
-      先頭から順番に目的のデータを探す探索アルゴリズム
-    \item[\kw{二分探索法}]
-      探す範囲を半分にしながら目的のデータを探す探索アルゴリズム。データが昇順・降順に並んでいることが前提
-    \item[\kw{選択ソート}]
-      残りのデータから最小（最大）値を選び，順番に並べ替える整列アルゴリズム
   \end{description}
 \end{frame}
 
@@ -98,56 +92,6 @@
 
 % --- Slide 5: twocol ---
 
-\begin{frame}{探索アルゴリズムの比較}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{線形探索法}
-        \small
-        \begin{itemize}
-          \item 先頭から順番に1つずつ確認する
-          \item データの並び順は問わない
-          \item 最小：1回，最大：データ数と同じ回数
-          \item 例：365日の誕生日当て → 最大365回
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{二分探索法}
-        \small
-        \begin{itemize}
-          \item 中央を確認し，大小で範囲を半分に絞る
-          \item データが昇順（または降順）に並んでいることが前提
-          \item 例：365日の誕生日当て → 最大9回で終わる
-          \item データ数が多いほど効率の差が顕著になる
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% --- Slide 6: points ---
-
-\begin{frame}{整列アルゴリズム（選択ソート）}
-  \begin{block}{ポイント}
-    \begin{itemize}
-      \item ① 全データの中から最小値を見つけ，先頭と入れ替える
-      \item ② 残りのデータの中から最小値を見つけ，左から2番目と入れ替える
-      \item ③ 以下，同様に繰り返す
-      \item 比較・入れ替えの回数が少ないほど，より効率のよいアルゴリズムといえる
-    \end{itemize}
-  \end{block}
-
-  \vfill
-
-  \begin{exampleblock}{補足}
-    \begin{itemize}
-      \item 他の整列アルゴリズム：バブルソート（隣どうし比較），挿入ソート，マージソート，クイックソート
-    \end{itemize}
-  \end{exampleblock}
-\end{frame}
-
-% --- Slide 7: twocol ---
-
 \begin{frame}{アルゴリズムの効率と「よいアルゴリズム」}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
@@ -175,7 +119,7 @@
   \end{columns}
 \end{frame}
 
-% --- Slide 8: exercise ---
+% --- Slide 6: exercise ---
 
 \begin{frame}{演習}
   {\small 各自で取り組んでください。}
@@ -199,11 +143,11 @@
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 9: assignment ---
+% --- Slide 7: assignment ---
 
 \begin{frame}{課題・次回予告}
   \begin{importantbox}[課題（次回までに提出）]
-    教科書 pp.78-81 を復習すること。フローチャートの記号を覚えておくこと
+    教科書 pp.80-83 を復習すること。次週は情報通信ネットワークの基礎を学ぶ
   \end{importantbox}
 
   \vfill
@@ -223,9 +167,9 @@
 \begin{frame}{まとめ・チェックリスト}
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
-      \item[$\square$] アルゴリズムの概念と順次・分岐・反復の制御構造を理解した
-      \item[$\square$] フローチャートでアルゴリズムを表現できるようになった
-      \item[$\square$] 線形探索・二分探索・バブルソートの仕組みと効率を学んだ
+      \item[$\square$] アルゴリズムの概念と良いアルゴリズムの条件を理解した
+      \item[$\square$] フローチャートの記号（端子・処理・判断・ループ・データ）を学んだ
+      \item[$\square$] 順次・分岐・反復の3つの制御構造を理解した
     \end{itemize}
   \end{block}
 

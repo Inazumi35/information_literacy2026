@@ -1,15 +1,15 @@
 % !TEX program = lualatex
-% Auto-generated from YAML (v3) — 04: 情報通信ネットワーク（デジタル通信の仕組み）
+% Auto-generated from YAML (v3) — 04: 情報通信ネットワーク（ネットワークとインターネット）
 
 \documentclass[aspectratio=43,professionalfonts,handout]{beamer}
 \usepackage{beamer_template}
 
 \newcommand{\LectureNum}{04}
-\newcommand{\LectureTitle}{情報通信ネットワーク（デジタル通信の仕組み）}
+\newcommand{\LectureTitle}{情報通信ネットワーク（ネットワークとインターネット）}
 \newcommand{\CourseName}{情報リテラシー}
-\newcommand{\TextPages}{pp.104-107}
-\newcommand{\NextTopic}{インターネットの仕組みと安全な利用}
-\newcommand{\NextPages}{pp.108-111}
+\newcommand{\TextPages}{pp.106-109}
+\newcommand{\NextTopic}{デジタル通信の仕組みとセキュリティ}
+\newcommand{\NextPages}{pp.110-113}
 
 \begin{document}
 % --- Slide 1: title ---
@@ -22,10 +22,10 @@
   \begin{block}{今日の流れ}
     \begin{enumerate}
       \item 情報通信ネットワークとインターネット
+      \item クライアントサーバシステムとWWW
+      \item IPアドレスとDNS
       \item インターネットへの接続方法
-      \item 通信方式（回線交換・パケット交換）
-      \item プロトコルとTCP/IP
-      \item IPアドレスとMACアドレス
+      \item ルータとNAT
     \end{enumerate}
   \end{block}
 \end{frame}
@@ -57,14 +57,67 @@
   \end{description}
 \end{frame}
 
-% --- Slide 3: points ---
+% --- Slide 3: terms ---
+
+\begin{frame}{クライアントサーバとWWW}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{サーバ（server）}]
+      インターネットでWebページの閲覧などの際に，それぞれの役割に応じたサービスを提供するコンピュータ
+    \item[\kw{クライアント（client）}]
+      サーバに対してサービスを要求し，サービスを受ける利用者のコンピュータ
+    \item[\kw{クライアントサーバシステム}]
+      サーバとクライアントが連携して機能するシステム
+    \item[\kw{WWW（World Wide Web）}]
+      インターネット上で情報を公開・閲覧するための仕組み。WebページはHTMLで記述され，ハイパーリンクで結びつく
+    \item[\kw{HTML（HyperText Markup Language）}]
+      Webページを記述するための言語
+    \item[\kw{URL（Uniform Resource Locator）}]
+      Webページなどの情報が格納されている場所と通信方式を示した文字列
+  \end{description}
+\end{frame}
+
+% --- Slide 4: points ---
+
+\begin{frame}{URLの構造}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 例：https://www.example.ed.jp/index.html
+      \item プロトコル（スキーム）：https（暗号通信のWeb）／http（通常のWeb）／ftp（ファイル転送）
+      \item ドメイン名：www.example.ed.jp（サーバ名・組織名・組織種別・国名）
+      \item パス名：/index.html（情報が収められているフォルダ名やファイル名）
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 組織種別の例：ac（大学・学校法人）/ co（企業）/ go（日本政府機関）/ ed（教育機関・小中高）
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 5: terms ---
+
+\begin{frame}{IPアドレスとDNS}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{IPアドレス}]
+      インターネットに接続された機器に割り当てられる固有の番号。IPv4は32ビット，IPv6は128ビット
+    \item[\kw{DNS（Domain Name System）}]
+      ドメイン名（文字列）とIPアドレス（数値）を対応付ける仕組み。DNSサーバが名前解決を行う
+    \item[\kw{ドメイン名}]
+      数字で表されるIPアドレスを人間が覚えやすい文字列で表したもの（例：www.kantei.go.jp → 202.214.216.10）
+  \end{description}
+\end{frame}
+
+% --- Slide 6: points ---
 
 \begin{frame}{インターネットへの接続方法}
   \begin{block}{ポイント}
     \begin{itemize}
-      \item ■学校内などのLANに接続：ケーブルやアクセスポイントを経由して接続する。組織や学校で指定されたIPアドレスなどが設定される
-      \item ■街中でWi-Fi接続：無線LANの環境の下で情報通信ができる技術・方式。組織や公衆のアクセスポイントを経由して接続する
-      \item ■スマートフォンから接続：携帯電話用の通信回線を経由して接続。携帯電話会社が所有する基地局などを介して接続される
+      \item ■学校内などのLANに接続：LANケーブルやアクセスポイントを経由して接続する
+      \item ■街中でWi-Fi接続：無線LANの環境でアクセスポイントを経由して接続する
+      \item ■スマートフォンから接続：携帯電話用の通信回線（基地局）を経由して接続する
       \item ■家庭から接続：ISPと契約して光ファイバなどの接続回線を引き込み，ルータを経由して接続する
     \end{itemize}
   \end{block}
@@ -78,101 +131,18 @@
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 4: twocol ---
+% --- Slide 7: terms ---
 
-\begin{frame}{2つの通信方式}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{回線交換方式}
-        \small
-        \begin{itemize}
-          \item 通信を始める前に相手との間で通信経路を確立する
-          \item いったん経路を確立すれば安定した通信ができる
-          \item 回線の障害などで経路が確立できないと通信できない
-          \item 例：従来の固定電話
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{パケット交換方式}
-        \small
-        \begin{itemize}
-          \item 情報をパケットとよばれる通信単位に小分けして送信する
-          \item あらかじめ経路を確立することなく通信を始められる
-          \item パケットが途中で失われたり，混雑の影響を受けたりすることがある
-          \item 例：インターネット・電子メール・SNS
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% --- Slide 5: terms ---
-
-\begin{frame}{プロトコルとTCP/IP}
+\begin{frame}{ルータとNAT}
   \begin{description}[labelwidth=6em]
-    \item[\kw{プロトコル}]
-      コンピュータどうしが相互に情報のやりとりをするために，何を使ってどのように送受信するかを決めた約束事
-    \item[\kw{TCP/IP（Transmission Control Protocol / Internet Protocol）}]
-      インターネットでよく利用されるプロトコル。基本ソフトウェアやアプリケーションに依存せず共通の役割を果たす
-    \item[\kw{TCP（トランスポート層）}]
-      送受信のデータの順序を整え，欠落や重複がないか確認し，データ通信の信頼性を高めるプロトコル。パケットが喪失した場合，再送を要求する
-    \item[\kw{IP（インターネット層）}]
-      異なる組織の間でデータをやりとりできるようにするプロトコル。データの行き先と経路を決める
+    \item[\kw{ルータ（router）}]
+      ネットワーク間のパケットを中継する機器。複数のネットワークを接続する
+    \item[\kw{NAT（Network Address Translation）}]
+      プライベートIPアドレスとグローバルIPアドレスを相互変換する仕組み。家庭内の複数端末が1つのグローバルIPアドレスを共有できる
   \end{description}
 \end{frame}
 
-% --- Slide 6: table ---
-
-\begin{frame}{ネットワークの階層構造}
-  \centering
-  \begin{tabular}{llll}
-    \toprule
-    層 & 名称 & 機能 & プロトコルの例 \\
-    \midrule
-    4層 & アプリケーション層 & アプリケーションに応じた通信の形式や手順を定める & SMTP・HTTP・DNS \\
-    3層 & トランスポート層 & パケットが喪失しないで届くことを保証する & TCP・UDP \\
-    2層 & インターネット層 & データの行き先と経路を決める & IP \\
-    1層 & ネットワークインタフェース層 & 接続されたコンピュータどうしが誤りなくデータ転送する手順を提供する & イーサネット \\
-    \bottomrule
-  \end{tabular}
-\end{frame}
-
-% --- Slide 7: points ---
-
-\begin{frame}{IPアドレスとMACアドレス}
-  \begin{block}{ポイント}
-    \begin{itemize}
-      \item IPアドレス：インターネットに接続されたコンピュータが持つ固有の番号。32ビットで表され，8ビットずつに区切って10進法で表記する
-      \item 例：11001010 11010110 11011000 00001010 → 202.214.216.10
-      \item MACアドレス：ネットワークインタフェース層でハードウェアを特定する番号
-      \item インターネット層ではIPアドレス，ネットワークインタフェース層ではMACアドレスが使われる
-    \end{itemize}
-  \end{block}
-
-  \vfill
-
-  \begin{exampleblock}{補足}
-    \begin{itemize}
-      \item 現在主に使用されているIPv4は32ビット。接続機器の急増によりIPアドレスが不足し，128ビットのIPv6への移行が進んでいる
-    \end{itemize}
-  \end{exampleblock}
-\end{frame}
-
-% --- Slide 8: points ---
-
-\begin{frame}{通信速度と5G}
-  \begin{block}{ポイント}
-    \begin{itemize}
-      \item 通信速度は1秒あたりに送信するデータ量を用いてbps（bits per second）で表される
-      \item 移動通信サービスの第5世代移動通信システム（5G）はおよそ10Gbpsの通信速度
-      \item 5Gはエンターテインメントだけでなく，遠隔医療や自動運転のサポートなど，さまざまなサービスを実現している
-      \item 1Gbps = 10⁹bps
-    \end{itemize}
-  \end{block}
-\end{frame}
-
-% --- Slide 9: exercise ---
+% --- Slide 8: exercise ---
 
 \begin{frame}{演習}
   {\small 各自で取り組んでください。}
@@ -182,8 +152,8 @@
   \begin{block}{基本問題}
     \begin{itemize}
       \item LANとWANとインターネットの関係を説明せよ
-      \item 回線交換方式とパケット交換方式の違いを説明せよ。また，災害時にSNSが使いやすい理由をこの違いと関連付けて述べよ
-      \item IPアドレス「11000000 10101000 00000001 00000001」を10進法で表せ
+      \item クライアントサーバシステムとは何か説明せよ
+      \item DNSの役割を説明し，URLの「www.example.ed.jp」を構成要素に分けて説明せよ
     \end{itemize}
   \end{block}
 
@@ -191,16 +161,16 @@
 
   \begin{exampleblock}{応用問題（余裕がある人）}
     \begin{itemize}
-      \item TCP/IPの4層構造のそれぞれの役割を説明し，WebページをURLで開くときに各層がどのように働くか述べよ
+      \item NATが必要な理由をIPv4アドレスの枯渇問題と関連付けて説明せよ
     \end{itemize}
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 10: assignment ---
+% --- Slide 9: assignment ---
 
 \begin{frame}{課題・次回予告}
   \begin{importantbox}[課題（次回までに提出）]
-    教科書 pp.104-107 を復習すること。次週はインターネットの利用と安全な仕組みを学ぶ（pp.108-111）
+    教科書 pp.106-109 を復習すること。次週はデジタル通信の仕組みとセキュリティを学ぶ（pp.110-113）
   \end{importantbox}
 
   \vfill
@@ -220,9 +190,9 @@
 \begin{frame}{まとめ・チェックリスト}
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
-      \item[$\square$] パケット交換方式とTCP/IPの仕組みを理解した
-      \item[$\square$] IPアドレスとMACアドレスの役割と違いを学んだ
-      \item[$\square$] 有線・無線LANなどインターネット接続方法の種類を把握した
+      \item[$\square$] LAN・WAN・インターネットの関係とクライアントサーバシステムを理解した
+      \item[$\square$] WWW・URL・IPアドレス・DNSの仕組みを学んだ
+      \item[$\square$] インターネット接続方法（学校LAN/Wi-Fi/スマートフォン/家庭）とルータ・NATを把握した
     \end{itemize}
   \end{block}
 

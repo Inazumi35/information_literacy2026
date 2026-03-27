@@ -7,7 +7,7 @@
 \newcommand{\LectureNum}{10}
 \newcommand{\LectureTitle}{データサイエンス・AI（3）：データ分析と仮説検証サイクル}
 \newcommand{\CourseName}{情報リテラシー}
-\newcommand{\TextPages}{pp.126-129}
+\newcommand{\TextPages}{pp.128-131}
 \newcommand{\NextTopic}{データサイエンス・AI（4）：機械学習の基礎}
 \newcommand{\NextPages}{-}
 
@@ -21,6 +21,7 @@
 
   \begin{block}{今日の流れ}
     \begin{enumerate}
+      \item 仮説検定（全数調査・標本調査・帰無仮説）
       \item 仮説検証サイクルとPDCA
       \item 散布図と相関係数
       \item 線形回帰と予測
@@ -40,7 +41,26 @@
   \end{block}
 \end{frame}
 
-% --- Slide 2: twocol ---
+% --- Slide 2: terms ---
+
+\begin{frame}{仮説検定の基礎}
+  \begin{description}[labelwidth=6em]
+    \item[\kw{仮説検定}]
+      確率的な考え方に基づいて仮説が正しいかを統計的に判断する方法
+    \item[\kw{全数調査}]
+      対象全員を調べる調査
+    \item[\kw{標本調査}]
+      一部を取り出して調べる調査。標本から母集団の特徴を推定する
+    \item[\kw{無作為抽出（ランダムサンプリング）}]
+      偏りのない標本を得るための抽出方法
+    \item[\kw{帰無仮説}]
+      「差がない」「効果がない」など，否定したい仮説
+    \item[\kw{有意水準}]
+      帰無仮説を棄却する基準となる確率（例：5\%）。p値が有意水準を下回ったとき帰無仮説を棄却する
+  \end{description}
+\end{frame}
+
+% --- Slide 3: twocol ---
 
 \begin{frame}{仮説検証サイクルとPDCA}
   \begin{columns}[T]
@@ -71,7 +91,7 @@
   \end{columns}
 \end{frame}
 
-% --- Slide 3: points ---
+% --- Slide 4: points ---
 
 \begin{frame}{今日の仮説と検証方法}
   \begin{block}{ポイント}
@@ -86,7 +106,7 @@
   \end{block}
 \end{frame}
 
-% --- Slide 4: terms ---
+% --- Slide 5: terms ---
 
 \begin{frame}{散布図と相関係数}
   \begin{description}[labelwidth=6em]
@@ -99,7 +119,7 @@
   \end{description}
 \end{frame}
 
-% --- Slide 5: points ---
+% --- Slide 6: points ---
 
 \begin{frame}{線形回帰と予測}
   \begin{block}{ポイント}
@@ -113,7 +133,7 @@
   \end{block}
 \end{frame}
 
-% --- Slide 6: twocol ---
+% --- Slide 7: twocol ---
 
 \begin{frame}{訓練データとテストデータ}
   \begin{columns}[T]
@@ -140,7 +160,7 @@
   \end{columns}
 \end{frame}
 
-% --- Slide 7: twocol ---
+% --- Slide 8: twocol ---
 
 \begin{frame}{相関関係と因果関係・擬似相関}
   \begin{columns}[T]
@@ -169,7 +189,7 @@
   \end{columns}
 \end{frame}
 
-% --- Slide 8: practice ---
+% --- Slide 9: practice ---
 
 \begin{frame}{Colab実習：野球データの分析}
   {\small 実際にコンピュータで操作してください。}
@@ -187,7 +207,7 @@
   \end{block}
 \end{frame}
 
-% --- Slide 9: assignment ---
+% --- Slide 10: assignment ---
 
 \begin{frame}{課題・次回予告}
   \begin{importantbox}[課題（次回までに提出）]
@@ -211,8 +231,8 @@
 \begin{frame}{まとめ・チェックリスト}
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
-      \item[$\square$] 仮説検証サイクルとPDCAを使ったデータ分析の流れを理解した
-      \item[$\square$] 散布図・相関係数・線形回帰による予測の基本を学んだ
+      \item[$\square$] 仮説検定（全数/標本調査・帰無仮説・有意水準・p値）の基礎を理解した
+      \item[$\square$] 散布図と相関係数・線形回帰による予測の基本を学んだ
       \item[$\square$] 相関関係と因果関係の違い・擬似相関に注意する重要性を把握した
     \end{itemize}
   \end{block}
