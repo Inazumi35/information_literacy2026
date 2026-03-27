@@ -46,8 +46,19 @@ def escape_latex(text: str) -> str:
 # ---------------------------------------------------------------------------
 # Slide generators
 # ---------------------------------------------------------------------------
-def gen_title(data, slide):
+def gen_title(data, slide, goals=None):
     items = "\n".join(f"      \\item {escape_latex(s)}" for s in slide.get("flow", []))
+    goals_block = ""
+    if goals:
+        goal_items = "\n".join(f"      \\item {escape_latex(s)}" for s in goals)
+        goals_block = rf"""
+  \vfill
+
+  \begin{{block}}{{今日の目標}}
+    \begin{{itemize}}
+{goal_items}
+    \end{{itemize}}
+  \end{{block}}"""
     return rf"""
 \begin{{frame}}{{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}}
   {{\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}}
@@ -58,7 +69,7 @@ def gen_title(data, slide):
     \begin{{enumerate}}
 {items}
     \end{{enumerate}}
-  \end{{block}}
+  \end{{block}}{goals_block}
 \end{{frame}}
 """
 
@@ -310,14 +321,14 @@ def gen_checklist(items):
 
 
 GENERATORS = {
-    "title": lambda d, s: gen_title(d, s),
+    "title": lambda d, s: gen_title(d, s, d.get("goals")),
     "terms": lambda d, s: gen_terms(s),
     "points": lambda d, s: gen_points(s),
     "code": lambda d, s: gen_code(s),
     "practice": lambda d, s: gen_practice(s),
     "notice": lambda d, s: gen_notice(s),
     "exercise": lambda d, s: gen_exercise(s),
-    "assignment": lambda d, s: gen_assignment(d, s),
+    # assignment は教員が別途対応するため出力しない
     "table": lambda d, s: gen_table(s),
     "twocol": lambda d, s: gen_twocol(s),
     "free": lambda d, s: gen_free(s),
@@ -354,7 +365,7 @@ def generate_tex(data: dict) -> str:
     header = rf"""% !TEX program = lualatex
 % Auto-generated from YAML (v3) — {num_display}: {title}
 
-\documentclass[aspectratio=43,professionalfonts,handout]{{beamer}}
+\documentclass[aspectratio=43,professionalfonts,handout,10pt]{{beamer}}
 \usepackage{{beamer_template}}
 
 \newcommand{{\LectureNum}}{{{num_display}}}
@@ -367,22 +378,15 @@ def generate_tex(data: dict) -> str:
 \begin{{document}}
 """
 
-    goals = data.get("goals")
     summary = data.get("summary")
 
     body_parts = []
-    goals_inserted = False
     for i, slide in enumerate(data.get("slides", []), 1):
         stype = slide.get("type", "free")
         gen = GENERATORS.get(stype)
         if gen:
             body_parts.append(f"% --- Slide {i}: {stype} ---")
             body_parts.append(gen(data, slide))
-            # タイトルスライドの直後に目標フレームを挿入
-            if stype == "title" and goals and not goals_inserted:
-                body_parts.append("% --- 目標 ---")
-                body_parts.append(gen_goals(goals))
-                goals_inserted = True
 
     if summary:
         body_parts.append("% --- チェックリスト ---")
