@@ -185,31 +185,20 @@ def gen_notice(slide):
 
 def gen_exercise(slide):
     title = slide.get("title", "演習")
-    basic = "\n".join(f"      \\item {escape_latex(s)}" for s in slide.get("basic", []))
+    blocks = ""
+    for i, item in enumerate(slide.get("basic", []), 1):
+        blocks += rf"""
+  \vfill
+
+  \begin{{block}}{{演習{i}}}
+    {escape_latex(item)}
+  \end{{block}}"""
     out = rf"""
 \begin{{frame}}{{{escape_latex(title)}}}
   {{\small 各自で取り組んでください。}}
-
-  \vfill
-
-  \begin{{block}}{{基本問題}}
-    \begin{{itemize}}
-{basic}
-    \end{{itemize}}
-  \end{{block}}"""
-    advanced = slide.get("advanced")
-    if advanced:
-        adv = "\n".join(f"      \\item {escape_latex(s)}" for s in advanced)
-        out += rf"""
-
-  \vfill
-
-  \begin{{exampleblock}}{{応用問題（余裕がある人）}}
-    \begin{{itemize}}
-{adv}
-    \end{{itemize}}
-  \end{{exampleblock}}"""
-    out += "\n\\end{frame}\n"
+{blocks}
+\end{{frame}}
+"""
     return out
 
 

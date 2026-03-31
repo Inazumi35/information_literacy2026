@@ -1,0 +1,29 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "lualatex",
+      "command": "lualatex",
+      "args": ["-interaction=nonstopmode", "%DOCFILE%"]
+    },
+    {
+      "name": "lualatex-slide",
+      "command": "lualatex",
+      "args": [
+        "-interaction=nonstopmode",
+        "-jobname=%DOCFILE%_slide",
+        "%DOCFILE%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "Handout (default)",
+      "tools": ["lualatex", "lualatex"]
+    },
+    {
+      "name": "Slide",
+      "tools": ["lualatex-slide", "lualatex-slide"]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "Handout (default)"
+}

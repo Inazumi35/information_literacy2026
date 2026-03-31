@@ -12,10 +12,10 @@
 
 % --- 出力モード判定（jobname に _handout を含めば配布用、なければ投影用） ---
 \edef\slidemode{\directlua{
-  if string.find(tex.jobname, "_handout") then
-    tex.sprint("0")
-  else
+  if string.find(tex.jobname, "_slide") then
     tex.sprint("1")
+  else
+    tex.sprint("0")
   end
 }}
 
