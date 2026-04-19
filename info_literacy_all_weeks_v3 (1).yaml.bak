@@ -169,6 +169,7 @@
     - "データと情報の違いを理解した"
     - "情報の4つの特性（複製性・伝播性・残存性・形式性）を学んだ"
     - "情報の評価5視点で情報を批判的に読む方法を習得した"
+    - "メディアの3種類（表現・伝達・記録）を区別できる"
 
   slides:
     - type: title
@@ -235,11 +236,11 @@
 
     - type: exercise
       title: "演習"
-      basic:
-        - "情報の4つの特性をそれぞれ具体例を挙げて説明せよ"
-        - "表現メディア・伝達メディア・記録メディアの違いを説明し，それぞれ1つずつ例を挙げよ"
-      advanced:
-        - "SNSで見かけた情報を，情報の評価5視点を使って分析し，信頼性を判断する方法を述べよ"
+      exercises:
+        - "「データ」と「情報」の違いを，具体例を挙げて説明せよ"
+        - "「SNSに投稿した写真」は，4つの特性のうちどれが関係するか？理由とともに答えよ"
+        - "「YouTube」は表現メディア・伝達メディア・記録メディアのどれに該当するか？理由とともに答えよ"
+        - "虚構新聞（https://kyoko-np.net/）の記事を1つ選び，情報の評価5視点（正確性・網羅性・客観性・最新性・出典明示性）を使って分析せよ"
 
     - type: assignment
       task: "教科書01-02を復習すること"
@@ -247,7 +248,7 @@
 - num: "4"
   title: "課題の見つけ方と解決プロセス"
   subtitle: "情報社会 Theory 03-05"
-  textbook: "pp.6-11"
+  textbook: "03-05"
   next_topic: "知的財産と個人情報の基礎"
   next_pages: "pp.12-15"
   summary:
@@ -332,7 +333,7 @@
 - num: "5"
   title: "知的財産と個人情報の基礎"
   subtitle: "情報社会 Theory 06-07"
-  textbook: "pp.12-15"
+  textbook: "06-07"
   next_topic: "PCの設定1：基本設定とネットワーク設定"
   next_pages: "-"
   summary:
@@ -734,7 +735,7 @@
 - num: "10"
   title: "情報セキュリティ基礎"
   subtitle: "情報社会 Theory 08-09"
-  textbook: "pp.16-19"
+  textbook: "08-09"
   next_topic: "情報社会：技術の進歩と私たちの役割"
   next_pages: "pp.20-23"
   summary:
@@ -824,7 +825,7 @@
 - num: "11"
   title: "情報モラルと社会：技術の進歩と責任・リスク"
   subtitle: "情報社会 Theory 10-11"
-  textbook: "pp.20-23"
+  textbook: "10-11"
   next_topic: "デジタル化の基礎：メディア / 数値表現"
   next_pages: "-"
   summary:
@@ -928,7 +929,7 @@
 - num: "12"
   title: "デジタル化の基礎：メディアと数値表現"
   subtitle: "Theory 13 / pp.34-35"
-  textbook: "pp.34-35"
+  textbook: "12-14"
   next_topic: "デジタル表現1：2進数 / 文字コード / 音"
   next_pages: "pp.36-43"
   summary:
@@ -1028,7 +1029,7 @@
 - num: "13"
   title: "デジタル表現1：2進数 / 文字コード / 音"
   subtitle: "Theory 14-17 / pp.36-43"
-  textbook: "pp.36-43"
+  textbook: "15-17"
   next_topic: "デジタル表現2：画像 / 圧縮と品質"
   next_pages: "pp.44-47"
   summary:
@@ -1115,7 +1116,7 @@
 - num: "14"
   title: "デジタル表現2：画像 / 圧縮と品質"
   subtitle: "Theory 18-19 / pp.44-47"
-  textbook: "pp.44-47"
+  textbook: "18-20"
   next_topic: "前期復習"
   next_pages: "-"
   summary:
