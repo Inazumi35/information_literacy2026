@@ -1,5 +1,5 @@
 % !TEX program = lualatex
-% Auto-generated from YAML (v3) — 13: デジタル表現1：補数・文字コード・音のデジタル化
+% Auto-generated from YAML (v3) — 13: デジタル表現1：2進数 / 文字コード / 音
 
 \documentclass[aspectratio=43,professionalfonts,handout,10pt]{beamer}
 \usepackage{beamer_template}
@@ -7,7 +7,7 @@
 \newcommand{\LectureNum}{13}
 \newcommand{\LectureTitle}{デジタル表現1：2進数 / 文字コード / 音}
 \newcommand{\CourseName}{情報リテラシー}
-\newcommand{\TextPages}{pp.40-45}
+\newcommand{\TextPages}{15-17}
 
 \begin{document}
 % --- Slide 1: title ---
@@ -55,6 +55,28 @@
   \begin{exampleblock}{補足}
     \begin{itemize}
       \item 補数を使うと，引き算を足し算として計算できる（コンピュータの演算の基本）
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+% --- Slide 3: points ---
+
+\begin{frame}{文字コードの仕組み}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 文字コード：文字に番号（コード）を割り当てて2進数で表現する仕組み
+      \item ASCII：英数字・記号を7ビット（128文字）で表す基本的な文字コード
+      \item JIS8ビットコード：ASCIIを8ビットに拡張し，カタカナを追加
+      \item シフトJISコード：JISコードを改良し，漢字・ひらがなを2バイトで表現
+      \item ユニコード（Unicode）：世界中の文字を統一的に扱える国際標準の文字コード
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{補足}
+    \begin{itemize}
+      \item 文字化け：送り手と受け手で異なる文字コードを使うと発生する
     \end{itemize}
   \end{exampleblock}
 \end{frame}
