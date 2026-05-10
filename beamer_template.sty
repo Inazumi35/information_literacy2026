@@ -182,6 +182,16 @@
 % --- 便利コマンド ---
 \newcommand{\kw}[1]{\textbf{#1}}
 
+% --- スライド版のみに表示する解説ブロック ---
+% スライド版: exampleblock「解説」として表示
+% ハンドアウト版: 内容を破棄（非表示）
+\ifnum\slidemode=1
+  \newenvironment{slidenote}{\begin{exampleblock}{解説}\small}{\end{exampleblock}}
+\else
+  \newsavebox{\slidenoteboxtrash}
+  \newenvironment{slidenote}{\begin{lrbox}{\slidenoteboxtrash}\begin{minipage}{\textwidth}\small}{\end{minipage}\end{lrbox}}
+\fi
+
 % --- デフォルト値（各講義ファイルで上書き可能） ---
 % TermName はプリアンブルで \renewcommand されるため先に定義
 \providecommand{\TermName}{2026年度}
