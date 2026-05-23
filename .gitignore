@@ -11,3 +11,4 @@
 texput.*
 __pycache__/
 *.pyc
+exams/
