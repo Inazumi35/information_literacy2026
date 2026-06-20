@@ -20,29 +20,32 @@
   \begin{block}{今日の流れ}
     \begin{enumerate}
       \item データの取得と操作
-      \item データの可視化（グラフ）
       \item 記述統計：Excelの統計関数
-      \item 相関分析
+      \item 統計量の意味と計算式
+      \item グラフによる可視化
     \end{enumerate}
   \end{block}
   \vfill
 
   \begin{block}{今日の目標}
     \begin{itemize}
-      \item Excelでデータ入力・グラフ作成・統計関数を使うことができる。
-      \item データの種類（尺度水準）に応じた可視化・分析方法を選択できる。
+      \item 表計算ソフトを用いてデータの整理・集計・グラフによる可視化ができる。
     \end{itemize}
   \end{block}
   \vfill
 
   \begin{exampleblock}{キーワード}
-    \small \textbf{Excel} ／ \textbf{CSV} ／ \textbf{オープンデータ} ／ \textbf{散布図} ／ \textbf{相関係数}
+    \small \textbf{Excel} ／ \textbf{CSV} ／ \textbf{オープンデータ} ／ \textbf{統計関数}
   \end{exampleblock}
 \end{frame}
 
 % --- Slide 2: データの取得と操作 ---
 
 \begin{frame}{データの取得と操作}
+  \begin{exampleblock}{最初にやること：保存先の設定}
+    「ファイル」→「オプション」→「保存」→\textbf{「既定でコンピューターに保存する」}にチェック
+  \end{exampleblock}
+
   \begin{block}{データ取得の方法}
     \begin{itemize}
       \item 手動入力：直接セルに入力する基本的な方法
@@ -51,99 +54,114 @@
     \end{itemize}
   \end{block}
 
-  \vfill
-
-  \begin{exampleblock}{データ整形の基本}
-    \begin{itemize}
-      \item 不要な行・列の削除，データ型の変換，欠損値の処理
-      \item 並べ替え：「データ」タブ→「昇順」または「降順」
-    \end{itemize}
-  \end{exampleblock}
+  \begin{slidenote}
+    CSVはComma-Separated Valuesの略。テキストファイルなのでExcel以外のソフトでも開ける。
+    オープンデータは自由に利用・加工・再配布が可能なデータ。e-Statでは人口・経済・労働などの統計データが取得できる。
+    データ整形の基本：不要な行・列の削除，並べ替え（「データ」タブ→「昇順」/「降順」）。
+  \end{slidenote}
 \end{frame}
 
-% --- Slide 3: グラフの種類と用途 ---
-
-\begin{frame}{グラフの種類と用途}
-  \centering
-  \begin{tabular}{lll}
-    \toprule
-    \textbf{グラフの種類} & \textbf{用途} & \textbf{例} \\
-    \midrule
-    棒グラフ & カテゴリ別の比較 & 都市別の人口比較 \\
-    折れ線グラフ & 時系列の変化 & 月別の気温変化 \\
-    円グラフ & 全体に占める割合 & 予算の内訳 \\
-    散布図 & 2つの変数の関係 & 身長と体重の関係 \\
-    ヒストグラム & データの分布 & テストの点数分布 \\
-    \bottomrule
-  \end{tabular}
-\end{frame}
-
-% --- Slide 4: 記述統計 ---
+% --- Slide 3: 記述統計 ---
 
 \begin{frame}{記述統計：Excelの統計関数}
   \begin{block}{よく使う統計関数}
+    \footnotesize
+    \begin{columns}[T]
+      \begin{column}{0.48\textwidth}
+        \begin{itemize}
+          \item 合計：\texttt{=SUM(B2:B11)}
+          \item 個数：\texttt{=COUNT(B2:B11)}
+          \item 四捨五入：\texttt{=ROUND(B2,1)}
+          \item 平均値：\texttt{=AVERAGE(B2:B11)}
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \begin{itemize}
+          \item 中央値：\texttt{=MEDIAN(B2:B11)}
+          \item 最頻値：\texttt{=MODE.SNGL(B2:B11)}
+          \item 標準偏差：\texttt{=STDEV.S(B2:B11)}
+          \item 最大・最小：\texttt{=MAX()} / \texttt{=MIN()}
+        \end{itemize}
+      \end{column}
+    \end{columns}
+  \end{block}
+
+  \begin{slidenote}
+    STDEV.S の S は Sample（標本）。母集団全体なら STDEV.P。
+    ROUND(B2,1)→小数第1位，ROUND(B2,0)→整数に四捨五入。
+  \end{slidenote}
+\end{frame}
+
+% --- Slide 4: 統計量の意味と計算式 ---
+
+\begin{frame}{統計量の意味と計算式}
+  \footnotesize
+  \begin{tabular}{lll}
+    \hline
+    統計量 & 意味 & 計算式 \\
+    \hline
+    合計 & 全データの和 & $\displaystyle\sum_{i=1}^{n} x_i$ \\[4pt]
+    個数 & データの件数 & $n$ \\[2pt]
+    平均値 & データの重心。外れ値の影響を受けやすい & $\displaystyle\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$ \\[4pt]
+    中央値 & 昇順に並べた真ん中の値。外れ値に強い & 順位 $\frac{n+1}{2}$ 番目の値 \\[4pt]
+    最頻値 & 最も多く現れる値 & 出現回数が最大の値 \\[2pt]
+    最大・最小 & データの範囲確認 & $\max(x_i)$，$\min(x_i)$ \\[2pt]
+    標準偏差 & ばらつきの大きさ。大きいほど散らばっている & $\displaystyle s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2}$ \\[4pt]
+    \hline
+  \end{tabular}
+
+  \begin{slidenote}
+    式は「こういう計算をしている」という雰囲気をつかむだけでよい。Excelが自動で計算してくれる。
+    標準偏差の式：各データが平均からどれだけ離れているかの「平均的な距離」。
+  \end{slidenote}
+\end{frame}
+
+% --- Slide 5: グラフによる可視化 ---
+
+\begin{frame}{グラフによる可視化}
+  \begin{block}{グラフ作成の手順}
+    \begin{enumerate}
+      \item グラフにしたいデータ範囲を選択する
+      \item 「挿入」タブ→「グラフ」から種類を選ぶ
+      \item タイトル・軸ラベルを設定する
+    \end{enumerate}
+  \end{block}
+
+  \begin{exampleblock}{グラフの使い分け}
     \begin{itemize}
-      \item 平均値：\texttt{=AVERAGE(A2:A10)}　データの合計÷個数
-      \item 中央値：\texttt{=MEDIAN(A2:A10)}　データを並べたときの中央の値
-      \item 最頻値：\texttt{=MODE.SNGL(A2:A10)}　最も頻繁に現れる値
-      \item 標準偏差：\texttt{=STDEV.S(A2:A10)}　データの散らばりの程度
-      \item 最大値・最小値：\texttt{=MAX()} / \texttt{=MIN()}
+      \item \textbf{棒グラフ}：項目ごとの量を比較したいとき
+      \item \textbf{折れ線グラフ}：時間の変化を見たいとき
+      \item \textbf{円グラフ}：全体に対する割合を見たいとき
+      \item \textbf{散布図}：2つの数値の関係を見たいとき
     \end{itemize}
-  \end{block}
-
-  \vfill
-
-  \begin{exampleblock}{補足}
-    範囲（range）= 最大値 $-$ 最小値\quad 分散（variance）= 標準偏差の2乗
   \end{exampleblock}
+
+  \begin{slidenote}
+    グラフはデータを「見える化」するツール。同じデータでも種類を変えると印象が変わる。
+    軸ラベル・単位・タイトルがないグラフは読み手に伝わらない。必ず設定する習慣をつけよう。
+    散布図：2つの数値の関係（相関）を見るグラフ。右上がりなら正の相関。
+  \end{slidenote}
 \end{frame}
 
-% --- Slide 5: 相関分析 ---
+% --- Slide 6: 演習（提出課題）---
 
-\begin{frame}{相関分析}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{相関係数の見方}
-        \small
-        \begin{itemize}
-          \item 範囲：$-1$ から $+1$
-          \item $+1$ に近い：強い正の相関（両方増える）
-          \item $-1$ に近い：強い負の相関（片方増えると片方減る）
-          \item $0$ に近い：相関なし
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{Excelでの操作}
-        \small
-        \begin{itemize}
-          \item CORREL関数：\texttt{=CORREL(範囲1, 範囲2)}
-          \item 散布図：「挿入」→「散布図」
-          \item 近似曲線を追加して傾向を確認
-          \item 注意：相関関係 $\neq$ 因果関係
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
-\end{frame}
+\begin{frame}{演習（提出課題）}
+  \begin{alertblock}{課題：Teamsからファイルをダウンロードして完成させ，提出せよ}
+    \begin{enumerate}\itemsep=2pt
+      \item 数学（B列）の統計量を求める\\
+            （合計・個数・平均値・中央値・最頻値・最大値・最小値・標準偏差）
+      \item 平均値・標準偏差は小数第2位まで四捨五入する
+      \item 数学と英語の点数で散布図を作成し，タイトル・軸ラベルを設定する
+    \end{enumerate}
+  \end{alertblock}
 
-% --- Slide 6: 演習 ---
+  \begin{exampleblock}{ファイル名}
+    \texttt{1E\_名前\_演習2.xlsx}（例：\texttt{1E\_山田太郎\_演習2.xlsx}）
+  \end{exampleblock}
 
-\begin{frame}{演習}
-  \begin{block}{演習1}
-    テストの成績データ（85, 72, 90, 68, 88, 95, 78, 82, 70, 92）の\\
-    平均値・中央値・最大値・最小値・標準偏差をExcelで求めよ
-  \end{block}
-  \vfill
-
-  \begin{block}{演習2}
-    棒グラフ・折れ線グラフ・散布図の用途の違いを説明せよ
-  \end{block}
-  \vfill
-
-  \begin{block}{演習3}
-    確率統計と線形代数の成績データをExcelに入力し，散布図を作成して相関係数を求め，Teamsに提出せよ
-  \end{block}
+  \begin{slidenote}
+    提出前にローカル保存確認。散布図はシート内に埋め込んだままでよい。
+  \end{slidenote}
 \end{frame}
 
 % --- チェックリスト ---
@@ -152,15 +170,15 @@
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
       \item[$\square$] Excelでデータ入力・並べ替えができた
-      \item[$\square$] グラフの種類と用途の違いを理解した
-      \item[$\square$] 統計関数（AVERAGE・MEDIAN・STDEV.S等）を使えた
-      \item[$\square$] 散布図を作成し相関係数を求められた
+      \item[$\square$] SUM・COUNT・ROUND・AVERAGE・MEDIAN・STDEV.S等を使えた
+      \item[$\square$] 散布図を作成し，タイトル・軸ラベルを設定できた
+      \item[$\square$] 演習をTeamsの課題から提出できた
     \end{itemize}
   \end{block}
 
   \vfill
 
-  {\small 演習3の散布図をTeamsの課題から提出すること。}
+  {\small 演習のExcelファイルをTeamsの課題から提出すること。}
 \end{frame}
 
 \end{document}
