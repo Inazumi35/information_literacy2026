@@ -1,5 +1,5 @@
 % !TEX program = lualatex
-% Auto-generated from YAML (v3) — 10: 情報セキュリティ基礎
+% 10: 情報セキュリティ基礎
 
 \documentclass[aspectratio=43,professionalfonts,handout,10pt]{beamer}
 \usepackage{beamer_template}
@@ -20,9 +20,9 @@
   \begin{block}{今日の流れ}
     \begin{enumerate}
       \item 不正アクセスとパスワードの不正取得
-      \item マルウェアとソーシャルエンジニアリング
-      \item 情報セキュリティ対策の3種類
-      \item 情報モラルと法律・社会の変化
+      \item 情報セキュリティとは（CIA）
+      \item 個人や組織の取り組み
+      \item 法律と制度・情報モラルと個人の責任
     \end{enumerate}
   \end{block}
   \vfill
@@ -35,42 +35,108 @@
   \vfill
 
   \begin{exampleblock}{キーワード}
-    \small \textbf{不正アクセス} ／ \textbf{マルウェア} ／ \textbf{ソーシャルエンジニアリング} ／ \textbf{フィッシング} ／ \textbf{情報モラル} ／ \textbf{情報リテラシー} ／ \textbf{デジタルタトゥー}
+    \small \textbf{不正アクセス} ／ \textbf{マルウェア} ／ \textbf{ソーシャルエンジニアリング} ／ \textbf{フィッシング} ／ \textbf{CIA}（機密性・完全性・可用性）／ \textbf{情報モラル} ／ \textbf{デジタルタトゥー}
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 2: パスワードの安全な管理 ---
+% --- Slide 2: 不正アクセス ---
 
-\begin{frame}{パスワードの安全な管理}
+\begin{frame}{不正アクセス（教科書 p.18）}
+  \begin{block}{不正アクセスとは}
+    ネットワークを利用して，\textbf{正当な権限のないコンピュータにアクセスする行為}
+    \begin{itemize}
+      \item 個人情報の盗取・データの改変などの被害が起こる
+      \item \textbf{不正アクセス禁止法}で規制されている
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{alertblock}{注意}
+    他人のID・パスワードを無断で使ってログインするだけで違法。\\
+    「試しにやってみた」も対象になる。未成年にも適用される。
+  \end{alertblock}
+
+  \begin{slidenote}
+    不正アクセス禁止法は1999年公布。アクセスの結果に関わらず，不正アクセス行為自体が違法になる。
+  \end{slidenote}
+\end{frame}
+
+% --- Slide 3: パスワードの不正取得 ---
+
+\begin{frame}{パスワードの不正取得（教科書 p.18）}
+  {\small 認証（ユーザID・パスワード）を不正に取得する主な手法：}
+
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
-      \begin{block}{やってはいけないこと}
+      \begin{exampleblock}{マルウェア}
         \small
-        \begin{itemize}
-          \item 短い・単純なパスワードを使う（例：123456）
-          \item 複数のサービスで同じパスワードを使う
-          \item パスワードをメモに書いて貼る
-          \item 他人に教える・LINE等で送る
-        \end{itemize}
-      \end{block}
+        コンピュータに害を与えるソフトウェアの総称（ウイルス・ランサムウェアなど）。\\
+        感染するとパスワード盗取・データ破壊が起こる。
+      \end{exampleblock}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{推奨される対策}
+      \begin{exampleblock}{ソーシャルエンジニアリング}
         \small
+        人の心理的弱点を利用して情報を盗む手口。
         \begin{itemize}
-          \item 英数字・記号を組み合わせた長いパスワードを使う
-          \item サービスごとに異なるパスワードを使う
-          \item 二段階認証（2FA）を設定する
+          \item \textbf{フィッシング}：偽メール・偽サイトでID・パスワードを入力させる
+          \item なりすまし電話・ショルダーハック
         \end{itemize}
       \end{exampleblock}
     \end{column}
   \end{columns}
+
+  \begin{exampleblock}{演習}
+    フィッシング詐欺に引っかかりやすい状況はどんなときか，話し合ってみよう。
+  \end{exampleblock}
+
+  \begin{slidenote}
+    身近な例：銀行やAmazonを装った偽メールが届き，偽サイトでログイン情報が盗まれる。URLや送信元アドレスを必ず確認しよう。
+  \end{slidenote}
 \end{frame}
 
-% --- Slide 3: 情報セキュリティ対策の3種類 ---
+% --- Slide 4: 情報セキュリティとは（CIA） ---
 
-\begin{frame}{情報セキュリティ対策の3種類}
-  \centering
+\begin{frame}{情報セキュリティとは}
+  \begin{block}{情報セキュリティの定義}
+    情報の\textbf{機密性・完全性・可用性}を維持すること（CIA三原則）
+  \end{block}
+
+  \vfill
+
+  \begin{columns}[T]
+    \begin{column}{0.32\textwidth}
+      \begin{exampleblock}{機密性\\\small Confidentiality}
+        \small
+        許可された人だけが情報にアクセスできる状態を保つ
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{exampleblock}{完全性\\\small Integrity}
+        \small
+        情報が正確で改ざんされていない状態を保つ
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{exampleblock}{可用性\\\small Availability}
+        \small
+        必要なときに情報を利用できる状態を保つ
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+
+  {\small \textbf{主な脅威：}不正アクセス・マルウェア・災害・操作ミス・内部不正}
+
+  \begin{slidenote}
+    不正アクセスは主に機密性を脅かす。マルウェアはウイルス（完全性）・ランサムウェア（可用性）・スパイウェア（機密性）など，CIAのすべてに影響しうる。
+  \end{slidenote}
+\end{frame}
+
+% --- Slide 5: 個人や組織の取り組み ---
+
+\begin{frame}{個人や組織の取り組み（教科書 p.19）}
+  \resizebox{\textwidth}{!}{%
   \begin{tabular}{lll}
     \toprule
     対策の種類 & 内容 & 具体例 \\
@@ -79,43 +145,85 @@
     物理的対策 & 物理的な環境の管理 & 入退室の管理・施錠管理 \\
     人的対策 & 人による適切な運用 & セキュリティ教育・パスワード管理 \\
     \bottomrule
-  \end{tabular}
-\end{frame}
-
-% --- Slide 4: ネット上での行動と法的責任 ---
-
-\begin{frame}{ネット上での行動と法的責任}
-  \begin{noticebox}[注意]
-    \begin{itemize}
-      \item 匿名であっても発信者の特定は技術的に可能（IPアドレス・ログの追跡）
-      \item 誹謗中傷・脅迫は名誉毀損罪・侮辱罪・脅迫罪に該当しうる
-      \item 他人の著作物の無断転載は著作権法違反
-      \item 不正アクセスは不正アクセス禁止法違反（未成年でも適用される）
-    \end{itemize}
-  \end{noticebox}
+  \end{tabular}}
 
   \vfill
 
-  \begin{exampleblock}{補足}
-    「バレないだろう」という意識が最大のリスク。オンラインとオフラインで行動基準を変えない
+  \begin{block}{セキュリティポリシー（教科書 p.19）}
+    \small 組織における情報セキュリティの\textbf{方針・規則をまとめた文書}。全構成員が遵守する。
+  \end{block}
+
+  \begin{exampleblock}{演習}
+    自分が使っているサービス（SNS・学内システム等）でどんなセキュリティ対策が施されているか，話し合ってみよう。
   \end{exampleblock}
+
+  \begin{slidenote}
+    技術・物理・人的の3種類をバランスよく組み合わせることが重要。どんなに強固なシステムでも，人がパスワードを教えてしまえば意味がない。
+  \end{slidenote}
 \end{frame}
 
-% --- Slide 5: 演習 ---
+% --- Slide 6: 法律と制度 ---
 
-\begin{frame}{演習}
-  {\small 各自で取り組んでください。}
+\begin{frame}{法律と制度（教科書 p.20）}
+  \begin{block}{情報社会に関わる主な法律}
+    \small
+    \begin{tabular}{ll}
+      \toprule
+      年 & 主な法律・社会の動き \\
+      \midrule
+      1999年 & 不正アクセス禁止法 公布 \\
+      2001年 & プロバイダ責任制限法 公布 \\
+      2003年 & 個人情報保護法 公布 \\
+      2022年 & 侮辱罪の厳罰化・法改正 \\
+      \bottomrule
+    \end{tabular}
+  \end{block}
 
   \vfill
 
-  \begin{block}{演習1}
-    不正アクセス・マルウェア・ソーシャルエンジニアリングをそれぞれ説明せよ
-  \end{block}
-  \vfill
+  \begin{alertblock}{ポイント}
+    法律・制度だけでは不十分。情報社会の変化に対応しつづける姿勢と，\textbf{個人が適切に判断・行動する力}が必要
+  \end{alertblock}
 
-  \begin{block}{演習2}
-    情報セキュリティ対策の3種類（技術的・物理的・人的）を具体例とともに説明せよ
-  \end{block}
+  \begin{slidenote}
+    法律は技術の進化に後追いになりやすい。「法律がないからOK」ではなく，情報モラルを持って行動することが大切。
+  \end{slidenote}
+\end{frame}
+
+% --- Slide 7: 情報モラルと個人の責任 ---
+
+\begin{frame}{情報モラルと個人の責任（教科書 p.21）}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{情報リテラシー}
+        \small
+        必要な情報を適切に\textbf{収集・分析・判断・表現}できる能力。\\
+        特に\textbf{情報の真偽を適切に判断}することが重要。
+        \begin{itemize}
+          \item 著作権・個人情報に配慮する
+          \item ネット炎上などのリスクを考慮する
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{デジタルタトゥー}
+        \small
+        \begin{itemize}
+          \item ネット上に一度公開した情報は完全には消せない
+          \item 投稿・写真・発言が長期にわたって残り続ける
+          \item 将来の就職・人間関係に影響を与える
+        \end{itemize}
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+
+  \begin{exampleblock}{演習}
+    SNSに投稿する前に確認すべきことを3つ以上挙げ，話し合ってみよう。
+  \end{exampleblock}
+
+  \begin{slidenote}
+    情報モラルとは，技術スキルだけでなく，判断力・倫理観の両方が必要な力。デジタルタトゥーは「消した」つもりでもスクリーンショットやキャッシュで残る。
+  \end{slidenote}
 \end{frame}
 
 % --- チェックリスト ---
@@ -124,8 +232,10 @@
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
       \item[$\square$] 不正アクセス・マルウェア・ソーシャルエンジニアリングの脅威を理解した
+      \item[$\square$] 情報セキュリティのCIA三原則（機密性・完全性・可用性）を説明できる
       \item[$\square$] 技術的・物理的・人的の3種類のセキュリティ対策を学んだ
       \item[$\square$] 情報モラルの重要性と，情報社会に関わる法律の変化を理解した
+      \item[$\square$] デジタルタトゥーの意味と，ネット上の行動に伴う責任を理解した
     \end{itemize}
   \end{block}
 
