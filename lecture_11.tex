@@ -1,5 +1,5 @@
 % !TEX program = lualatex
-% Auto-generated from YAML (v3) — 11: 情報モラルと社会：技術の進歩と責任・リスク
+% 11: 情報モラルと社会：技術の進歩と責任・リスク
 
 \documentclass[aspectratio=43,professionalfonts,handout,10pt]{beamer}
 \usepackage{beamer_template}
@@ -18,12 +18,23 @@
   \vfill
 
   \begin{block}{今日の流れ}
-    \begin{enumerate}
-      \item 電子商取引（EC）の種類
-      \item 人工知能（AI）とIoT・ナビゲーション
-      \item 健康への影響（VDT症候群・ネット依存・テクノストレス）
-      \item デジタルデバイドと情報社会の課題
-    \end{enumerate}
+    \small
+    \begin{columns}[T]
+      \begin{column}{0.48\textwidth}
+        \begin{enumerate}
+          \item 電子商取引（EC）
+          \item 人工知能（AI）の影響
+          \item VR/AR・ナビ・IoT
+        \end{enumerate}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \begin{enumerate}\setcounter{enumi}{3}
+          \item 健康への影響
+          \item デジタルデバイド
+          \item 生成AI
+        \end{enumerate}
+      \end{column}
+    \end{columns}
   \end{block}
   \vfill
 
@@ -35,100 +46,176 @@
   \vfill
 
   \begin{exampleblock}{キーワード}
-    \small \textbf{電子商取引（EC）} ／ \textbf{電子マネー} ／ \textbf{ネットオークション} ／ \textbf{VDT症候群} ／ \textbf{ネット依存} ／ \textbf{テクノストレス} ／ \textbf{デジタルデバイド}
+    \small \textbf{EC} ／ \textbf{電子マネー} ／ \textbf{深層学習} ／ \textbf{VR/AR} ／ \textbf{IoT} ／ \textbf{VDT症候群} ／ \textbf{デジタルデバイド} ／ \textbf{生成AI}
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 2: 電子商取引の種類 ---
+% --- Slide 2: 電子商取引 ---
 
-\begin{frame}{電子商取引の種類}
-  \begin{block}{ポイント}
+\begin{frame}{電子商取引（教科書 p.22）}
+  \begin{block}{ECの分類}
+    \small
     \begin{itemize}
-      \item B to G（Business to Government）：企業と政府・公的機関との取引
-      \item B to B（Business to Business）：企業間のオンライン取引
-      \item B to C（Business to Consumer）：企業から消費者への販売（Amazon・楽天等）
-      \item C to C（Consumer to Consumer）：個人間売買（メルカリ・ヤフオク等）
+      \item \textbf{B to B}（Business to Business）：企業間のオンライン取引
+      \item \textbf{B to C}（Business to Consumer）：企業から消費者（Amazon・楽天等）
+      \item \textbf{C to C}（Consumer to Consumer）：個人間売買（メルカリ・ヤフオク等）
+      \item \textbf{電子マネー}：デジタル情報で通貨の機能を果たす（Suica・PayPay等）
+      \item \textbf{ネットオークション}：C to Cの形式。入札で売買
     \end{itemize}
   \end{block}
 
-  \vfill
-
-  \begin{exampleblock}{補足}
-    \begin{itemize}
-      \item インターネットの普及により，場所・時間を問わず売買できるようになった
-    \end{itemize}
+  \begin{exampleblock}{演習}
+    自分が使ったことのあるEC（B to CまたはC to C）を1つ挙げ，便利な点・不安な点を話し合ってみよう。
   \end{exampleblock}
+
+  \begin{slidenote}
+    「誰から誰に」で分類を覚えよう。電子マネーは支払い手段，ECは取引の形態という違いも押さえておこう。
+  \end{slidenote}
 \end{frame}
 
-% --- Slide 3: 人工知能（AI）とIoT・ナビゲーション ---
+% --- Slide 3: 人工知能の影響 ---
 
-\begin{frame}{人工知能（AI）とIoT・ナビゲーション}
+\begin{frame}{人工知能（AI）の影響（教科書 p.22）}
+  \begin{block}{AIとは}
+    \small
+    コンピュータに人間のような知的な動作をさせる技術。\\
+    \textbf{深層学習（ディープラーニング）}により，大量のデータから高精度な認識・予測が可能になった。
+  \end{block}
+
+  \begin{exampleblock}{主な応用分野}
+    \small
+    \begin{itemize}
+      \item 顔認証による本人確認
+      \item 医療における診断支援
+      \item 災害予測・自動運転
+      \item ルーティン業務の自動化→雇用への影響
+    \end{itemize}
+  \end{exampleblock}
+
+  \begin{slidenote}
+    深層学習は人間の脳神経回路を模した技術。身近な例として，スマホの顔認証や音声アシスタント（Siri・Alexa等）がある。AIの進化は雇用構造も変えつつある。
+  \end{slidenote}
+\end{frame}
+
+% --- Slide 4: VR/AR・ナビ・IoT ---
+
+\begin{frame}{VR/AR・ナビゲーション・IoT（教科書 p.23）}
   \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{人工知能（AI）}
+    \begin{column}{0.32\textwidth}
+      \begin{block}{VR / AR / MR}
         \small
         \begin{itemize}
-          \item 現代社会でロボットとともに大きな変化をもたらしている
-          \item 顔認証による本人確認・医療診断支援・災害予測に活用
-          \item 深層学習（ディープラーニング）による高度な認識・予測
-          \item ルーティン業務の自動化による雇用変化
+          \item \textbf{VR}：完全な仮想空間
+          \item \textbf{AR}：現実に仮想情報を重ねる
+          \item \textbf{MR}：現実と仮想が相互作用
         \end{itemize}
       \end{block}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{IoT・ナビゲーション}
+    \begin{column}{0.32\textwidth}
+      \begin{exampleblock}{ナビゲーション}
         \small
         \begin{itemize}
-          \item IoT：身の回りのモノがインターネットに接続される仕組み
-          \item センサーを活用したシステムがあらゆる場所に普及
-          \item GPS衛星の電波を受信して現在位置を計算するナビゲーション
-          \item スマート家電・交通システム・医療機器等に応用
+          \item GPS衛星の電波を受信
+          \item 遅延時間から現在位置を計算
+          \item カーナビ・地図アプリ等
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{exampleblock}{IoT}
+        \small
+        \begin{itemize}
+          \item 身の回りのモノがネットに接続
+          \item センサーを活用したシステムが普及
+          \item スマート家電・交通・医療等
         \end{itemize}
       \end{exampleblock}
     \end{column}
   \end{columns}
+
+  \begin{slidenote}
+    VR＝仮想のみ，AR＝現実＋仮想，MR＝両者が相互作用。ARの例：ポケモンGO。GPSは4機以上の衛星で位置を特定。IoTとAIを組み合わせたスマートホーム・スマートシティも広がっている。
+  \end{slidenote}
 \end{frame}
 
-% --- Slide 4: デジタルデバイドへの対応 ---
+% --- Slide 6: 健康への影響 ---
 
-\begin{frame}{デジタルデバイドへの対応}
-  \begin{block}{ポイント}
-    \begin{itemize}
-      \item 情報格差は社会的・経済的格差をさらに広げる悪影響がある
-      \item 生活に必要な情報を公平・安全に提供できるシステムの整備が必要
-      \item 情報格差のある人への配慮と，誰もが利用できる環境の確保が重要
-    \end{itemize}
+\begin{frame}{健康への影響（教科書 p.24）}
+  \begin{block}{VDT症候群}
+    \small
+    ディスプレイ（VDT）を長時間使用することで生じる健康障害（眼精疲労・目の疲れ等）。正しい姿勢と適度な休憩で軽減できる。
   \end{block}
 
-  \vfill
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{ネット依存}
+        \small
+        スマートフォンがないと不安になり，常に操作してしまう状態
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{テクノストレス}
+        \small
+        IT機器の操作に対して生じるストレス（不安・依存の2種類）
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
 
-  \begin{exampleblock}{補足}
-    \begin{itemize}
-      \item 情報社会では「情報を使える人と使えない人」の格差が課題となっている
-    \end{itemize}
+  \begin{exampleblock}{演習}
+    VDT症候群を防ぐために，自分が日頃できる対策を話し合ってみよう。
   \end{exampleblock}
+
+  \begin{slidenote}
+    VDT＝Visual Display Terminal。20〜20〜20ルール（20分ごとに20フィート先を20秒見る）が推奨されている。テクノストレスはIT機器が苦手な人（不安症）と使いすぎる人（依存症）どちらにも現れる。
+  \end{slidenote}
 \end{frame}
 
-% --- Slide 5: 演習 ---
+% --- Slide 7: デジタルデバイド ---
 
-\begin{frame}{演習}
-  {\small 各自で取り組んでください。}
+\begin{frame}{デジタルデバイドへの対応（教科書 p.24）}
+  \begin{block}{デジタルデバイドとは}
+    所得・年齢・地域などの違いによって，得られる情報の質や量，発信できる機会に格差が生じること。
+  \end{block}
 
   \vfill
 
-  \begin{block}{演習1}
-    電子商取引の4種類（B to G・B to B・B to C・C to C）をそれぞれ具体例を挙げて説明せよ
+  \begin{alertblock}{問題点}
+    情報格差は\textbf{社会的・経済的格差をさらに広げる}。\\
+    生活に必要な情報を公平・安全に提供できる環境の整備が必要。
+  \end{alertblock}
+
+  \begin{exampleblock}{演習}
+    デジタルデバイドの具体例を1つ挙げ，解消のために何ができるか話し合ってみよう。
+  \end{exampleblock}
+
+  \begin{slidenote}
+    例：高齢者のスマホ操作困難・地方の通信インフラ不足・発展途上国のネット接続率の低さ。公共Wi-Fi整備・ICT教育・バリアフリー端末の普及などが対策として挙げられる。
+  \end{slidenote}
+\end{frame}
+
+% --- Slide 8: 生成AI ---
+
+\begin{frame}{生成AI（教科書 p.25）}
+  \begin{block}{生成AIとは}
+    \small
+    学習したデータをもとに，新しいコンテンツ（\textbf{文章・画像・動画・音楽}等）を自動的に生み出す人工知能。\\
+    ユーザーの指示（プロンプト）に応じてコンテンツを生成する。
   \end{block}
+
   \vfill
 
-  \begin{block}{演習2}
-    VDT症候群・ネット依存・テクノストレスの違いを説明せよ
-  \end{block}
-  \vfill
+  \begin{alertblock}{使用上の注意}
+    \small
+    \begin{itemize}
+      \item 生成された情報が正しいとは限らない（ハルシネーション）
+      \item 著作権・個人情報の取り扱いに注意
+      \item 入力した情報が学習データとして利用される場合がある
+    \end{itemize}
+  \end{alertblock}
 
-  \begin{block}{演習3}
-    デジタルデバイドとは何か，社会への影響とあわせて説明せよ
-  \end{block}
+  \begin{slidenote}
+    代表例：ChatGPT（文章）・Midjourney（画像）・Suno（音楽）等。生成AIは「ツール」であり，使う人の判断力・リテラシーが重要になる。
+  \end{slidenote}
 \end{frame}
 
 % --- チェックリスト ---
@@ -136,9 +223,12 @@
 \begin{frame}{まとめ・チェックリスト}
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
-      \item[$\square$] 電子商取引（B to G/B/C/C）・AI・IoT・ナビゲーションシステムの仕組みを理解した
-      \item[$\square$] VDT症候群・ネット依存・テクノストレスなど健康への影響を学んだ
-      \item[$\square$] デジタルデバイドの意味と，情報格差のない社会を目指す重要性を理解した
+      \item[$\square$] 電子商取引（B to B/C/C）と電子マネーの違いを説明できる
+      \item[$\square$] AIの応用例（顔認証・医療・自動運転等）を挙げられる
+      \item[$\square$] VR・AR・MRの違いを説明できる
+      \item[$\square$] VDT症候群・ネット依存・テクノストレスの違いを理解した
+      \item[$\square$] デジタルデバイドの意味と情報格差の問題を理解した
+      \item[$\square$] 生成AIの仕組みと使用上の注意点を理解した
     \end{itemize}
   \end{block}
 
