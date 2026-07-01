@@ -59,6 +59,10 @@
       \item 加算混合（光の三原色）：Red・Green・Blue。減算混合（色材の三原色）：Cyan・Magenta・Yellow
     \end{itemize}
   \end{exampleblock}
+
+  \begin{slidenote}
+    画素（ピクセル）の概念：スマホ写真を最大拡大すると小さな正方形（画素）が見える。1ピクセル=1つの色情報。8bit（256段階）×RGB3色=24bit（フルカラー）→$2^{24}\approx1{,}677$万色。加算混合（光）はR+G+B=白，減算混合（色材）はC+M+Y=黒になることを補足する。
+  \end{slidenote}
 \end{frame}
 
 % --- Slide 3: 画像・動画のデータ量計算 ---
@@ -72,6 +76,10 @@
       \item 動画のデータ量 = 1枚あたりのデータ量 × フレームレート（fps）× 再生時間（秒）
     \end{itemize}
   \end{block}
+
+  \begin{slidenote}
+    黒板で計算：$400\times300\times24=2{,}880{,}000$ bit $\div8=360{,}000$ B。動画（30fps，10秒）：$360{,}000\times30\times10=108{,}000{,}000$ B $\approx103$ MB（無圧縮）。実際は圧縮して大幅に小さくなる（YouTubeは数MB程度）。「圧縮なしだとどれだけ大きいか」を計算で実感させる。
+  \end{slidenote}
 \end{frame}
 
 % --- Slide 4: データの圧縮 ---
@@ -101,6 +109,10 @@
       \end{exampleblock}
     \end{column}
   \end{columns}
+
+  \begin{slidenote}
+    ランレングス圧縮の例を黒板で：「AAAABBBCC」→「4A3B2C」。PNG/GIFは可逆→文字・線画向き。JPEGは非可逆→写真向き（圧縮率が高い）。MP3は人間の耳が聞き取りにくい高周波をカットする非可逆圧縮。圧縮率と品質のトレードオフは試験頻出なので強調する。
+  \end{slidenote}
 \end{frame}
 
 % --- Slide 5: デジタルデータの特徴 ---
@@ -130,6 +142,10 @@
       \end{exampleblock}
     \end{column}
   \end{columns}
+
+  \begin{slidenote}
+    著作権の話を掘り下げる：アナログテープは世代劣化するがデジタルはコピーしても品質が変わらない→違法コピーが容易。情報漏洩：USBメモリ1本に数万件の個人情報→紛失・盗難リスク。量子化誤差：医療画像では微細な差が診断に影響するため高精度な量子化が必要。
+  \end{slidenote}
 \end{frame}
 
 % --- Slide 6: 演習 ---
@@ -157,6 +173,10 @@
   \begin{block}{演習4}
     デジタルデータのプラス面とマイナス面をそれぞれ1つずつ説明せよ
   \end{block}
+
+  \begin{slidenote}
+    解答例：演習1：$400\times300\times24\div8=360{,}000$ B。演習2：$640\times480\times1\div8=38{,}400$ B $\div1{,}024\approx37.5$ KB。演習3：可逆圧縮（ZIP/PNG）→元データに完全復元，テキスト・プログラム向き。非可逆圧縮（JPEG/MP3）→元に戻せないが高圧縮，写真・音楽向き。演習4：例）プラス：劣化せずコピー可能。マイナス：著作権侵害が容易。
+  \end{slidenote}
 \end{frame}
 
 % --- チェックリスト ---
