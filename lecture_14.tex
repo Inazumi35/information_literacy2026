@@ -20,7 +20,7 @@
   \begin{block}{今日の流れ}
     \begin{enumerate}
       \item 画像のデジタル化（Theory 18）
-      \item 画像・動画のデータ量計算
+      \item 画像・動画のデータ量計算（Theory 18）
       \item データの圧縮（Theory 19）
       \item デジタルデータの特徴（Theory 20）
     \end{enumerate}
@@ -35,54 +35,64 @@
   \vfill
 
   \begin{exampleblock}{キーワード}
-    \small \textbf{画素（ピクセル）} ／ \textbf{解像度} ／ \textbf{階調} ／ \textbf{フレームレート（fps）} ／ \textbf{圧縮}
+    \small \textbf{画素（ピクセル）} ／ \textbf{解像度} ／ \textbf{階調} ／ \textbf{フレームレート（fps）} ／ \textbf{可逆圧縮} ／ \textbf{非可逆圧縮} ／ \textbf{圧縮率}
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 2: 画像のデジタル化 ---
+% --- Slide 2: 画像のデジタル化 (Theory 18 p.46) ---
 
 \begin{frame}{画像のデジタル化}
   \begin{block}{ポイント}
     \begin{itemize}
       \item ①標本化：画像を画素（ピクセル）という区画に分割し，各画素の値を取り出す
-      \item ②量子化：取り出した値を段階値に変換（階調数 = 2ⁿ，n = ビット数）
+      \item ②量子化：取り出した値を段階値に変換（階調数 = $2^n$，$n$ = ビット数）
       \item ③符号化：量子化した数値を2進法で表す
+      \item 解像度：ディスプレイ・印刷物の画素の密度。高いほど精細な画像になる
       \item 2値画像（1bit）・モノクロ256階調（8bit）・フルカラー（24bit = RGB各8bit）
     \end{itemize}
   \end{block}
 
   \vfill
 
-  \begin{exampleblock}{補足}
+  \begin{exampleblock}{色の表現}
     \begin{itemize}
-      \item フルカラー24bitは R・G・B それぞれ8ビット（256段階）× 3 = 約1677万色
-      \item 加算混合（光の三原色）：Red・Green・Blue。減算混合（色材の三原色）：Cyan・Magenta・Yellow
+      \item 加算混合（光の三原色）：Red・Green・Blue → 3色を混ぜると白
+      \item 減算混合（色材の三原色）：Cyan・Magenta・Yellow → 3色を混ぜると黒に近くなる
     \end{itemize}
   \end{exampleblock}
 
   \begin{slidenote}
-    画素（ピクセル）の概念：スマホ写真を最大拡大すると小さな正方形（画素）が見える。1ピクセル=1つの色情報。8bit（256段階）×RGB3色=24bit（フルカラー）→$2^{24}\approx1{,}677$万色。加算混合（光）はR+G+B=白，減算混合（色材）はC+M+Y=黒になることを補足する。
+    画素（ピクセル）の概念：スマホ写真を最大拡大すると小さな正方形（画素）が見える。フルカラー24bitは R・G・B それぞれ8ビット（256段階）×3=約1,677万色。加算混合（光）R+G+B=白，減算混合（色材）C+M+Y=黒になることを補足する。
   \end{slidenote}
 \end{frame}
 
-% --- Slide 3: 画像・動画のデータ量計算 ---
+% --- Slide 3: 画像・動画のデータ量計算 (Theory 18 p.47) ---
 
 \begin{frame}{画像・動画のデータ量計算}
   \begin{block}{ポイント}
     \begin{itemize}
       \item 画像のデータ量（bit）= 横画素数 × 縦画素数 × 1画素あたりのビット数
-      \item 例（400×300，フルカラー24bit）：400×300×24 = 2,880,000 bit = 360,000 B
-      \item フレームレート（fps）：動画で1秒間に表示するフレーム（コマ）数
+      \item 例（400×300，フルカラー24bit）：$400\times300\times24 = 2{,}880{,}000$ bit $= 360{,}000$ B
+      \item フレームレート（fps）：動画で1秒間に表示するフレーム（コマ）数。多いほど滑らか
       \item 動画のデータ量 = 1枚あたりのデータ量 × フレームレート（fps）× 再生時間（秒）
     \end{itemize}
   \end{block}
 
+  \vfill
+
+  \begin{exampleblock}{動画の走査方式}
+    \begin{itemize}
+      \item \textbf{インターレース方式}：画面を1行おきに走査して表示する
+      \item \textbf{プログレッシブ方式}：画面を全行順番に走査して表示する
+    \end{itemize}
+  \end{exampleblock}
+
   \begin{slidenote}
-    黒板で計算：$400\times300\times24=2{,}880{,}000$ bit $\div8=360{,}000$ B。動画（30fps，10秒）：$360{,}000\times30\times10=108{,}000{,}000$ B $\approx103$ MB（無圧縮）。実際は圧縮して大幅に小さくなる（YouTubeは数MB程度）。「圧縮なしだとどれだけ大きいか」を計算で実感させる。
+    黒板で計算：$400\times300\times24=2{,}880{,}000$ bit $\div8=360{,}000$ B。動画（30fps，10秒）：$360{,}000\times30\times10=108{,}000{,}000$ B $\approx103$ MB（無圧縮）。実際は圧縮して大幅に小さくなる。インターレース：テレビ放送で使われてきた方式。プログレッシブ：PCモニタ・現代のディスプレイの主流。
   \end{slidenote}
 \end{frame}
 
-% --- Slide 4: データの圧縮 ---
+% --- Slide 4: データの圧縮 (Theory 19 p.48-49) ---
 
 \begin{frame}{データの圧縮}
   \begin{columns}[T]
@@ -110,41 +120,43 @@
     \end{column}
   \end{columns}
 
+  \vfill
+
+  \begin{block}{圧縮率}
+    \[
+      \text{圧縮率} = \frac{\text{圧縮後のデータ量}}{\text{元のデータ量}}
+      \quad \text{（小さいほどよく圧縮されている）}
+    \]
+  \end{block}
+
   \begin{slidenote}
-    ランレングス圧縮の例を黒板で：「AAAABBBCC」→「4A3B2C」。PNG/GIFは可逆→文字・線画向き。JPEGは非可逆→写真向き（圧縮率が高い）。MP3は人間の耳が聞き取りにくい高周波をカットする非可逆圧縮。圧縮率と品質のトレードオフは試験頻出なので強調する。
+    ランレングス圧縮の例を黒板で：「AAAABBBCC」→「4A3B2C」。JPEG：細かい色の差を間引く。MP3：人間の耳が聞き取りにくい高音域をカット。MPEG：フレーム間の差分のみ記録。圧縮率の計算例：1MBのファイルが200KBになった場合，圧縮率=200/1024≒0.20。
   \end{slidenote}
 \end{frame}
 
-% --- Slide 5: デジタルデータの特徴 ---
+% --- Slide 5: デジタルデータの特徴 (Theory 20 p.50) ---
 
-\begin{frame}{デジタルデータの特徴（Theory 20）}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{プラス面}
-        \small
-        \begin{itemize}
-          \item 劣化しない：コピー・伝送しても品質が変わらない
-          \item 統合できる：文字・音・画像を同じ形式で扱える（マルチメディア）
-          \item 加工が容易：編集・圧縮・暗号化を高速・正確に行える
-          \item 管理しやすい：検索・整理・クラウド保存が容易
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{マイナス面}
-        \small
-        \begin{itemize}
-          \item 量子化誤差：A/D変換時に微妙な情報が失われる
-          \item 著作権侵害：劣化なくコピーできるため無断複製・拡散しやすい
-          \item 情報漏洩リスク：小さなメディアに大量データを保存できるため流出しやすい
-          \item データ量の膨大化：高品質化に伴いデータ量が増大し続ける
-        \end{itemize}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
+\begin{frame}{デジタルデータの特徴}
+  \begin{block}{プラス面}
+    \begin{itemize}
+      \item \textbf{多種多様な形態の情報を統合できる}：文字・音・画像をすべて0と1で表現し統合して記録できる（マルチメディア）
+      \item \textbf{情報が劣化しない}：複製・伝送を繰り返しても品質が変わらない
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{マイナス面}
+    \begin{itemize}
+      \item \textbf{量子化誤差}：A/D変換時に微妙な情報が失われる
+      \item \textbf{著作権侵害}：劣化なくコピーできるため無断複製・拡散しやすい
+      \item \textbf{情報漏洩リスク}：小さなメディアに大量データを保存できるため流出しやすい
+      \item \textbf{データ量の膨大化}：高品質化に伴いデータ量が増大し続ける
+    \end{itemize}
+  \end{exampleblock}
 
   \begin{slidenote}
-    著作権の話を掘り下げる：アナログテープは世代劣化するがデジタルはコピーしても品質が変わらない→違法コピーが容易。情報漏洩：USBメモリ1本に数万件の個人情報→紛失・盗難リスク。量子化誤差：医療画像では微細な差が診断に影響するため高精度な量子化が必要。
+    プラス面は教科書p.50の2項目に対応。マイナス面は教科書p.51（次ページ）の内容。著作権の話：アナログテープは世代劣化するがデジタルはコピーしても品質が変わらない→違法コピーが容易。情報漏洩：USBメモリ1本に数万件の個人情報。
   \end{slidenote}
 \end{frame}
 
@@ -185,7 +197,7 @@
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
       \item[$\square$] 画像のデジタル化（画素・解像度・階調・RGB）とデータ量計算を理解した
-      \item[$\square$] 可逆圧縮と非可逆圧縮の違いと使い分けを理解した
+      \item[$\square$] 可逆圧縮と非可逆圧縮の違いと圧縮率の意味を理解した
       \item[$\square$] デジタルデータのプラス面・マイナス面を理解した
     \end{itemize}
   \end{block}

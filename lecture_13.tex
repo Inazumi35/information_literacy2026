@@ -19,8 +19,8 @@
 
   \begin{block}{今日の流れ}
     \begin{enumerate}
-      \item 2進法の計算・補数（Theory 15）
-      \item 文字コードの仕組み（Theory 16）
+      \item 2進法の加算・補数・減算（Theory 15）
+      \item 文字コードとフォント（Theory 16）
       \item 音のデジタル化（Theory 17）
     \end{enumerate}
   \end{block}
@@ -28,68 +28,99 @@
 
   \begin{block}{今日の目標}
     \begin{itemize}
-      \item 補数の仕組み，文字コード，音声のデジタル化について説明できる。
+      \item 2進法の加算と補数の仕組み，文字コード，音声のデジタル化について説明できる。
     \end{itemize}
   \end{block}
   \vfill
 
   \begin{exampleblock}{キーワード}
-    \small \textbf{文字コード} ／ \textbf{ASCII} ／ \textbf{JIS8ビットコード} ／ \textbf{シフトJISコード} ／ \textbf{ユニコード（Unicode）} ／ \textbf{文字化け} ／ \textbf{振幅} ／ \textbf{周波数（Hz）} ／ \textbf{標本化（サンプリング）} ／ \textbf{量子化} ／ \textbf{符号化}
+    \small \textbf{補数} ／ \textbf{文字コード} ／ \textbf{ASCII} ／ \textbf{ユニコード（Unicode）} ／ \textbf{文字化け} ／ \textbf{フォント} ／ \textbf{標本化（サンプリング）} ／ \textbf{量子化} ／ \textbf{符号化} ／ \textbf{標本化定理}
   \end{exampleblock}
 \end{frame}
 
-% --- Slide 2: 補数 ---
+% --- Slide 2: 2進法の加算 (Theory 15 p.40) ---
 
-\begin{frame}{補数}
+\begin{frame}{2進法の加算}
   \begin{block}{ポイント}
     \begin{itemize}
-      \item 補数とは，ある数に足すと基数（2進法なら2）のべき乗になる数のこと
-      \item コンピュータでは負の数を表すために補数を利用する
-      \item 2進nビットの補数：元の数のビットを反転して1を加える
-      \item 例：4ビットの1011の補数 → 0100 + 1 = 0101（10−11=−1の計算に利用）
+      \item 2進法の加算は10進法と同様に桁ごとに計算する
+      \item 違いは 1+1=10(2)（繰り上がり）となること
     \end{itemize}
   \end{block}
 
   \vfill
 
-  \begin{exampleblock}{補足}
+  \begin{exampleblock}{例題}
     \begin{itemize}
-      \item 補数を使うと，引き算を足し算として計算できる（コンピュータの演算の基本）
+      \item ① $0100 + 0001 = 0101$
+      \item ② $0101 + 1001 = 1110$
     \end{itemize}
   \end{exampleblock}
 
   \begin{slidenote}
-    黒板で手順を示す：1011の補数 → ①ビット反転：0100 ②1を加える：0101。確認：$1011+0101=10000$（4ビットでは繰り上がりを無視して0000）→差が0。これが「引き算を足し算で実現」できる仕組み。符号付き4ビットでは最上位ビットが符号ビット（0=正，1=負）。
+    黒板で筆算を示す。1+1=10(2) の繰り上がりがポイント。②は0+1=1，0+0=0，1+0=1，0+1=1 で 1110。繰り上がりに注意しながらゆっくり計算する。10進法の加算と同じ手順だが「2になったら繰り上がる」というルールの違いを強調する。
   \end{slidenote}
 \end{frame}
 
-% --- Slide 3: 文字コードの仕組み ---
+% --- Slide 3: 補数と減算 (Theory 15 p.40-41) ---
 
-\begin{frame}{文字コードの仕組み}
-  \begin{block}{ポイント}
+\begin{frame}{補数と減算}
+  \begin{block}{補数（2の補数）}
     \begin{itemize}
-      \item 文字コード：文字に番号（コード）を割り当てて2進数で表現する仕組み
-      \item ASCII：英数字・記号を7ビット（128文字）で表す基本的な文字コード
-      \item JIS8ビットコード：ASCIIを8ビットに拡張し，カタカナを追加
+      \item 補数：ある自然数に足して「切り上がる最も小さな数」
+      \item \textbf{定義}：$n$ビットの2の補数 = $2^n$ から引いた数
+      \item \textbf{計算法}：全ビットを反転して1を加える（結果は同じ）
+      \item 例：4ビットの 1011 の補数
+        \quad $10000 - 1011 = 0101$
+        \quad / 反転→$0100$，$+1$→$0101$
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{block}{補数を使った減算}
+    \begin{itemize}
+      \item 2進法の減算は補数を使って加算に置き換えられる
+      \item 例：$0101 - 0010$ を計算する
+      \item $0010$ の補数（$10000 - 0010$）$= 1110$
+      \item $0101 + 1110 = 10011$ → 最上位ビットを捨てて $\mathbf{0011}$
+    \end{itemize}
+  \end{block}
+
+  \begin{slidenote}
+    補数の定義は「足して切り上がる最も小さな数」。4ビットなら $2^4=10000$（5ビット）から引く。補数を使うと引き算が足し算になる→コンピュータは加算回路だけで減算も実現できる。最上位ビットを捨てる理由：4ビットの範囲に収める（オーバーフローを無視）。
+  \end{slidenote}
+\end{frame}
+
+% --- Slide 4: 文字コードとフォント (Theory 16 p.42-43) ---
+
+\begin{frame}{文字コードとフォント}
+  \begin{block}{文字コード}
+    \begin{itemize}
+      \item 文字コード：文字と数値（ビット列）の対応規則
+      \item ASCII：英数字・記号を7ビット（128文字）で表す。ほぼすべての文字コードの基礎
+      \item JIS8ビットコード：ASCIIを8ビットに拡張し，カタカナを追加（256種）
       \item シフトJISコード：JISコードを改良し，漢字・ひらがなを2バイトで表現
-      \item ユニコード（Unicode）：世界中の文字を統一的に扱える国際標準の文字コード
+      \item ユニコード（Unicode）：世界中の文字を統一的に扱える国際標準（UTF-8等）
+      \item 文字化け：異なる文字コードで読み込むと文字が正しく表示されない現象
     \end{itemize}
   \end{block}
 
   \vfill
 
-  \begin{exampleblock}{補足}
+  \begin{exampleblock}{フォントの種類}
     \begin{itemize}
-      \item 文字化け：送り手と受け手で異なる文字コードを使うと発生する
+      \item \textbf{ビットマップフォント}：文字をドット（画素）の集合で表現。拡大すると粗くなる
+      \item \textbf{アウトラインフォント}：文字の輪郭を数式で表現。拡大しても滑らかに表示
     \end{itemize}
   \end{exampleblock}
 
   \begin{slidenote}
-    ASCIIは7ビット（128文字）で英語圏向け。日本語対応でシフトJIS（漢字・ひらがなを2バイト）が生まれ，現在はWebの標準がUTF-8（Unicode）。Unicodeはアラビア語・絵文字まで含む14万字以上に対応。文字化けの体験談：メールの件名が「?????」になった経験を聞いてみる。
+    ASCIIは7ビット（128文字）で英語圏向け。日本語対応でシフトJIS（漢字・ひらがなを2バイト）が生まれ，現在はWebの標準がUTF-8（Unicode）。文字化けの体験談：メールの件名が「?????」になった経験を聞いてみる。フォントはPCで普段使っているものがアウトラインフォント（スケーラブル）。
   \end{slidenote}
 \end{frame}
 
-% --- Slide 4: 音のデジタル化 ---
+% --- Slide 5: 音のデジタル化 (Theory 17 p.44) ---
 
 \begin{frame}{音のデジタル化}
   \begin{block}{ポイント}
@@ -107,24 +138,32 @@
   \end{slidenote}
 \end{frame}
 
-% --- Slide 5: 音のデータ量計算 ---
+% --- Slide 6: 音のデータ量計算 (Theory 17 p.45) ---
 
 \begin{frame}{音のデータ量計算}
   \begin{block}{ポイント}
     \begin{itemize}
-      \item 1秒間のデータ量 = 標本化周波数（Hz）× 量子化ビット数（bit）× チャンネル数
+      \item 1秒間のデータ量（bit）= 標本化周波数（Hz）× 量子化ビット数（bit）× チャンネル数
       \item 例：標本化周波数24,000Hz，量子化16bit，ステレオ（2ch）の場合
-      \item 24,000 × 16 × 2 = 768,000 bit/秒（= 768 kbit/秒）
+      \item $24{,}000 \times 16 \times 2 = 768{,}000$ bit/秒（= 768 kbit/秒）
       \item 品質↑（標本化周波数・量子化ビット数を増やす）→ データ量↑（トレードオフ）
     \end{itemize}
   \end{block}
 
+  \vfill
+
+  \begin{exampleblock}{標本化定理}
+    \begin{itemize}
+      \item 元の信号の最大周波数の\textbf{2倍以上}の周波数でサンプリングすれば，元の信号を正確に復元できる
+    \end{itemize}
+  \end{exampleblock}
+
   \begin{slidenote}
-    黒板で計算：$24{,}000\times16\times2=768{,}000$ bit/秒。1分間では$768{,}000\times60=46{,}080{,}000$ bit $\approx5.49$ MB。CDの場合（$44{,}100\times16\times2$）≈1.4Mbit/秒，1分≈10MB。品質とデータ量のトレードオフは演習の前振りとして強調する。
+    黒板で計算：$24{,}000\times16\times2=768{,}000$ bit/秒。1分間では$768{,}000\times60=46{,}080{,}000$ bit $=5{,}760{,}000$ B $=5{,}760$ kB。標本化定理：人間の可聴域20,000Hzの2倍=40,000Hz以上→CDは44,100Hzでサンプリング。品質とデータ量のトレードオフを強調する。
   \end{slidenote}
 \end{frame}
 
-% --- Slide 6: 演習 ---
+% --- Slide 7: 演習 ---
 
 \begin{frame}{演習}
   {\small 各自で取り組んでください。}
@@ -146,7 +185,7 @@
   \end{block}
 
   \begin{slidenote}
-    解答例：演習1：0110を反転→1001，$+1$→1010。演習2：ASCIIは英数字128文字のみ（7ビット），Unicodeは世界中の文字を統一的に表現（14万字以上，UTF-8等で可変長エンコード）。演習3：音の波形を一定間隔で取り出す（標本化）→段階値に丸める（量子化）→2進数に変換（符号化）。
+    解答例：演習1：$10000 - 0110 = 1010$。演習2：ASCIIは英数字128文字のみ（7ビット），Unicodeは世界中の文字を統一的に表現（UTF-8等で可変長エンコード）。演習3：音の波形を一定間隔で取り出す（標本化）→段階値に丸める（量子化）→2進数に変換（符号化）。
   \end{slidenote}
 \end{frame}
 
@@ -155,8 +194,8 @@
 \begin{frame}{まとめ・チェックリスト}
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
-      \item[$\square$] 2進法の加算と補数（負の数の表現）を習得した
-      \item[$\square$] 文字コード（ASCII・Unicode）の概念と文字化けの原因を理解した
+      \item[$\square$] 2進法の加算と補数（負の数・減算への応用）を習得した
+      \item[$\square$] 文字コード（ASCII・Unicode）と文字化けの原因，フォントの種類を理解した
       \item[$\square$] 音のデジタル化（標本化・量子化・符号化）とデータ量計算を学んだ
     \end{itemize}
   \end{block}
