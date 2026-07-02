@@ -92,7 +92,64 @@
   \end{slidenote}
 \end{frame}
 
-% --- Slide 4: 文字コードとフォント (Theory 16 p.42-43) ---
+% --- Slide 4: コンピュータでの整数の表現 (Theory 15 p.41) ---
+
+\begin{frame}{コンピュータでの整数の表現}
+  \begin{block}{ポイント}
+    \begin{itemize}
+      \item 2の補数を使うと，1種類のビット列で正・負の整数を表現できる
+      \item 4ビットでは $-8$ 〜 $+7$ の16種類の整数を表現できる
+      \item 最上位ビット（MSB）が \textbf{0 → 正の数}，\textbf{1 → 負の数}
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \centering
+  \begin{columns}[T]
+    \begin{column}{0.45\textwidth}
+      \centering
+      \begin{tabular}{cc}
+        \toprule
+        2進数 & 10進数 \\
+        \midrule
+        0000 & 0 \\
+        0001 & 1 \\
+        0010 & 2 \\
+        0011 & 3 \\
+        0100 & 4 \\
+        0101 & 5 \\
+        0110 & 6 \\
+        0111 & 7 \\
+        \bottomrule
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \centering
+      \begin{tabular}{cc}
+        \toprule
+        2進数 & 10進数 \\
+        \midrule
+        1000 & $-8$ \\
+        1001 & $-7$ \\
+        1010 & $-6$ \\
+        1011 & $-5$ \\
+        1100 & $-4$ \\
+        1101 & $-3$ \\
+        1110 & $-2$ \\
+        1111 & $-1$ \\
+        \bottomrule
+      \end{tabular}
+    \end{column}
+  \end{columns}
+
+  \begin{slidenote}
+    \footnotesize MSBが0なら正，1なら負。4ビットの場合，正側は $0000$〜$0111$（0〜7），負側は $1000$〜$1111$（$-8$〜$-1$）。$-8$ の補数を求めると $10000-1000=1000$（＝$-8$ 自身）になる点も確認しておこう。
+  \end{slidenote}
+\end{frame}
+
+% --- Slide 5: 文字コードとフォント (Theory 16 p.42-43) ---
+
 
 \begin{frame}{文字コードとフォント}
   \begin{block}{文字コード}
