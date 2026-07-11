@@ -205,14 +205,16 @@
   \end{block}
 
   \begin{alertblock}{演習}
+    \small
     \begin{enumerate}
       \item[(1)] 400×300画素，フルカラー（24bit），30fps，10秒の動画の無圧縮データ量（MB）を求めよ（1MB=1,048,576B）
       \item[(2)] (1)の動画をMPEG圧縮（圧縮率0.05）した。圧縮後のデータ量（MB）を求めよ
+      \item[(3)] (1)の動画を10Mbpsの回線で10秒間にリアルタイム送信したい。必要な最大圧縮率を求めよ
     \end{enumerate}
   \end{alertblock}
 
   \begin{slidenote}
-    \scriptsize JPEG：スマホ写真の標準形式（高圧縮）。保存を繰り返すたびに劣化する。MP3：CDの音楽データを約1/10に圧縮できる。MPEG：YouTubeやDVDで使われる。【演習解答】(1) $400\times300\times24\div8=360{,}000$ B，$360{,}000\times30\times10\div1{,}048{,}576\approx102.9$ MB。(2) $102.9\times0.05\approx5.1$ MB。
+    \scriptsize JPEG：スマホ写真の標準形式（高圧縮）。保存を繰り返すたびに劣化する。MP3：CDの音楽データを約1/10に圧縮できる。MPEG：YouTubeやDVDで使われる。【演習解答】(1) $400\times300\times24\div8=360{,}000$ B，$360{,}000\times30\times10\div1{,}048{,}576\approx102.9$ MB。(2) $102.9\times0.05\approx5.1$ MB。(3) $10\times10^6\times10\div8=12{,}500{,}000$ B，$12{,}500{,}000\div108{,}000{,}000\approx0.1157$。
   \end{slidenote}
 \end{frame}
 
