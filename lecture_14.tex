@@ -1,5 +1,5 @@
 % !TEX program = lualatex
-% Auto-generated from YAML (v3) — 14: デジタル表現2：画像 / 圧縮と品質
+% 14: デジタル表現2：画像・動画 / 圧縮 / デジタルデータの特徴
 
 \documentclass[aspectratio=43,professionalfonts,handout,10pt]{beamer}
 \usepackage{beamer_template}
@@ -12,7 +12,7 @@
 \begin{document}
 % --- Slide 1: title ---
 
-\begin{frame}{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
+\begin{frame}[shrink=5]{\CourseName\quad 第\LectureNum 回「\LectureTitle 」}
   {\small \TermName\quad \TeacherName\quad ／\quad 教科書 \TextPages}
 
   \vfill
@@ -20,8 +20,10 @@
   \begin{block}{今日の流れ}
     \begin{enumerate}
       \item 画像のデジタル化（Theory 18）
-      \item 画像・動画のデータ量計算（Theory 18）
-      \item データの圧縮（Theory 19）
+      \item 動画のデジタル表現（Theory 18）
+      \item 圧縮とは何か（Theory 19）
+      \item 可逆圧縮（Theory 19）
+      \item 非可逆圧縮（Theory 19）
       \item デジタルデータの特徴（Theory 20）
     \end{enumerate}
   \end{block}
@@ -29,7 +31,7 @@
 
   \begin{block}{今日の目標}
     \begin{itemize}
-      \item 画像のデジタル表現，データ圧縮の基本的な方法，デジタルデータの特徴を説明できる。
+      \item 画像・動画のデジタル表現，データ圧縮の方法，デジタルデータの特徴を説明できる。
     \end{itemize}
   \end{block}
   \vfill
@@ -41,8 +43,9 @@
 
 % --- Slide 2: 画像のデジタル化 (Theory 18 p.46) ---
 
-\begin{frame}{画像のデジタル化}
-  \begin{block}{ポイント}
+\begin{frame}[shrink=15]{画像のデジタル化}
+  \begin{block}{デジタル化の手順}
+    \small
     \begin{itemize}
       \item ①標本化：画像を画素（ピクセル）という区画に分割し，各画素の値を取り出す
       \item ②量子化：取り出した値を段階値に変換（階調数 = $2^n$，$n$ = ビット数）
@@ -54,140 +57,187 @@
 
   \vfill
 
-  \begin{exampleblock}{色の表現}
-    \begin{itemize}
-      \item 加算混合（光の三原色）：Red・Green・Blue → 3色を混ぜると白
-      \item 減算混合（色材の三原色）：Cyan・Magenta・Yellow → 3色を混ぜると黒に近くなる
-    \end{itemize}
-  \end{exampleblock}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{色の表現}
+        \small
+        \begin{itemize}
+          \item 加算混合（光）：R・G・B → 混ぜると白
+          \item 減算混合（色材）：C・M・Y → 混ぜると黒に近い
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{画像のデータ量}
+        \small
+        データ量（bit）\\
+        = 横画素数 × 縦画素数\\
+        \hspace{1em}× 1画素あたりのビット数
+      \end{block}
+    \end{column}
+  \end{columns}
+
+  \begin{alertblock}{演習}
+    400×300画素，フルカラー（24bit）の画像のデータ量（バイト）を求めよ
+  \end{alertblock}
 
   \begin{slidenote}
-    画素（ピクセル）はスマホ写真を最大拡大すると見える小さな正方形で，1ピクセル=1つの色情報。フルカラー24bitはR・G・B各8ビット（256段階）×3色≈1,677万色（$2^{24}$）。解像度が高いほど精細，階調が大きいほど自然な色を表現できる。加算混合（光）はR+G+B=白，減算混合（色材）はC+M+Y=黒に近くなる。
+    \scriptsize 画素（ピクセル）はスマホ写真を最大拡大すると見える小さな正方形。フルカラー24bitはR・G・B各8ビット（256段階）×3色≈1,677万色（$2^{24}$）。加算混合（光）：R+G+B=白，減算混合（色材）：C+M+Y=黒に近い。【演習解答】$400\times300\times24\div8=360{,}000$ B。
   \end{slidenote}
 \end{frame}
 
-% --- Slide 3: 画像・動画のデータ量計算 (Theory 18 p.47) ---
+% --- Slide 3: 動画のデジタル表現 (Theory 18 p.47) ---
 
-\begin{frame}{画像・動画のデータ量計算}
+\begin{frame}[shrink=8]{動画のデジタル表現}
   \begin{block}{ポイント}
     \begin{itemize}
-      \item 画像のデータ量（bit）= 横画素数 × 縦画素数 × 1画素あたりのビット数
-      \item 例（400×300，フルカラー24bit）：$400\times300\times24 = 2{,}880{,}000$ bit $= 360{,}000$ B
-      \item フレームレート（fps）：動画で1秒間に表示するフレーム（コマ）数。多いほど滑らか
+      \item \textbf{フレームレート（fps）}：動画で1秒間に表示するフレーム（コマ）数。多いほど滑らか
       \item 動画のデータ量 = 1枚あたりのデータ量 × フレームレート（fps）× 再生時間（秒）
     \end{itemize}
   \end{block}
 
   \vfill
 
-  \begin{exampleblock}{動画の走査方式}
-    \begin{itemize}
-      \item \textbf{インターレース方式}：画面を1行おきに走査して表示する
-      \item \textbf{プログレッシブ方式}：画面を全行順番に走査して表示する
-    \end{itemize}
-  \end{exampleblock}
-
-  \begin{slidenote}
-    計算手順：$400\times300\times24=2{,}880{,}000$ bit $\div8=360{,}000$ B。動画（30fps，10秒）：$360{,}000\times30\times10=108{,}000{,}000$ B $\approx103$ MB（無圧縮）。実際は圧縮して大幅に小さくなる。インターレース：テレビ放送で使われてきた方式。プログレッシブ：PCモニタ・現代ディスプレイの主流。
-  \end{slidenote}
-\end{frame}
-
-% --- Slide 4: データの圧縮 (Theory 19 p.48-49) ---
-
-\begin{frame}{データの圧縮}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
-      \begin{block}{可逆圧縮（lossless）}
+      \begin{exampleblock}{インターレース方式}
         \small
         \begin{itemize}
-          \item 元のデータに完全に戻せる
-          \item 例：ZIP，PNG，GIF
-          \item 文字・プログラムなど，欠けると困るデータに使用
-          \item ランレングス圧縮など（繰り返しパターンを省略）
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{非可逆圧縮（lossy）}
-        \small
-        \begin{itemize}
-          \item 元のデータには完全に戻せない
-          \item 例：JPEG（画像），MP3（音声），MPEG（動画）
-          \item 人間が知覚しにくい情報を削除して圧縮率を高める
-          \item 圧縮率↑ → 品質↓ のトレードオフ
+          \item 画面を1行おきに走査して表示
+          \item テレビ放送で使われてきた方式
         \end{itemize}
       \end{exampleblock}
     \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{プログレッシブ方式}
+        \small
+        \begin{itemize}
+          \item 画面を全行順番に走査して表示
+          \item PCモニタ・現代ディスプレイの主流
+        \end{itemize}
+      \end{block}
+    \end{column}
   \end{columns}
 
-  \vfill
-
-  \begin{block}{圧縮率}
-    \[
-      \text{圧縮率} = \frac{\text{圧縮後のデータ量}}{\text{元のデータ量}}
-      \quad \text{（小さいほどよく圧縮されている）}
-    \]
-  \end{block}
+  \begin{alertblock}{演習}
+    400×300画素，フルカラー（24bit），30fps，10秒の動画のデータ量（MB）を求めよ（1MB=1,048,576B）
+  \end{alertblock}
 
   \begin{slidenote}
-    ランレングス圧縮の例：「AAAABBBCC」→「4A3B2C」（繰り返しを回数+記号で表す）。JPEG：細かい色の差を間引く非可逆圧縮（写真向き）。MP3：人間の耳が聞き取りにくい高音域をカット。MPEG：フレーム間の差分のみ記録し変化のない部分を省略。圧縮率の例：1MBのファイルが200KBになった場合，圧縮率=$200\div1{,}024\approx0.20$。
+    \scriptsize インターレース：テレビ放送で使われてきた方式。プログレッシブ：PCモニタ・現代ディスプレイの主流。【演習解答】1枚 $400\times300\times24\div8=360{,}000$ B。動画 $360{,}000\times30\times10=108{,}000{,}000$ B $\div1{,}048{,}576\approx102.9$ MB（無圧縮）。
   \end{slidenote}
 \end{frame}
 
-% --- Slide 5: デジタルデータの特徴 (Theory 20 p.50) ---
+% --- Slide 4: 圧縮とは何か (Theory 19 p.48) ---
 
-\begin{frame}{デジタルデータの特徴}
-  \begin{block}{プラス面}
+\begin{frame}{圧縮とは何か}
+  \begin{block}{圧縮の定義}
     \begin{itemize}
-      \item \textbf{多種多様な形態の情報を統合できる}：文字・音・画像をすべて0と1で表現し統合して記録できる（マルチメディア）
-      \item \textbf{情報が劣化しない}：複製・伝送を繰り返しても品質が変わらない
+      \item 一定の手順を使ってデータを減らす技術を\textbf{圧縮}という
+      \item \textbf{可逆圧縮}：圧縮されたデータを元と同じデータに戻せる
+      \item \textbf{非可逆圧縮}：元と同じデータには戻せないが，人間が知覚しにくい情報を削除して圧縮率を上げる
     \end{itemize}
   \end{block}
 
   \vfill
 
-  \begin{exampleblock}{マイナス面}
+  \begin{exampleblock}{COLUMN：ランレングス圧縮}
     \begin{itemize}
-      \item \textbf{量子化誤差}：A/D変換時に微妙な情報が失われる
-      \item \textbf{著作権侵害}：劣化なくコピーできるため無断複製・拡散しやすい
-      \item \textbf{情報漏洩リスク}：小さなメディアに大量データを保存できるため流出しやすい
-      \item \textbf{データ量の膨大化}：高品質化に伴いデータ量が増大し続ける
+      \item 同じデータが続くとき，データと繰り返し回数で表す方法
+      \item 例：「AAAABBBCC」→「4A3B2C」
+      \item 256ピクセル（16×16）に4色のみ使用の場合，通常 $256\times8=2{,}048$ bit が必要なところ，大幅に削減できる
     \end{itemize}
   \end{exampleblock}
 
   \begin{slidenote}
-    アナログテープは複製するたびに劣化するが，デジタルは何度コピーしても品質が変わらない（「劣化しない」の意味）。この特性は便利な反面，違法コピーのしやすさにもつながる（著作権問題）。USBメモリ1本に数万件の個人情報が入るため，紛失・盗難のリスクも高い。量子化誤差：医療画像では微細な差が診断に影響するため，高精度な量子化が必要。
+    \scriptsize 圧縮の目的：保存容量の節約・通信時間の短縮。ランレングス圧縮は単純な繰り返しパターン（白黒画像・テキストなど）に有効。繰り返しが少ない画像には効果が薄い。
   \end{slidenote}
 \end{frame}
 
-% --- Slide 6: 演習 ---
+% --- Slide 5: 可逆圧縮 (Theory 19 p.48) ---
 
-\begin{frame}{演習}
-  {\small 各自で取り組んでください。}
+\begin{frame}{可逆圧縮}
+  \begin{block}{特徴}
+    \begin{itemize}
+      \item 圧縮されたデータを\textbf{元と同じデータに完全に戻せる}
+      \item 文字データやプログラムなど，少しも欠けると正しく利用できないファイルに使用
+    \end{itemize}
+  \end{block}
 
   \vfill
 
-  \begin{block}{演習1}
-    400×300画素，フルカラー（24bit）の画像のデータ量（バイト）を求めよ
-  \end{block}
-  \vfill
-
-  \begin{block}{演習2}
-    640×480の2値画像（1bit/画素）のデータ量を KB で求めよ（1KB=1,024B）
-  \end{block}
-  \vfill
-
-  \begin{block}{演習3}
-    可逆圧縮と非可逆圧縮の違いを，使用場面の例を挙げて説明せよ
-  \end{block}
-  \vfill
-
-  \begin{block}{演習4}
-    デジタルデータのプラス面とマイナス面をそれぞれ1つずつ説明せよ
-  \end{block}
+  \begin{exampleblock}{主な形式}
+    \begin{itemize}
+      \item \textbf{ZIP・RAR}：複数ファイルをまとめて圧縮できる
+      \item \textbf{PNG・GIF}：画像の可逆圧縮形式
+    \end{itemize}
+  \end{exampleblock}
 
   \begin{slidenote}
-    【解答】演習1：$400\times300\times24\div8=360{,}000$ B。演習2：$640\times480\times1\div8=38{,}400$ B $\div1{,}024\approx37.5$ KB。演習3：可逆圧縮（ZIP/PNG）→元データに完全復元，テキスト・プログラム向き。非可逆圧縮（JPEG/MP3）→元に戻せないが高圧縮，写真・音楽向き。演習4：例）プラス：劣化せずコピー可能。マイナス：著作権侵害が容易。
+    \scriptsize ZIPはWindowsに標準搭載（右クリック→圧縮）。PNGはWebで広く使われる可逆圧縮画像形式（透過も対応）。GIFはアニメーション対応・256色制限あり。
+  \end{slidenote}
+\end{frame}
+
+% --- Slide 6: 非可逆圧縮 (Theory 19 p.49) ---
+
+\begin{frame}[shrink=20]{非可逆圧縮}
+  \begin{block}{特徴}
+    \small
+    \begin{itemize}
+      \item 元のデータには\textbf{完全に戻せない}
+      \item 人間が知覚しにくい情報を削除して高い圧縮率を実現
+      \item 圧縮率↑ → 品質↓ のトレードオフ
+    \end{itemize}
+  \end{block}
+
+  \vfill
+
+  \begin{exampleblock}{主な形式}
+    \begin{itemize}
+      \item \textbf{JPEG}（画像）：細かい色の差を間引く。写真向き
+      \item \textbf{MP3}（音声）：人間が聞き取りにくい高音域などを削除
+      \item \textbf{MPEG}（動画）：フレーム間の差分のみ記録し，変化のない部分を省略
+    \end{itemize}
+  \end{exampleblock}
+
+  \begin{block}{圧縮率}
+    \small 圧縮率 = 圧縮後のデータ量 ÷ 元のデータ量　（小さいほどよく圧縮されている）
+  \end{block}
+
+  \begin{alertblock}{演習}
+    可逆圧縮と非可逆圧縮の違いを，使用場面の例を挙げて説明せよ
+  \end{alertblock}
+
+  \begin{slidenote}
+    \scriptsize JPEG：スマホ写真の標準形式（高圧縮）。保存を繰り返すたびに劣化する。MP3：CDの音楽データを約1/10に圧縮できる。MPEG：YouTubeやDVDで使われる。圧縮率の例：1MBのファイルが200KBになった場合，$200\div1{,}024\approx0.20$（元の約20\%に圧縮）。【演習解答】可逆圧縮（ZIP/PNG）→元データに完全復元，テキスト・プログラム向き。非可逆圧縮（JPEG/MP3）→元に戻せないが高圧縮，写真・音楽向き。
+  \end{slidenote}
+\end{frame}
+
+% --- Slide 7: デジタルデータの特徴 (Theory 20 p.50) ---
+
+\begin{frame}[shrink=15]{デジタルデータの特徴}
+  \begin{block}{プラス面}
+    \small
+    \begin{itemize}
+      \item \textbf{多種多様な形態の情報を統合できる}：文字・音・画像をすべて0と1で統合して記録できる
+      \item \textbf{情報が劣化しない}：複製・伝送を繰り返しても品質が変わらない
+      \item \textbf{情報の加工が容易}：コピー・編集・加工をソフトウェアで簡単に行える
+      \item \textbf{管理しやすい}：大量のデータを小さなメディアに保存・検索・整理できる
+    \end{itemize}
+  \end{block}
+
+  \begin{exampleblock}{マイナス面}
+    \small
+    \begin{itemize}
+      \item \textbf{情報が失われる}：量子化誤差（A/D変換時に微妙な情報が失われる）
+      \item \textbf{著作権侵害}：劣化なくコピーできるため無断複製・拡散しやすい
+      \item \textbf{情報流出}：小さなメディアに大量データを保存できるため流出しやすい
+      \item \textbf{データが膨大}：高品質化に伴いデータ量が増大し続ける
+    \end{itemize}
+  \end{exampleblock}
+
+  \begin{slidenote}
+    \scriptsize アナログテープは複製するたびに劣化するが，デジタルは何度コピーしても品質が変わらない。この特性は便利な反面，違法コピーのしやすさにもつながる（著作権問題）。USBメモリ1本に数万件の個人情報が入るため，紛失・盗難のリスクも高い。
   \end{slidenote}
 \end{frame}
 
@@ -197,6 +247,7 @@
   \begin{block}{自己チェック（できたら $\checkmark$ をつけよう）}
     \begin{itemize}
       \item[$\square$] 画像のデジタル化（画素・解像度・階調・RGB）とデータ量計算を理解した
+      \item[$\square$] 動画のフレームレートとデータ量計算を理解した
       \item[$\square$] 可逆圧縮と非可逆圧縮の違いと圧縮率の意味を理解した
       \item[$\square$] デジタルデータのプラス面・マイナス面を理解した
     \end{itemize}
