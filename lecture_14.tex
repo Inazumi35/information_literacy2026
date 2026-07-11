@@ -119,12 +119,8 @@
     \end{column}
   \end{columns}
 
-  \begin{alertblock}{演習}
-    400×300画素，フルカラー（24bit），30fps，10秒の動画のデータ量（MB）を求めよ（1MB=1,048,576B）
-  \end{alertblock}
-
   \begin{slidenote}
-    \scriptsize インターレース：テレビ放送で使われてきた方式。プログレッシブ：PCモニタ・現代ディスプレイの主流。【演習解答】1枚 $400\times300\times24\div8=360{,}000$ B。動画 $360{,}000\times30\times10=108{,}000{,}000$ B $\div1{,}048{,}576\approx102.9$ MB（無圧縮）。
+    \scriptsize インターレース：テレビ放送で使われてきた方式。プログレッシブ：PCモニタ・現代ディスプレイの主流。動画データ量の例：400×300，24bit，30fps，10秒 → $360{,}000\times30\times10\div1{,}048{,}576\approx102.9$ MB（無圧縮）。
   \end{slidenote}
 \end{frame}
 
@@ -205,11 +201,14 @@
   \end{block}
 
   \begin{alertblock}{演習}
-    可逆圧縮と非可逆圧縮の違いを，使用場面の例を挙げて説明せよ
+    \begin{enumerate}
+      \item[(1)] 400×300画素，フルカラー（24bit），30fps，10秒の動画の無圧縮データ量（MB）を求めよ（1MB=1,048,576B）
+      \item[(2)] (1)の動画をMPEG圧縮（圧縮率0.05）した。圧縮後のデータ量（MB）を求めよ
+    \end{enumerate}
   \end{alertblock}
 
   \begin{slidenote}
-    \scriptsize JPEG：スマホ写真の標準形式（高圧縮）。保存を繰り返すたびに劣化する。MP3：CDの音楽データを約1/10に圧縮できる。MPEG：YouTubeやDVDで使われる。圧縮率の例：1MBのファイルが200KBになった場合，$200\div1{,}024\approx0.20$（元の約20\%に圧縮）。【演習解答】可逆圧縮（ZIP/PNG）→元データに完全復元，テキスト・プログラム向き。非可逆圧縮（JPEG/MP3）→元に戻せないが高圧縮，写真・音楽向き。
+    \scriptsize JPEG：スマホ写真の標準形式（高圧縮）。保存を繰り返すたびに劣化する。MP3：CDの音楽データを約1/10に圧縮できる。MPEG：YouTubeやDVDで使われる。【演習解答】(1) $400\times300\times24\div8=360{,}000$ B，$360{,}000\times30\times10\div1{,}048{,}576\approx102.9$ MB。(2) $102.9\times0.05\approx5.1$ MB。
   \end{slidenote}
 \end{frame}
 
