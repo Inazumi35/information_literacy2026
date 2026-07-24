@@ -214,9 +214,45 @@
   \end{alertblock}
 
   \begin{slidenote}
-    \scriptsize JPEG：スマホ写真の標準形式（高圧縮）。保存を繰り返すたびに劣化する。MP3：CDの音楽データを約1/10に圧縮できる。MPEG：YouTubeやDVDで使われる。【演習解答】(1) $400\times300\times24\div8=360{,}000$ B，$360{,}000\times30\times10\div1{,}048{,}576\approx102.9$ MB。(2) $102.9\times0.05\approx5.1$ MB。(3) $10\times10^6\times10\div8=12{,}500{,}000$ B，$12{,}500{,}000\div108{,}000{,}000\approx0.1157$。
+    \scriptsize JPEG：スマホ写真の標準形式（高圧縮）。保存を繰り返すたびに劣化する。MP3：CDの音楽データを約1/10に圧縮できる。MPEG：YouTubeやDVDで使われる。【演習解答】(1) $400\times300\times24\div8=360{,}000$ B，$360{,}000\times30\times10\div1{,}048{,}576\approx103$ MB。(2) $103\times0.05=5.15\approx5.2$ MB。(3) $10\times10^6\times10\div8=12{,}500{,}000$ B，$12{,}500{,}000\div108{,}000{,}000\approx0.116$。
   \end{slidenote}
 \end{frame}
+
+% --- Slide 6b: 演習解説：非可逆圧縮の計算（スライドのみ） ---
+
+\mode<presentation>{
+\begin{frame}[shrink=15]{演習解説：非可逆圧縮の計算}
+  \begin{block}{(1) 無圧縮データ量}
+    \small
+    \begin{align*}
+      \text{1フレーム} &= 400 \times 300 \times 24 \div 8 = 360{,}000 \text{ B} \\
+      \text{動画全体} &= 360{,}000 \text{ B} \times 30 \text{ fps} \times 10 \text{ 秒}
+                       = 108{,}000{,}000 \text{ B} \\
+                      &= 108{,}000{,}000 \div 1{,}048{,}576 \approx \mathbf{103 \text{ MB}}
+    \end{align*}
+  \end{block}
+
+  \begin{block}{(2) 圧縮後のデータ量}
+    \small
+    \begin{align*}
+      \text{圧縮後} &= \text{元のデータ量} \times \text{圧縮率} \\
+                    &= 103 \text{ MB} \times 0.05 = 5.15 \approx \mathbf{5.2 \text{ MB}}
+    \end{align*}
+  \end{block}
+
+  \begin{block}{(3) 必要な最大圧縮率}
+    \small
+    \begin{align*}
+      \text{送信可能量} &= 10 \text{ Mbps} \times 10 \text{ 秒}
+                         = 100 \text{ Mb} = 100{,}000{,}000 \text{ bit}
+                         = 12{,}500{,}000 \text{ B} \\
+      \text{圧縮率} &= \frac{\text{送信可能量}}{\text{元のデータ量}}
+                     = \frac{12{,}500{,}000}{108{,}000{,}000} \approx \mathbf{0.116}
+    \end{align*}
+    \footnotesize（圧縮率は小さいほど高圧縮 → 0.116以下にする必要がある）
+  \end{block}
+\end{frame}
+}
 
 % --- Slide 7: デジタルデータの特徴 (Theory 20 p.50) ---
 
